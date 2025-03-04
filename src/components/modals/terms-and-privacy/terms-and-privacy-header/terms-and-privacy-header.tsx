@@ -1,0 +1,21 @@
+import { IoLockClosedOutline } from "react-icons/io5";
+
+const TermsAndPrivacyHeader = () => {
+  return (
+    <div className="flex gap-4 items-center">
+      <div className="bg-primaryL  px-6 py-5 rounded-2xl h-6 flex justify-center items-center">
+        <IoLockClosedOutline size={32} />
+      </div>
+      <div>
+        <h3 className="text-4xl font-bold leading-10 text-grayscale600">
+          Privacy Matters
+        </h3>
+        <p className="text-gray500 text-base font-medium leading-5">
+          Your data is safe with us.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default TermsAndPrivacyHeader;

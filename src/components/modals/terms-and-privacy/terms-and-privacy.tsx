@@ -1,0 +1,65 @@
+import { useTermsModalStore } from "@/store/useTermsModal";
+import Modal from "react-bootstrap/Modal";
+import { MdClose } from "react-icons/md";
+import termsData from "../../../utils/term-and-privacy.json";
+import TermsAndPrivacyFooter from "./terms-and-privacy-footer/terms-and-privacy-footer";
+import TermsAndPrivacyHeader from "./terms-and-privacy-header/terms-and-privacy-header";
+
+const TermsAndPrivacy = () => {
+  const { isTermsModalOpen, closeTermsModal } = useTermsModalStore();
+
+  return (
+    <Modal
+      show={isTermsModalOpen}
+      onHide={closeTermsModal}
+      centered
+      size="lg"
+      dialogClassName="border-radius-1"
+      aria-labelledby="contained-modal-title-vcenter"
+    >
+      <button
+        onClick={closeTermsModal}
+        className="absolute   bottom-[-50px] left-1/2 transform -translate-x-1/2   bg-black rounded-full p-2 shadow-lg"
+      >
+        <MdClose size={24} className="text-white" />
+      </button>
+      <div className="p-10">
+        <TermsAndPrivacyHeader />
+
+        <div className=" overflow-y-auto max-h-[45vh] p-6">
+          <ol className="list-decimal list-inside space-y-2 font-bold">
+            {termsData.terms.map((item, index) => (
+              <li key={index}>
+                {item.title}
+                <ul className="list-disc list-inside text-grayscale600 ml-6 text-base font-normal">
+                  {item.content.map((line, i) => (
+                    <li key={i}>{line}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Privacy Policy</h2>
+            <ol className="list-decimal list-inside space-y-2 font-bold">
+              {termsData.privacyPolicy.map((item, index) => (
+                <li key={index}>
+                  {item.title}
+                  <ul className="list-disc list-inside text-grayscale600 ml-6 text-sm font-normal">
+                    {item.content.map((line, i) => (
+                      <li key={i}>{line}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+        <TermsAndPrivacyFooter />
+      </div>
+    </Modal>
+  );
+};
+
+export default TermsAndPrivacy;

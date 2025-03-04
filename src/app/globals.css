@@ -18,3 +18,24 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+.border-radius-1 .modal-content {
+  border-radius: 40px !important;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.accordion-button {
+  padding: 20px 0 0 0;
+}
+.accordion-button:focus,
+.accordion-button:active,
+.accordion-button:focus-visible {
+  box-shadow: none !important;
+  outline: none !important;
+  border: none !important;
+  background: transparent !important;
+}
