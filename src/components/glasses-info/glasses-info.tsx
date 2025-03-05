@@ -3,10 +3,10 @@ import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 const GlassesInfo = () => {
   const { selectedGlasses } = useSelectedGlassesStore();
   return (
-    <div className="text-white font-bold">
-      <p className="text-xl leading-7">{selectedGlasses?.name}</p>
-      <p className="text-base leading-5">{selectedGlasses?.id}</p>
-      <p className="text-xl leading-7">CHF{selectedGlasses?.price}</p>
+    <div className="text-white font-bold flex flex-col gap-y-2.5">
+      <p className="text-xl ">{selectedGlasses?.name}</p>
+      <p className="text-base font-medium">{selectedGlasses?.id}</p>
+      <p className="text-xl ">CHF{selectedGlasses?.price}</p>
     </div>
   );
 };

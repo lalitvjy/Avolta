@@ -10,7 +10,7 @@ const CatalogHeadder = () => {
         label="Filter"
         rounded
         variant="secondary"
-        className="bg-black font-bold"
+        className="bg-black font-bold py-2 px-4"
         onClick={openFilter}
         leftIcon={
           <Image src={FilterIcon} width={20} height={20} alt="filter icon" />

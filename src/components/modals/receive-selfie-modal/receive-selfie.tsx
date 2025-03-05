@@ -5,15 +5,15 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import Image from "next/image";
 import { RxCross2 } from "react-icons/rx";
-import Mainimage from "../../../../public/image 3.jpg";
+import ReceiveSelfieSlider from "./receive-selfie-slider/receive-selfie-slider";
 import SelfieModalFooter from "./selfie-modal-footer/selfie-modal-footer";
 const ReceiveSelfie = () => {
   const { isReceiveSelfieModalOpen, closeReceiveSelfieModal } =
     useReceiveSelfieModalStore();
   return (
     <Transition show={isReceiveSelfieModalOpen}>
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
       <Dialog
         onClose={closeReceiveSelfieModal}
         className="fixed inset-0 flex items-center justify-center pt-10 pb-40 px-10"
@@ -32,24 +32,22 @@ const ReceiveSelfie = () => {
           leaveFrom="translate-y-0"
           leaveTo="translate-y-full"
         >
-          <DialogPanel className="bg-white w-full h-full      rounded-40px shadow-lg overflow-hidden ">
-            <div className="bg-primaryAvolta h-[50vh] rounded-b-40px relative flex flex-col items-center">
-              <p className="font-bold text-3xl text-center text-white pt-10">
+          <DialogPanel className="bg-white w-full h-full flex flex-col justify-between     rounded-40px shadow-lg overflow-hidden ">
+            <div className="bg-primaryAvolta h-[70vh] rounded-b-40px relative flex flex-col items-center justify-center">
+              <p className="font-bold text-5xl text-center text-white pt-20">
                 Your style
               </p>
-              <p className="text-center text-white text-sm pb-10">
+              <p className="text-center text-white text-base pt-4 ">
                 Lorem ipsum simply dummy text
               </p>
-              <Image
-                src={Mainimage}
-                alt="main image"
-                width={250}
-                height={300}
-                className="rounded-40px"
-              />
+
+              <div className="flex items-center justify-center flex-grow">
+                <ReceiveSelfieSlider />
+              </div>
             </div>
-            <div className=" px-20 pt-16">
-              <p className="text-center font-bold text-xl leading-7 mb-4">
+
+            <div className=" px-20 pt-7">
+              <p className="text-center font-bold text-xl ">
                 Receive your style on your mobile via QR code / Email
               </p>
               <SelfieModalFooter />

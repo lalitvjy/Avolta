@@ -3,14 +3,14 @@ import Image from "next/image";
 import MainImage from "../../../../../public/Image 4.jpg";
 const EmailModalFooter = () => {
   return (
-    <div className="flex justify-between  ">
+    <div className="flex justify-center items-center gap-32 ">
       <div>
-        <p className="font-bold text-lg leading-5 mb-2">Scan the code</p>
+        <p className="font-bold text-lg text-center mb-2">Scan the code</p>
         <Image src={MainImage} alt="qr code" className="w-[10vh] h-[10vh]" />
       </div>
       <div>
         <p>Get it on our inbox</p>
-        <form className="space-y-2">
+        <form className="space-y-6">
           <div>
             <input
               type="text"
@@ -29,7 +29,7 @@ const EmailModalFooter = () => {
 
           <Button
             label="Send"
-            className="rounded-lg font-bold w-full"
+            className="rounded-lg font-bold w-full py-3"
             variant="secondary"
           />
         </form>

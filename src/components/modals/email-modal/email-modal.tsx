@@ -16,6 +16,7 @@ const EmailModal = () => {
 
   return (
     <Transition show={isEmailModalOpen}>
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
       <Dialog
         onClose={closeEmailModal}
         className="fixed inset-0 flex items-center justify-center pt-10 pb-40 px-10"
@@ -34,7 +35,7 @@ const EmailModal = () => {
           leaveFrom="translate-y-0"
           leaveTo="translate-y-full"
         >
-          <DialogPanel className="bg-white w-full h-full      rounded-40px shadow-lg overflow-hidden ">
+          <DialogPanel className="bg-white w-full h-full   flex flex-col justify-between   rounded-40px shadow-lg overflow-hidden ">
             <div className="bg-primaryL2 h-[55vh] rounded-b-40px relative">
               <p className="font-bold text-3xl text-center text-gray-900 pt-10">
                 Email Look!
@@ -49,13 +50,13 @@ const EmailModal = () => {
               <Image
                 src={Mainimage}
                 alt="22"
-                className="absolute top-[-25px] w-[30vh] h-[42vh] rounded-40px"
+                className="absolute top-[-25px] w-[30vh] h-[42vh] rounded-56px"
               />
-              <div className={`absolute flex-1 self-end pb-3  w-[36vh]`}>
+              <div className={`absolute flex-1 self-end pb-4  w-[34vh]`}>
                 <Product />
               </div>
             </div>
-            <div className=" px-20 pt-16">
+            <div className=" px-24 pb-40 ">
               <EmailModalFooter />
             </div>
           </DialogPanel>

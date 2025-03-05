@@ -3,14 +3,14 @@ import Image from "next/image";
 import MainImage from "../../../../../public/Image 4.jpg";
 const SelfieModalFooter = () => {
   return (
-    <div className="flex justify-between  ">
+    <div className="flex items-center justify-center  p-10 gap-40 h-full">
       <div>
-        <p className="font-bold text-lg leading-5 mb-2">Scan the code</p>
+        <p className="font-bold text-lg pb-4 text-center ">Scan the code</p>
         <Image src={MainImage} alt="qr code" className="w-[10vh] h-[10vh]" />
       </div>
       <div>
-        <p>Get it on our inbox</p>
-        <form className="space-y-2">
+        <p className="font-bold text-lg pb-12">Get it on our inbox</p>
+        <form className="space-y-6 ">
           <div>
             <input
               type="text"

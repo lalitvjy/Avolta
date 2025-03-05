@@ -13,21 +13,20 @@ const BookmarkCard = ({ data }: CardProps) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex items-center justify-between py-6 border-b border-gray-300">
-        <div className="flex items-center flex-grow">
-          <Image
-            src={image}
-            alt={name}
-            width={100}
-            height={100}
-            className="rounded-xl"
-          />
-          <div className="pl-6">
-            <p className="font-bold text-lg">{name}</p>
-            <p className="text-gray-500 font-medium text-base">{description}</p>
-          </div>
-        </div>
+      <div className="flex items-center  justify-between pb-6 border-b border-gray-300">
+        <Image
+          src={image}
+          alt={name}
+          width={80}
+          height={80}
+          className="rounded-xl shadow-md object-cover"
+          style={{ width: "80px", height: "80px" }}
+        />
 
+        <div className="pl-6">
+          <p className="font-bold text-lg">{name}</p>
+          <p className="text-gray-500 font-medium text-base">{description}</p>
+        </div>
         <button onClick={() => toggleFavorite(data)} className="ml-auto px-4">
           <RiDeleteBin6Fill
             size={20}

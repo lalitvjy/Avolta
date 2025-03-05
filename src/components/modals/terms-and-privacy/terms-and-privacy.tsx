@@ -13,25 +13,24 @@ const TermsAndPrivacy = () => {
       show={isTermsModalOpen}
       onHide={closeTermsModal}
       centered
-      size="lg"
+      size="xl"
       dialogClassName="border-radius-1"
       aria-labelledby="contained-modal-title-vcenter"
     >
       <button
         onClick={closeTermsModal}
-        className="absolute   bottom-[-50px] left-1/2 transform -translate-x-1/2   bg-black rounded-full p-2 shadow-lg"
+        className="absolute   bottom-[-126px] left-1/2 transform -translate-x-1/2   bg-black rounded-full p-4 shadow-lg"
       >
-        <MdClose size={24} className="text-white" />
+        <MdClose size={32} className="text-white" />
       </button>
-      <div className="p-10">
+      <div className="p-16 text-base">
         <TermsAndPrivacyHeader />
-
-        <div className=" overflow-y-auto max-h-[45vh] p-6">
-          <ol className="list-decimal list-inside space-y-2 font-bold">
+        <div className="  p-6">
+          <ol className="list-decimal list-inside space-y-2 font-bold ">
             {termsData.terms.map((item, index) => (
               <li key={index}>
                 {item.title}
-                <ul className="list-disc list-inside text-grayscale600 ml-6 text-base font-normal">
+                <ul className="list-disc list-inside text-grayscale600 ml-6  font-normal">
                   {item.content.map((line, i) => (
                     <li key={i}>{line}</li>
                   ))}
@@ -42,11 +41,11 @@ const TermsAndPrivacy = () => {
 
           <div>
             <h2 className="text-2xl font-semibold mb-4">Privacy Policy</h2>
-            <ol className="list-decimal list-inside space-y-2 font-bold">
+            <ol className="list-decimal list-inside space-y-2 font-bold ">
               {termsData.privacyPolicy.map((item, index) => (
                 <li key={index}>
                   {item.title}
-                  <ul className="list-disc list-inside text-grayscale600 ml-6 text-sm font-normal">
+                  <ul className="list-disc list-inside text-grayscale600 ml-6  font-normal">
                     {item.content.map((line, i) => (
                       <li key={i}>{line}</li>
                     ))}

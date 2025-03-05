@@ -26,12 +26,11 @@ const UserInfo = () => {
       dialogClassName="border-radius-1"
       aria-labelledby="contained-modal-title-vcenter"
     >
-      <div className="p-6 bg-white  rounded-3xl text-black">
-        <h2 className="text-4xl font-bold  leading-10 text-center">
-          Tell Us About You
-        </h2>
-        <p className="text-base font-medium leading-5 text-center">
-          Share an email to receive your favorite sunglasses in your inbox
+      <div className=" bg-white rounded-[64px]  text-black py-14 px-28">
+        <h2 className="text-4xl font-bold   text-center ">Tell Us About You</h2>
+        <p className="text-base font-medium text-center">
+          Share an email to receive your favorite <br /> sunglasses in your
+          inbox
         </p>
         <Form>
           <Form.Group className="mb-3">
@@ -63,13 +62,14 @@ const UserInfo = () => {
             variant="secondary"
             rounded
             onClick={handelContinue}
-            className="font-bold"
+            className="font-bold py-6"
           />
-          <Button
-            label="I’ll do this later"
+          <button
             onClick={handelClose}
-            className="font-bold text-gray-400"
-          />
+            className="font-bold text-gray400  mt-7"
+          >
+            I’ll do this later
+          </button>
         </div>
       </div>
     </Modal>

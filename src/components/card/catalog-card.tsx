@@ -2,8 +2,8 @@
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import { GlassesItem } from "@/types/glasses";
 import Image from "next/image";
-
-import { FaHeart } from "react-icons/fa";
+import { CiHeart } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa6";
 
 interface CardProps {
   data: GlassesItem;
@@ -37,22 +37,22 @@ const CatalogCard = ({ data, index, totalItems }: CardProps) => {
 
   return (
     <div
-      className={`px-8 py-5 border-gray-300 min-h-[400px] flex flex-col justify-between 
+      className={` px-10 pt-6 pb-5 border-gray-300 min-h-[410px] flex flex-col justify-between 
         ${isFirstRow ? "" : ""} 
         ${isLastRow ? "rounded-b-3xl" : ""} 
         ${isLeftColumn ? "border-b border-r" : ""} 
         ${isRightColumn ? "border-b" : ""}`}
     >
-      <div className="h-6 flex ">
+      <div className=" flex ">
         {isRecommended && (
-          <div className="bg-orange text-white text-xs px-2 py-1 rounded-full font-bold">
+          <div className=" bg-orange text-white text-xs px-3 py-2 rounded-full font-bold">
             Recommended
           </div>
         )}
       </div>
-      <div className="h-6 flex ">
+      <div className=" flex ">
         {isNew && (
-          <div className="bg-black text-white text-xs px-2 py-1 rounded-full font-bold">
+          <div className="bg-black text-white text-xs px-3 py-2 rounded-full font-bold">
             New
           </div>
         )}
@@ -62,16 +62,21 @@ const CatalogCard = ({ data, index, totalItems }: CardProps) => {
         <Image src={image} alt={name} layout="fill" objectFit="cover" />
       </div>
 
-      <div className="leading-5 text-grayscale600 pt-3.5 flex flex-col flex-grow">
+      <div className=" text-grayscale600 pt-2 flex flex-col ">
         <h2 className="font-bold text-sm">{name}</h2>
         <p className="font-medium text-base flex-grow">{description}</p>
-        <div className="flex items-center justify-between mt-3">
+        <div className="flex items-center justify-between ">
           <p className="font-bold text-lg">CHF {price}</p>
           <button onClick={() => toggleFavorite(data)}>
-            <FaHeart
-              size={24}
-              className={isFavorite ? "text-red-600" : "text-gray-400"}
-            />
+            {isFavorite ? (
+              <>
+                <FaHeart size={20} className="text-red" />
+              </>
+            ) : (
+              <>
+                <CiHeart className="text-gray400" size={20} />
+              </>
+            )}
           </button>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
 import { useDetailModalStore } from "@/store/useDetailModal";
+import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import {
   Dialog,
@@ -10,25 +11,27 @@ import {
 } from "@headlessui/react";
 import Image from "next/image";
 import { useState } from "react";
-import { CiMail } from "react-icons/ci";
-import { FaRegBookmark } from "react-icons/fa";
+import { CiHeart, CiMail } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import Button from "../../button/button";
-
 export default function Detail() {
-  const { selectedGlasses } = useSelectedGlassesStore();
   const { isDetailModalOpen, closeDetailModal } = useDetailModalStore();
   const [showFullDetails, setShowFullDetails] = useState(false);
   const { width, height } = useWindowDimensions();
+  const { selectedGlasses } = useSelectedGlassesStore();
+  const { favorites, toggleFavorite } = useFavoriteGlassesStore();
+  const isFavorite = favorites.some((item) => item.id === selectedGlasses?.id);
   return (
     <Transition show={isDetailModalOpen}>
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
       <Dialog
         onClose={closeDetailModal}
         className="fixed inset-0 flex flex-col items-center pt-10 pb-40 px-10"
       >
         <button
-          className="absolute bottom-10 p-3 rounded-full bg-grayscale600"
+          className="absolute bottom-10 p-6 rounded-full bg-grayscale600"
           onClick={closeDetailModal}
         >
           <RxCross2 className="text-white" size={30} />
@@ -41,8 +44,8 @@ export default function Detail() {
           leaveFrom="translate-y-0"
           leaveTo="translate-y-full"
         >
-          <DialogPanel className="bg-white w-full h-full flex flex-col justify-between rounded-40px shadow-lg  ">
-            <div className="relative   flex justify-center rounded-t-40px ">
+          <DialogPanel className="bg-white w-full h-full flex flex-col   rounded-40px shadow-lg  ">
+            <div className="flex justify-center items-center h-full">
               <Image
                 src={selectedGlasses?.image ?? ""}
                 alt="glasses-image"
@@ -52,49 +55,67 @@ export default function Detail() {
               />
             </div>
 
-            <div className="text-start px-16 pb-16 bg-white rounded-b-40px">
-              <div className="flex items-center justify-between">
-                <p className="font-semibold text-gray-700">
-                  {selectedGlasses?.name}
-                </p>
-                <FaRegBookmark size={14} />
+            <div className="text-start px-20 pb-16 bg-white rounded-b-40px text-grayscale600">
+              <div className="flex items-center justify-between pb-4">
+                <p className="font-semibold text-xl">{selectedGlasses?.name}</p>
+                <Button
+                  rounded
+                  label=""
+                  onClick={() => {
+                    if (selectedGlasses) {
+                      toggleFavorite(selectedGlasses);
+                    }
+                  }}
+                  leftIcon={
+                    isFavorite ? (
+                      <>
+                        <FaHeart size={40} className="text-red" />
+                      </>
+                    ) : (
+                      <>
+                        <CiHeart className="text-gray400" size={40} />
+                      </>
+                    )
+                  }
+                  className="text-grayscale500 font-bold py-4 px-6 text-lg"
+                />
               </div>
 
-              <p>{selectedGlasses?.name}</p>
-              <p className="font-semibold text-gray-700">
-                {selectedGlasses?.price}
-              </p>
-              <hr className="my-2" />
+              <h6 className="text-2xl pb-4">
+                {selectedGlasses?.description} {selectedGlasses?.id}
+              </h6>
+              <p className="font-bold text-xl ">CHF {selectedGlasses?.price}</p>
+              <hr className="my-6" />
 
-              <p className="text-xl font-semibold text-gray-700">
-                Product Details
-              </p>
-              <p className="text-sm text-gray-600 mt-2">
-                {showFullDetails
-                  ? selectedGlasses?.description
-                  : `${selectedGlasses?.description.substring(0, 120)}...`}
+              <p className="text-lg font-medium ">Product Details</p>
+              <p
+                className={`text-sm text-gray-600 mt-2 ${
+                  showFullDetails ? "" : "line-clamp-3"
+                }`}
+              >
+                {selectedGlasses?.productDetail}
               </p>
 
               <button
                 onClick={() => setShowFullDetails(!showFullDetails)}
-                className="text-sm underline"
+                className="text-xl text-primaryAvolta"
               >
                 {showFullDetails ? "See Less" : "See More"}
               </button>
-
-              <div className="flex items-center justify-between gap-2 pt-4 ">
+              <hr className="mt-6 pb-12" />
+              <div className="flex items-center justify-between gap-4 pt-4 ">
                 <Button
                   label="Email"
-                  leftIcon={<CiMail />}
+                  leftIcon={<CiMail size={24} />}
                   variant="primary"
-                  className="w-full border font-bold"
+                  className="w-full font-bold py-6 text-lg border"
                   rounded
                 />
                 <Button
                   label="Try Now"
-                  leftIcon={<MdOutlinePersonOutline />}
+                  leftIcon={<MdOutlinePersonOutline size={24} />}
                   variant="secondary"
-                  className="w-full font-bold"
+                  className="w-full font-bold py-6 text-lg"
                   rounded
                 />
               </div>

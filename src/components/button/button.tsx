@@ -19,14 +19,13 @@ export default function Button({
   variant = "primary",
   className = "",
 }: ButtonProps) {
-  const baseStyles =
-    "px-6 py-2 duration-300 flex items-center justify-center gap-2 ";
+  const baseStyles = " duration-300 flex items-center justify-center gap-2 ";
   const roundedStyle = rounded ? "rounded-full" : "rounded-lg";
 
   const variantStyles = {
-    primary: "text-sm bg-white text-black font-bold",
+    primary: " bg-white text-black font-bold",
     disable: "bg-gray-300 text-white text-sm",
-    secondary: "bg-primaryAvolta hover:bg-[#6a4ecc] text-white text-sm ",
+    secondary: "bg-primaryAvolta hover:bg-[#6a4ecc] text-white  ",
   };
 
   return (

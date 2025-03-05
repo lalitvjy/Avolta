@@ -11,12 +11,12 @@ const Ai = () => {
     router.push("avolta");
   };
   return (
-    <div className=" bg-gradient-avolta h-screen w-full flex flex-col justify-between items-center pt-14 pb-8 px-14">
-      <div className="text-center">
-        <p className="font-bold text-4xl text-grayscale600 left-10">
-          Hang tight! We&apos;re letting our AI work its magic on your photo.
-        </p>
-      </div>
+    <div className=" bg-gradient-avolta h-screen w-full flex flex-col justify-between items-center p-16">
+      <p className="text-center font-bold text-4xl text-grayscale600 left-10">
+        Hang tight! We&apos;re letting our AI work <br /> its magic on your
+        photo.
+      </p>
+
       <div>
         {selfie ? (
           <Image
@@ -36,7 +36,7 @@ const Ai = () => {
           label="Ai Scanning..."
           rounded
           onClick={handelAiButtonClick}
-          className="font-bold"
+          className="font-bold py-6 px-16 text-2xl"
           leftIcon={<LuScanFace />}
         />
       </div>

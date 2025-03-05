@@ -1,3 +1,4 @@
+import { useBookmarkModalStore } from "@/store/useBookmarkModal";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -9,12 +10,14 @@ const Header = () => {
   const handelHomeClick = () => {
     router.push("/");
   };
+
+  const { openBookmarkModal } = useBookmarkModalStore();
   const { favorites } = useFavoriteGlassesStore();
   return (
-    <div className="flex justify-between px-8">
+    <div className="flex justify-between px-9">
       <Image
         src={Logo}
-        width={130}
+        width={180}
         alt="logo"
         onClick={handelHomeClick}
         className="cursor-pointer"
@@ -24,16 +27,19 @@ const Header = () => {
           label="Club Avolta"
           rounded
           variant="secondary"
-          className="font-bold"
+          className="font-bold py-4 px-6"
         />
-        <div className="bg-white px-6 py-2.5 rounded-full flex items-center gap-2">
-          <FaHeart className="text-red-600" />
+        <button
+          onClick={openBookmarkModal}
+          className="bg-white  rounded-full flex items-center gap-x-2 p-4 "
+        >
+          <FaHeart className="text-red" size={20} />
           <div className="bg-softPink  rounded-3xl px-2">
             <p className="text-deepRed text-sm leading-4 font-bold">
               {favorites.length}
             </p>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );

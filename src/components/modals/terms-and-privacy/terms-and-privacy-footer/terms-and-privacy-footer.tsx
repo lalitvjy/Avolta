@@ -14,15 +14,15 @@ const TermsAndPrivacyFooter = () => {
   };
   return (
     <>
-      <div className="flex items-center gap-2  py-6">
+      <div className="flex items-center gap-2  py-6 ">
         <input
           id="terms-checkbox"
           type="checkbox"
           checked={isChecked}
           onChange={(e) => setIsChecked(e.target.checked)}
-          className="w-5 h-5 accent-primary cursor-pointer"
+          className="w-5 h-5  cursor-pointer"
         />
-        <label htmlFor="terms-checkbox" className="text-sm text-gray-700">
+        <label htmlFor="terms-checkbox" className="text-base ">
           By continuing, you agree to our brand program, lorem ipsum simply
           dummy text.
         </label>
@@ -31,7 +31,7 @@ const TermsAndPrivacyFooter = () => {
         label="Accept and Proceed with Confidence"
         rounded
         variant={`${isChecked ? "secondary" : "disable"}`}
-        className="w-full font-bold"
+        className="w-full font-bold text-lg py-6"
         onClick={() => {
           if (isChecked) {
             closeTermsModal();

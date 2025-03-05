@@ -15,16 +15,14 @@ const Catalog = () => {
   return (
     <div className="px-12 py-10 bg-white">
       <button
-        className="absolute top-0 right-10 p-3 rounded-b-full bg-primaryAvolta"
+        className="absolute top-0 right-10 p-4 rounded-b-full bg-primaryL1"
         onClick={handelNavigateHome}
       >
-        <p className="bg-white p-2 rounded-full">
-          <RxCross1 className="text-black" />
+        <p className="bg-white p-4 rounded-full">
+          <RxCross1 className="text-black" size={24} />
         </p>
       </button>
-      <h1 className="text-grayscale600 font-bold text-4xl leading-10">
-        Catalogue
-      </h1>
+      <h1 className="text-grayscale600 font-bold text-5xl ">Catalogue</h1>
       <CatalogHeadder />
       <Filter />
       <div className="mt-6 grid grid-cols-2 border  rounded-3xl ">

@@ -12,20 +12,21 @@ const Footer = () => {
   };
   const { openReceiveSelfieModal } = useReceiveSelfieModalStore();
   return (
-    <div className="flex justify-between px-8 pt-16 ">
+    <div className="flex justify-between items-center px-8 pt-16  ">
       <Button
         label="Catalogue"
         rounded
         onClick={handelNavigateCatalog}
-        className="py-3"
-        leftIcon={<Image src={Catalog} width={20} height={20} alt="catalog" />}
+        className="py-3 pl-3 pr-6 gap-4"
+        leftIcon={<Image src={Catalog} width={48} height={48} alt="catalog" />}
       />
       <Button
         label="Receive you selfie!"
         rounded
         onClick={openReceiveSelfieModal}
-        leftIcon={<Image src={Selfie} width={20} height={20} alt="catalog" />}
+        leftIcon={<Image src={Selfie} width={24} height={24} alt="catalog" />}
         rightIcon={<IoChevronForwardSharp />}
+        className="px-6 py-6"
       />
     </div>
   );

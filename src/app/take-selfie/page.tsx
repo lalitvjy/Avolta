@@ -62,74 +62,70 @@ const TakeSelfie = () => {
   };
 
   return (
-    <div className=" bg-gradient-avolta h-screen w-full flex flex-col justify-between pt-14 pb-14 px-14">
+    <div className=" bg-gradient-avolta h-screen w-full flex flex-col justify-between p-14  font-bold text-center text-grayscale600">
       {selfie ? (
-        <div className="text-center">
-          <p className="font-bold text-4xl text-grayscale600 left-10">
-            Preview Your Style
-          </p>
-          <p className="font-medium text-base leading-5 text-grayscale600">
+        <div>
+          <p className=" text-4xl  left-10">Preview Your Style</p>
+          <p className="font-medium text-base pt-4">
             Our AI is analyzing your face for the perfect fit.
           </p>
         </div>
       ) : (
-        <div className="text-center">
-          <p className="font-bold text-4xl text-grayscale600 left-10">
-            Say Cheese!
-          </p>
-          <p className="font-medium text-base leading-5 text-grayscale600">
+        <div>
+          <p className=" text-4xl  ">Say Cheese!</p>
+          <p className="font-medium text-base pt-4">
             Our AI is analyzing your face for the perfect fit.
           </p>
         </div>
       )}
 
-      <div className=" h-auto  flex justify-center overflow-hidden  ">
+      <div className="  flex justify-center overflow-hidden   ">
         {selfie ? (
-          <div className=" rounded-3xl  overflow-hidden  ">
+          <div className="relative w-full h-screen flex justify-center items-center overflow-hidden rounded-56px pt-14 pb-[380px]">
             <Image
               src={selfie}
               alt="Selfie Preview"
-              width={400}
-              height={400}
-              className="w-full h-full object-cover"
+              width={1600}
+              height={2560}
+              className="w-full h-full rounded-56px"
             />
           </div>
         ) : (
-          <>
+          <div className="flex flex-col justify-center items-center w-full h-screen pt-14 pb-[380px]">
             <video
               ref={videoRef}
               autoPlay
               playsInline
-              className=" rounded-3xl "
+              className="w-full h-full rounded-56px object-cover"
             />
             <canvas ref={canvasRef} className="hidden" />
-          </>
+          </div>
         )}
       </div>
 
       {selfie ? (
         <div className="flex justify-between ">
-          <div>
+          <div className="flex flex-col gap-2">
             <Button
               label="Retake a selfie"
-              leftIcon={<LuRefreshCw />}
+              leftIcon={<LuRefreshCw size={24} />}
               rounded
               onClick={handelRetakeSelfie}
-              className="font-bold py-3 px-8 text-black"
+              className="font-bold py-6 px-8 text-black"
             />
             <p className="text-white text-sm text-center ">
               Not satisfied? try again.
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <Button
               label="Looks Great! Continue"
-              leftIcon={<IoFlashSharp />}
+              leftIcon={<IoFlashSharp size={24} />}
               rounded
               onClick={handelOpenUserModal}
-              className="font-bold  py-3 px-8 text-black"
+              className="font-bold  py-6 px-8 text-black"
             />
-            <p className="text-white text-sm text-center">
+            <p className="text-white text-sm text-center ">
               Move ahead with this stylish choice.
             </p>
           </div>
@@ -140,8 +136,8 @@ const TakeSelfie = () => {
             label="Take a Selfie"
             rounded
             onClick={captureSelfie}
-            className="font-bold text-black"
-            leftIcon={<IoCameraOutline />}
+            className="font-bold text-black py-6 px-[70px]"
+            leftIcon={<IoCameraOutline size={24} />}
           />
         </div>
       )}
