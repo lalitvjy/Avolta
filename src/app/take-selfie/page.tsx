@@ -2,42 +2,60 @@
 import UserInfo from "@/components/modals/user-info/user-info";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import { useUserInfo } from "@/store/useUserInfo";
-import * as deepar from "deepar";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { IoCameraOutline, IoFlashSharp } from "react-icons/io5";
 import { LuRefreshCw } from "react-icons/lu";
 import Button from "../../components/button/button";
 const TakeSelfie = () => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [stream, setStream] = useState<MediaStream | null>(null);
   const { setSelfie, selfie } = useTakeSelfieStore();
   const { openUserModal } = useUserInfo();
-  const previewRef = useRef<HTMLCanvasElement | null>(null);
-  const [deepARInstance, setDeepARInstance] = useState<deepar.DeepAR | null>(
-    null
-  );
-
-  useEffect(() => {
-    const initializeDeepAR = async () => {
-      try {
-        const instance = await deepar.initialize({
-          licenseKey:
-            "afb812e0fdfd1a60225657be0339502bd5d2b06735593f1f8e6e3adcd619b5a8fa72a963db0200a6",
-          previewElement: previewRef.current!,
-          effect: "https://cdn.jsdelivr.net/npm/deepar/effects/aviators",
-        });
-
-        setDeepARInstance(instance);
-      } catch (error) {
-        console.error("DeepAR initialization failed:", error);
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
       }
-    };
+      setStream(stream);
+    } catch (error) {
+      console.error("Error accessing camera:", error);
+    }
+  };
+  const stopCamera = useCallback(() => {
+    if (stream) {
+      stream.getTracks().forEach((track) => track.stop());
+      setStream(null);
+    }
+  }, [stream]);
 
-    initializeDeepAR();
+  const captureSelfie = () => {
+    if (!canvasRef.current || !videoRef.current) return;
+    const context = canvasRef.current.getContext("2d");
+    if (!context) return;
+    canvasRef.current.width = videoRef.current.videoWidth;
+    canvasRef.current.height = videoRef.current.videoHeight;
+    context.drawImage(
+      videoRef.current,
+      0,
+      0,
+      canvasRef.current.width,
+      canvasRef.current.height
+    );
 
-    return () => {};
+    const imageData = canvasRef.current.toDataURL("image/png");
+    setSelfie(imageData);
+    stopCamera();
+  };
+  useEffect(() => {
+    startCamera();
   }, []);
+
   const handelRetakeSelfie = () => {
     setSelfie("");
+    startCamera();
   };
   const handelOpenUserModal = () => {
     openUserModal();
@@ -74,11 +92,13 @@ const TakeSelfie = () => {
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center w-full h-screen pt-14 pb-[380px]">
-            <canvas
-              ref={previewRef}
-              id="ar-screen"
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
               className="w-full h-full rounded-56px object-cover"
             />
+            <canvas ref={canvasRef} className="hidden" />
           </div>
         )}
       </div>
@@ -115,7 +135,7 @@ const TakeSelfie = () => {
           <Button
             label="Take a Selfie"
             rounded
-            // onClick={captureSelfie}
+            onClick={captureSelfie}
             className="font-bold text-black py-6 px-[70px]"
             leftIcon={<IoCameraOutline size={24} />}
           />
