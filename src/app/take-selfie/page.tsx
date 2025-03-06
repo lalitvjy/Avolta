@@ -79,19 +79,21 @@ const TakeSelfie = () => {
         </div>
       )}
 
-      <div className="  flex justify-center overflow-hidden   ">
+      <div className="flex justify-center h-full  py-[55px] ">
         {selfie ? (
-          <div className="relative w-full h-screen flex justify-center items-center overflow-hidden rounded-56px pt-14 pb-[380px]">
-            <Image
-              src={selfie}
-              alt="Selfie Preview"
-              width={1600}
-              height={2560}
-              className="w-full h-full rounded-56px"
-            />
+          <div className="w-full h-full relative flex items-center justify-center  ">
+            {selfie ? (
+              <Image
+                src={selfie}
+                alt="Main image"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-56px"
+              />
+            ) : null}
           </div>
         ) : (
-          <div className="flex flex-col justify-center items-center w-full h-screen pt-14 pb-[380px]">
+          <div className="flex flex-col justify-center items-center w-full h-full  ">
             <video
               ref={videoRef}
               autoPlay
