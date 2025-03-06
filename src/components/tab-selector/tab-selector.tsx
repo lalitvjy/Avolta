@@ -7,7 +7,7 @@ const TabSelector = ({ activeTab, setActiveTab }: TabSelectorProps) => {
   return (
     <div className="absolute top-6 left-6 flex bg-white rounded-56px p-2">
       <button
-        className={`py-2 px-4 rounded-full transition ${
+        className={`py-2 px-4 rounded-full transition font-bold ${
           activeTab === "Live" ? "bg-primaryAvolta text-white" : "text-gray500"
         }`}
         onClick={() => setActiveTab("Live")}
@@ -15,9 +15,9 @@ const TabSelector = ({ activeTab, setActiveTab }: TabSelectorProps) => {
         Live
       </button>
       <button
-        className={`py-2 px-4 rounded-full transition ${
+        className={`py-2 px-4 rounded-full font-bold transition ${
           activeTab === "Static"
-            ? "bg-primaryAvolta text-white"
+            ? "bg-primaryAvolta text-white "
             : "text-gray500"
         }`}
         onClick={() => setActiveTab("Static")}

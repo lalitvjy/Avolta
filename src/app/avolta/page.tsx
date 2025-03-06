@@ -12,34 +12,79 @@ import { useEmailModalStore } from "@/store/useEmailModal";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
+import * as deepar from "deepar";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
+import mainImage from "../../../public/image 2.png";
 import Button from "../../components/button/button";
 import DetailModal from "../../components/modals/detail-modal/detail";
 import Slider from "../../components/slider/slider";
 const Avolta = () => {
   const { openDetailModal } = useDetailModalStore();
   const { openEmailModal } = useEmailModalStore();
-  const [activeTab, setActiveTab] = useState("Live");
+  const [activeTab, setActiveTab] = useState("Static");
   const { selectedGlasses } = useSelectedGlassesStore();
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
   const isFavorite = favorites.some((item) => item.id === selectedGlasses?.id);
   const { selfie } = useTakeSelfieStore();
+
+  const previewRef = useRef<HTMLCanvasElement | null>(null);
+  const instanceRef = useRef<deepar.DeepAR | null>(null);
+
+  useEffect(() => {
+    const initializeDeepAR = async () => {
+      try {
+        if (!previewRef.current) {
+          console.error("Canvas not found!");
+          return;
+        }
+
+        instanceRef.current = await deepar.initialize({
+          licenseKey:
+            "afb812e0fdfd1a60225657be0339502bd5d2b06735593f1f8e6e3adcd619b5a8fa72a963db0200a6",
+          canvas: previewRef.current,
+          effect: "https://cdn.jsdelivr.net/npm/deepar/effects/aviators",
+        });
+
+        await instanceRef.current.startCamera();
+      } catch (error) {
+        console.error("DeepAR initialization failed:", error);
+      }
+    };
+
+    if (activeTab === "Live") {
+      initializeDeepAR();
+    } else {
+      instanceRef.current?.shutdown();
+    }
+
+    return;
+  }, [activeTab]);
+
   return (
     <div className="bg-gradient-avolta bg-opacity-50  pt-8 h-screen flex-1">
       <Header />
       <div className="flex   justify-center w-full pt-8 px-6 ">
         <div className="relative w-full   h-[79vh] shadow-lg rounded-56px overflow-hidden">
-          <Image
-            src={selfie ?? ""}
-            alt="Main image"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-56px"
-          />
+          {activeTab === "Live" ? (
+            <div className="flex items-center justify-center h-full">
+              <canvas
+                ref={previewRef}
+                className="rounded-56px object-cover w-full "
+              />
+            </div>
+          ) : (
+            <Image
+              src={selfie ?? mainImage}
+              alt="Main image"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-56px"
+            />
+          )}
           <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black/40 to-transparent"></div>
           <div className="absolute  bottom-7 left-6 flex  ">
             <GlassesInfo />
