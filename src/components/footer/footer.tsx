@@ -5,10 +5,15 @@ import { IoChevronForwardSharp } from "react-icons/io5";
 import Catalog from "../../../public/catalog.svg";
 import Selfie from "../../../public/ic-sefie.svg";
 import Button from "../button/button";
-const Footer = () => {
+interface FooterProps {
+  isLoading: boolean;
+}
+const Footer = ({ isLoading }: FooterProps) => {
   const router = useRouter();
   const handelNavigateCatalog = () => {
-    router.push("catalog");
+    if (!isLoading) {
+      router.push("catalog");
+    }
   };
   const { openReceiveSelfieModal } = useReceiveSelfieModalStore();
   return (
@@ -17,7 +22,9 @@ const Footer = () => {
         label="Catalogue"
         rounded
         onClick={handelNavigateCatalog}
-        className="py-3 pl-3 pr-6 gap-4"
+        className={`py-3 pl-3 pr-6 gap-4 ${
+          isLoading ? "opacity-50 cursor-not-allowed" : ""
+        }`}
         leftIcon={<Image src={Catalog} width={48} height={48} alt="catalog" />}
       />
       <Button

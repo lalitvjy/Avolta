@@ -4,5 +4,5 @@ export interface GlassesItem {
   description: string;
   price: number;
   image: string;
-  productDetail: string;
+  productDetail?: string;
 }

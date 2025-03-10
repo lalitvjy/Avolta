@@ -1,16 +1,24 @@
 interface TabSelectorProps {
   activeTab: string;
+  isLoading: boolean;
   setActiveTab: (tab: string) => void;
 }
 
-const TabSelector = ({ activeTab, setActiveTab }: TabSelectorProps) => {
+const TabSelector = ({
+  activeTab,
+  isLoading,
+  setActiveTab,
+}: TabSelectorProps) => {
   return (
     <div className="absolute top-6 left-6 flex bg-white rounded-56px p-2">
       <button
         className={`py-2 px-4 rounded-full transition font-bold ${
           activeTab === "Live" ? "bg-primaryAvolta text-white" : "text-gray500"
-        }`}
-        onClick={() => setActiveTab("Live")}
+        } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+        onClick={() => {
+          if (!isLoading) setActiveTab("Live");
+        }}
+        disabled={isLoading}
       >
         Live
       </button>
@@ -19,8 +27,11 @@ const TabSelector = ({ activeTab, setActiveTab }: TabSelectorProps) => {
           activeTab === "Static"
             ? "bg-primaryAvolta text-white "
             : "text-gray500"
-        }`}
-        onClick={() => setActiveTab("Static")}
+        } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+        onClick={() => {
+          if (!isLoading) setActiveTab("Static");
+        }}
+        disabled={isLoading}
       >
         Static
       </button>

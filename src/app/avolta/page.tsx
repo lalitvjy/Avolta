@@ -54,12 +54,9 @@ const Avolta = () => {
 
         const deepARCanvas = instanceRef.current.getCanvas();
 
-        if (deepARCanvas) {
-          const containerWidth =
-            previewRef.current.parentElement?.clientWidth || 1280;
-          const containerHeight =
-            previewRef.current.parentElement?.clientHeight || 720;
-
+        if (deepARCanvas && previewRef.current?.parentElement) {
+          const containerWidth = previewRef.current.parentElement.clientWidth;
+          const containerHeight = previewRef.current.parentElement.clientHeight;
           deepARCanvas.width = containerWidth;
           deepARCanvas.height = containerHeight;
         }
@@ -76,9 +73,12 @@ const Avolta = () => {
       initializeDeepAR();
     } else {
       instanceRef.current?.shutdown();
+      instanceRef.current = null;
     }
-
-    return;
+    return () => {
+      instanceRef.current?.shutdown();
+      instanceRef.current = null;
+    };
   }, [activeTab]);
 
   return (
@@ -117,7 +117,11 @@ const Avolta = () => {
           <div className="absolute  bottom-7 left-6 flex  ">
             <GlassesInfo />
           </div>
-          <TabSelector activeTab={activeTab} setActiveTab={setActiveTab} />
+          <TabSelector
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            isLoading={isLoading}
+          />
           <div className="absolute bottom-6 right-6 flex gap-2.5 ">
             <Button
               rounded
@@ -158,7 +162,7 @@ const Avolta = () => {
       </div>
 
       <Slider />
-      <Footer />
+      <Footer   isLoading={isLoading}/>
       <Filter />
       <DetailModal />
       <EmailModal />

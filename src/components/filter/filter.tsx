@@ -35,7 +35,7 @@ const Filter = () => {
           leaveFrom="translate-x-0"
           leaveTo="-translate-x-full"
         >
-          <DialogPanel className="w-80  bg-white shadow-lg p-8 absolute left-6 top-4 bottom-4 rounded-3xl flex flex-col justify-between">
+          <DialogPanel className="w-96  bg-white shadow-lg p-8 absolute left-6 top-4 bottom-4 rounded-3xl flex flex-col justify-between">
             <h2 className="text-4xl font-bold leading-10">Filter</h2>
             <div className="h-full space-y-4">
               <Accordion title="Sort by">
@@ -73,19 +73,19 @@ const Filter = () => {
                 </label>
               </Accordion>
             </div>
-            <div className="flex  items-center justify-between">
+            <div className="flex  items-center justify-between gap-4">
               <Button
                 label="Reset"
                 rounded
                 onClick={handelClose}
                 variant="secondary"
-                className="bg-black font-bold"
+                className="bg-black font-bold py-6 w-full"
               />
               <Button
                 label="Apply"
                 rounded
                 variant="secondary"
-                className=" font-bold"
+                className=" font-bold py-6 w-full"
               />
             </div>
           </DialogPanel>
