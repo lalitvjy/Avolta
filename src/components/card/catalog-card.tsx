@@ -1,20 +1,20 @@
 "use client";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
-import { GlassesItem } from "@/types/glasses";
+import { AlgoliaProduct } from "@/types/algoliaTypes";
 import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa6";
 
 interface CardProps {
-  data: GlassesItem;
+  data: AlgoliaProduct;
   index: number;
   totalItems: number;
 }
 
 const CatalogCard = ({ data, index, totalItems }: CardProps) => {
-  const { name, description, image, price, id } = data;
+  const { name, imageUrlBase, priceDutyFree, objectID, currency, brand } = data;
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
-  const isFavorite = favorites.some((item) => item.id === id);
+  const isFavorite = favorites.some((item) => item.objectID === objectID);
 
   const isFirstRow = index < 2;
   const isLastRow = index >= totalItems - 2;
@@ -22,18 +22,16 @@ const CatalogCard = ({ data, index, totalItems }: CardProps) => {
   const isRightColumn = index % 2 === 1;
 
   const recommendedIds = [
-    "ac16aaf7-1df1-4453-b1e7-fd1a6b0ba76c",
-    "cd9abfcb-f7a4-4ff8-86dd-f6696ddd5d42",
-    "47b7d22a-ca16-41ee-b965-6759b2317178",
-    "425b6732-5850-4510-ab24-25085baf1aed",
-  ];
-  const newItem = [
-    "b6d6c216-b3fc-42e8-bdf8-452afe8032d4",
-    "6a0cf492-5c20-43e7-933d-1304cb344feb",
+    "VAN-4001225",
+    "889652205076",
+    "889652203638",
+    "889652188621",
   ];
 
-  const isRecommended = recommendedIds.includes(id);
-  const isNew = newItem.includes(id);
+  const newItem = ["889652051208", "8053672789775"];
+
+  const isRecommended = recommendedIds.includes(objectID);
+  const isNew = newItem.includes(objectID);
 
   return (
     <div
@@ -43,14 +41,14 @@ const CatalogCard = ({ data, index, totalItems }: CardProps) => {
         ${isLeftColumn ? "border-b border-r" : ""} 
         ${isRightColumn ? "border-b" : ""}`}
     >
-      <div className=" flex ">
+      <div className=" flex pb-4">
         {isRecommended && (
           <div className=" bg-orange text-white text-xs px-3 py-2 rounded-full font-bold">
             Recommended
           </div>
         )}
       </div>
-      <div className=" flex ">
+      <div className=" flex pb-4 ">
         {isNew && (
           <div className="bg-black text-white text-xs px-3 py-2 rounded-full font-bold">
             New
@@ -58,23 +56,32 @@ const CatalogCard = ({ data, index, totalItems }: CardProps) => {
         )}
       </div>
 
-      <div className="relative w-full h-48 flex-shrink-0">
-        <Image src={image} alt={name} layout="fill" objectFit="cover" />
+      <div className="relative w-[360px] h-[230px] flex self-center">
+        <Image
+          src={imageUrlBase ?? ""}
+          alt={name}
+          fill
+          style={{ objectFit: "contain" }}
+          priority={index === 0}
+        />
       </div>
 
-      <div className=" text-grayscale600 pt-2 flex flex-col ">
-        <h2 className="font-bold text-sm">{name}</h2>
-        <p className="font-medium text-base flex-grow">{description}</p>
+      <div className=" text-grayscale600 pt-2 flex flex-col gap-3">
+        <h2 className="font-bold text-sm">{brand}</h2>
+        <h2 className="font-medium text-sm">{name}</h2>
         <div className="flex items-center justify-between ">
-          <p className="font-bold text-lg">CHF {price}</p>
+          <p className="font-bold text-lg">
+            {currency}
+            {priceDutyFree}
+          </p>
           <button onClick={() => toggleFavorite(data)}>
             {isFavorite ? (
               <>
-                <FaHeart size={20} className="text-red" />
+                <FaHeart size={30} className="text-red" />
               </>
             ) : (
               <>
-                <CiHeart className="text-gray400" size={20} />
+                <CiHeart className="text-gray400" size={30} />
               </>
             )}
           </button>

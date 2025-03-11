@@ -4,9 +4,10 @@ import MainImage from "../../public/image 1.png";
 import Button from "../components/button/button";
 import TermsAndPrivacy from "../components/modals/terms-and-privacy/terms-and-privacy";
 import { useTermsModalStore } from "../store/useTermsModal";
-
 export default function Home() {
+
   const { openTermsModal } = useTermsModalStore();
+
 
   return (
     <div className="h-screen w-full bg-primaryAvolta flex flex-col items-center justify-center ">

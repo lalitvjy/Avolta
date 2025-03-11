@@ -29,7 +29,9 @@ const Avolta = () => {
   const [activeTab, setActiveTab] = useState("Static");
   const { selectedGlasses } = useSelectedGlassesStore();
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
-  const isFavorite = favorites.some((item) => item.id === selectedGlasses?.id);
+  const isFavorite = favorites.some(
+    (item) => item.objectID === selectedGlasses?.objectID
+  );
   const { selfie } = useTakeSelfieStore();
   const [isLoading, setIsLoading] = useState(false);
   const previewRef = useRef<HTMLCanvasElement | null>(null);
@@ -108,8 +110,8 @@ const Avolta = () => {
             <Image
               src={selfie ?? mainImage}
               alt="Main image"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
               className="rounded-56px"
             />
           )}
@@ -162,7 +164,7 @@ const Avolta = () => {
       </div>
 
       <Slider />
-      <Footer   isLoading={isLoading}/>
+      <Footer isLoading={isLoading} />
       <Filter />
       <DetailModal />
       <EmailModal />

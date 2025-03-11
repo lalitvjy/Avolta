@@ -6,7 +6,7 @@ const Product = () => {
   return (
     <div className="p-4 flex items-center gap-4 rounded-3xl  shadow-lg bg-white border">
       <Image
-        src={selectedGlasses?.image ?? ""}
+        src={selectedGlasses?.imageUrlBase ?? ""}
         width={100}
         height={100}
         alt={selectedGlasses?.name ?? ""}

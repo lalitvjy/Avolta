@@ -4,9 +4,12 @@ const GlassesInfo = () => {
   const { selectedGlasses } = useSelectedGlassesStore();
   return (
     <div className="text-white font-bold flex flex-col gap-y-2.5">
-      <p className="text-xl ">{selectedGlasses?.name}</p>
-      <p className="text-base font-medium">{selectedGlasses?.id}</p>
-      <p className="text-xl ">CHF{selectedGlasses?.price}</p>
+      <p className="text-xl ">{selectedGlasses?.brand}</p>
+      <p className="text-base font-medium">{selectedGlasses?.objectID}</p>
+      <p className="text-xl ">
+        {selectedGlasses?.currency}
+        {selectedGlasses?.priceDutyFree}
+      </p>
     </div>
   );
 };

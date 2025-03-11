@@ -51,13 +51,13 @@ const BookmarkModal = () => {
               <div className=" grid grid-cols-1  gap-y-4 pt-16 ">
                 {favorites.map((item) => (
                   <BookmarkCard
-                    key={item.id}
+                    key={item.objectID}
                     data={{
                       name: item.name,
                       description: item.description,
-                      price: item.price,
-                      image: item.image,
-                      id: item.id,
+                      imageUrlBase: item.imageUrlBase,
+                      brand: item.brand,
+                      objectID: item.objectID,
                     }}
                   />
                 ))}
