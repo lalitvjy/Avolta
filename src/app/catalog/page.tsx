@@ -12,6 +12,7 @@ import CatalogCard from "../../components/card/catalog-card";
 const Catalog = () => {
   const ALGOLIA_INDEX_NAME = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
   const [glasses, setGlasses] = useState<AlgoliaProduct[]>([]);
+  const [activeFilters, setActiveFilters] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [nbPages, setNbPages] = useState(1);
@@ -25,26 +26,26 @@ const Catalog = () => {
   useEffect(() => {
     const loadData = async () => {
       if (page >= nbPages) return;
-
       setIsLoading(true);
       try {
         const data = await fetchGlasses<AlgoliaProduct>(
           ALGOLIA_INDEX_NAME,
           "",
-          page
+          page,
+          activeFilters
         );
-
         setGlasses((prevGlasses) => {
+          if (page === 0) {
+            return data.hits;
+          }
           const newItems = data.hits.filter(
             (item) =>
               !prevGlasses.some(
                 (existing) => existing.objectID === item.objectID
               )
           );
-
           return [...prevGlasses, ...newItems];
         });
-        console.log(data);
         setNbPages(data.nbPages ?? 1);
       } catch (error) {
         console.error("Error fetching glasses:", error);
@@ -52,10 +53,14 @@ const Catalog = () => {
         setIsLoading(false);
       }
     };
-
     loadData();
-  }, [page, ALGOLIA_INDEX_NAME, nbPages]);
+  }, [page, ALGOLIA_INDEX_NAME, nbPages, activeFilters]);
 
+  const applyFilters = (filters: string) => {
+    setActiveFilters(filters);
+    setPage(0);
+    setNbPages(1);
+  };
   const lastItemRef = useCallback(
     (node: HTMLDivElement | null) => {
       if (isLoading) return;
@@ -72,7 +77,7 @@ const Catalog = () => {
     },
     [isLoading, page, nbPages]
   );
-
+  console.log(activeFilters);
   return (
     <div className="px-12 py-10 bg-white">
       <button
@@ -85,7 +90,7 @@ const Catalog = () => {
       </button>
       <h1 className="text-grayscale600 font-bold text-5xl">Catalogue</h1>
       <CatalogHeadder />
-      <Filter />
+      <Filter onApplyFilters={applyFilters} />
 
       <div className="mt-6 grid grid-cols-2 border rounded-3xl">
         {glasses.map((item, index) => (

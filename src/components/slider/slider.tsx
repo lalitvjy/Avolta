@@ -7,6 +7,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import FIlterIcon from "../../../public/ic-filter.svg";
 import { fetchGlasses } from "../../helpers/algolia/algolia";
+import Filter from "../filter/filter";
 
 function Slider() {
   const ALGOLIA_INDEX_NAME = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
@@ -14,23 +15,26 @@ function Slider() {
   const [glasses, setGlasses] = useState<AlgoliaProduct[]>([]);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-
+  const [activeFilters, setActiveFilters] = useState("");
   useEffect(() => {
     const loadData = async () => {
       try {
         const data = await fetchGlasses<AlgoliaProduct>(
           ALGOLIA_INDEX_NAME,
           "",
-          page
+          page,
+          activeFilters
         );
         setGlasses((prevGlasses) => {
+          if (page === 0) {
+            return data.hits;
+          }
           const newItems = data.hits.filter(
             (item) =>
               !prevGlasses.some(
                 (existing) => existing.objectID === item.objectID
               )
           );
-
           return [...prevGlasses, ...newItems];
         });
         setHasMore(data.hits.length > 0);
@@ -40,7 +44,7 @@ function Slider() {
     };
 
     loadData();
-  }, [ALGOLIA_INDEX_NAME, page]);
+  }, [ALGOLIA_INDEX_NAME, activeFilters, page]);
 
   const sliderRef = useRef<HTMLDivElement>(null);
   const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
@@ -83,7 +87,10 @@ function Slider() {
       setPage((prevPage) => prevPage + 1);
     }
   };
-
+  const applyFilters = (filters: string) => {
+    setActiveFilters(filters);
+    setPage(0);
+  };
   return (
     <div className="relative w-full pt-10 flex  ">
       <button
@@ -148,6 +155,7 @@ function Slider() {
       >
         <FaChevronRight className="text-white" />
       </button>
+      <Filter onApplyFilters={applyFilters} />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 "use client";
-import Filter from "@/components/filter/filter";
 import Footer from "@/components/footer/footer";
 import GlassesInfo from "@/components/glasses-info/glasses-info";
 import Header from "@/components/header/header";
@@ -165,7 +164,6 @@ const Avolta = () => {
 
       <Slider />
       <Footer isLoading={isLoading} />
-      <Filter />
       <DetailModal />
       <EmailModal />
       <ReceiveSelfie />
