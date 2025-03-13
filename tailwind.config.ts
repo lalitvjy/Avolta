@@ -27,7 +27,7 @@ export default {
       },
       backgroundImage: {
         "gradient-avolta":
-          "linear-gradient(to bottom, rgba(212, 194, 247, 1) 30%, rgba(120, 84, 230, 0.8) 70%)",
+          "linear-gradient(to bottom, rgba(212, 194, 247, 1) 30%, rgba(120, 84, 230, 0.6) 70%)",
       },
       borderRadius: {
         "40px": "40px",

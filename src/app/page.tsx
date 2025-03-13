@@ -5,15 +5,13 @@ import Button from "../components/button/button";
 import TermsAndPrivacy from "../components/modals/terms-and-privacy/terms-and-privacy";
 import { useTermsModalStore } from "../store/useTermsModal";
 export default function Home() {
-
   const { openTermsModal } = useTermsModalStore();
-
 
   return (
     <div className="h-screen w-full bg-primaryAvolta flex flex-col items-center justify-center ">
-      <p className=" text-white text-center font-bold text-5xl pt-9 pb-8">
+      <h2 className=" text-white text-center font-bold text-[40px] pt-9 pb-8">
         Club Avolta
-      </p>
+      </h2>
 
       <div className="relative w-full  h-full bg-black rounded-t-56px overflow-hidden">
         <Image
@@ -26,7 +24,7 @@ export default function Home() {
           <p className="font-bold text-[104px] leading-[124px] pb-7">
             Step into the World of Style!
           </p>
-          <p className="font-medium text-4xl mt-2 pb-7">
+          <p className="font-bold text-4xl mt-2 pb-7">
             Find sunglasses that fit your vibe perfectly.
           </p>
 

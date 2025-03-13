@@ -85,7 +85,7 @@ const Catalog = () => {
         onClick={handleNavigateHome}
       >
         <p className="bg-white p-4 rounded-full">
-          <RxCross1 className="text-black" size={24} />
+          <RxCross1 className="text-black" size={36} />
         </p>
       </button>
       <h1 className="text-grayscale600 font-bold text-5xl">Catalogue</h1>

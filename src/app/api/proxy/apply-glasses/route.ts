@@ -13,17 +13,14 @@ export async function POST(req: NextRequest) {
       throw new Error(`Backend error: ${response.statusText}`);
     }
 
-    // Try parsing the response as JSON or text
     const contentType = response.headers.get("Content-Type");
 
     let responseBody;
     if (contentType?.includes("application/json")) {
-      responseBody = await response.json(); // If it's JSON
+      responseBody = await response.json();
     } else {
-      responseBody = await response.text(); // If it's plain text or an error message
+      responseBody = await response.text();
     }
-
-    console.log("Response from backend:", responseBody);
 
     return NextResponse.json({ data: responseBody }, { status: 200 });
   } catch (error) {
