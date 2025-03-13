@@ -1,13 +1,13 @@
 "use client";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { LuScanFace } from "react-icons/lu";
 
 const Ai = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const { selfie } = useTakeSelfieStore();
   const [loading, setLoading] = useState(false);
