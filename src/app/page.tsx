@@ -8,7 +8,7 @@ export default function Home() {
   const { openTermsModal } = useTermsModalStore();
 
   return (
-    <div className="h-screen w-full bg-primaryAvolta flex flex-col items-center justify-center ">
+    <div className="h-full w-full bg-primaryAvolta flex flex-col items-center justify-center ">
       <h2 className=" text-white text-center font-bold text-[40px] pt-9 pb-8">
         Club Avolta
       </h2>
@@ -20,6 +20,7 @@ export default function Home() {
           layout="fill"
           objectFit="cover"
         />
+        <div className="absolute bottom-0 left-0 w-full h-[30%] bg-gradient-main-img"></div>
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center text-center text-white w-full px-[400px]">
           <p className="font-bold text-[104px] leading-[124px] pb-7">
             Step into the World of Style!

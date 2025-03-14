@@ -6,7 +6,7 @@ import { AlgoliaProduct } from "@/types/algoliaTypes";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Spinner } from "react-bootstrap";
-import { RxCross1 } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
 import CatalogCard from "../../components/card/catalog-card";
 
 const Catalog = () => {
@@ -77,22 +77,22 @@ const Catalog = () => {
     },
     [isLoading, page, nbPages]
   );
-  console.log(activeFilters);
+
   return (
-    <div className="px-12 py-10 bg-white">
+    <div className="px-12 py-10 bg-white min-h-screen">
       <button
         className="absolute top-0 right-10 p-4 rounded-b-full bg-primaryL1"
         onClick={handleNavigateHome}
       >
         <p className="bg-white p-4 rounded-full">
-          <RxCross1 className="text-black" size={36} />
+          <RxCross2 className="text-black" size={36} />
         </p>
       </button>
       <h1 className="text-grayscale600 font-bold text-5xl">Catalogue</h1>
       <CatalogHeadder />
       <Filter onApplyFilters={applyFilters} />
 
-      <div className="mt-6 grid grid-cols-2 border rounded-3xl">
+      <div className="mt-6 grid grid-cols-2 border rounded-48px max-h-[90vh] overflow-y-auto hide-scrollbar">
         {glasses.map((item, index) => (
           <CatalogCard
             key={item.objectID}
@@ -109,9 +109,8 @@ const Catalog = () => {
             totalItems={glasses.length}
           />
         ))}
+        <div ref={lastItemRef} className="h-20 w-full"></div>
       </div>
-
-      <div ref={lastItemRef} className="h-20 w-full"></div>
 
       {isLoading && (
         <div className="flex justify-center items-center py-4">

@@ -62,7 +62,7 @@ const TakeSelfie = () => {
   };
 
   return (
-    <div className=" bg-gradient-avolta h-screen w-full flex flex-col justify-between p-14  font-bold text-center text-grayscale600">
+    <div className=" bg-gradient-avolta h-screen  w-full flex flex-col justify-between p-14  font-bold text-center text-grayscale600">
       {selfie ? (
         <div>
           <p className=" text-4xl  left-10">Preview Your Style</p>
@@ -88,17 +88,17 @@ const TakeSelfie = () => {
                 alt="Main image"
                 layout="fill"
                 objectFit="cover"
-                className="rounded-56px"
+                className="rounded-60px"
               />
             ) : null}
           </div>
         ) : (
-          <div className="flex flex-col justify-center items-center w-full h-full  ">
+          <div className="flex flex-col justify-center items-center w-full flex-grow">
             <video
               ref={videoRef}
               autoPlay
               playsInline
-              className="w-full h-full rounded-56px object-cover"
+              className="w-full h-full rounded-60px object-cover"
             />
             <canvas ref={canvasRef} className="hidden" />
           </div>

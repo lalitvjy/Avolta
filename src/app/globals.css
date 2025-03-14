@@ -21,6 +21,9 @@ body {
 .border-radius-1 .modal-content {
   border-radius: 40px !important;
 }
+.border-radius-2 .modal-content {
+  border-radius: 60px !important;
+}
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -38,4 +41,14 @@ body {
   outline: none !important;
   border: none !important;
   background: transparent !important;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
 }

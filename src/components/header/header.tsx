@@ -14,7 +14,7 @@ const Header = () => {
   const { openBookmarkModal } = useBookmarkModalStore();
   const { favorites } = useFavoriteGlassesStore();
   return (
-    <div className="flex justify-between px-9">
+    <div className="flex justify-between ">
       <Image
         src={Logo}
         width={180}
@@ -22,7 +22,7 @@ const Header = () => {
         onClick={handelHomeClick}
         className="cursor-pointer"
       />
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3.5">
         <Button
           label="Club Avolta"
           rounded

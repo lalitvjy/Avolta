@@ -13,9 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-dvh">
+    <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <div className="relative flex flex-col min-h-dvh w-full bg-gray-100">
+        <div className="relative flex flex-col min-h-screen w-full bg-gray-100">
           {children}
         </div>
       </body>

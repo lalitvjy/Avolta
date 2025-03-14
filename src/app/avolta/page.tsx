@@ -83,10 +83,12 @@ const Avolta = () => {
   }, [activeTab]);
 
   return (
-    <div className="bg-gradient-avolta bg-opacity-50  pt-8 h-screen flex-1">
-      <Header />
-      <div className="flex   justify-center w-full pt-8 px-6 ">
-        <div className="relative w-full   h-[79vh] shadow-lg rounded-56px overflow-hidden">
+    <div className="bg-gradient-avolta   pt-8  min-h-screen">
+      <div className="px-9">
+        <Header />
+      </div>
+      <div className="flex justify-center w-full pt-8 px-6 ">
+        <div className="relative w-full   h-[80vh] shadow-lg rounded-56px overflow-hidden">
           {activeTab === "Live" ? (
             <div className="flex items-center justify-center h-full relative">
               <canvas
@@ -123,7 +125,7 @@ const Avolta = () => {
             setActiveTab={setActiveTab}
             isLoading={isLoading}
           />
-          <div className="absolute bottom-6 right-6 flex gap-2.5 ">
+          <div className="absolute bottom-6 right-6 flex gap-14 ">
             <Button
               rounded
               onClick={openDetailModal}
