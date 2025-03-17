@@ -13,7 +13,7 @@ export default function Home() {
         Club Avolta
       </h2>
 
-      <div className="relative w-full  h-full bg-black rounded-t-56px overflow-hidden">
+      <div className="relative w-full  h-[96vh] bg-black rounded-t-56px overflow-hidden">
         <Image
           src={MainImage}
           alt="Main image"
