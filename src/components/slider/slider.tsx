@@ -135,14 +135,14 @@ function Slider() {
                 Recommended
               </div>
             )}
-            <div className=" flex items-center justify-center h-full">
+            <div className=" flex items-center justify-center h-full bg-white">
               <Image
                 src={item.imageUrlBase ?? ""}
                 alt={item.name}
                 width={144}
                 height={144}
                 style={{ objectFit: "contain", width: "100%", height: "auto" }}
-                priority={true} // If the image is above-the-fold
+                priority={true}
               />
             </div>
           </div>
