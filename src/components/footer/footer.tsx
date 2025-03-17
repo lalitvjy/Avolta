@@ -6,7 +6,7 @@ import Catalog from "../../../public/catalog.svg";
 import Selfie from "../../../public/ic-sefie.svg";
 import Button from "../button/button";
 interface FooterProps {
-  isLoading: boolean;
+  isLoading?: boolean;
 }
 const Footer = ({ isLoading }: FooterProps) => {
   const router = useRouter();

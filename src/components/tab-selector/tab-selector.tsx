@@ -1,6 +1,6 @@
 interface TabSelectorProps {
   activeTab: string;
-  isLoading: boolean;
+  isLoading?: boolean;
   setActiveTab: (tab: string) => void;
 }
 
