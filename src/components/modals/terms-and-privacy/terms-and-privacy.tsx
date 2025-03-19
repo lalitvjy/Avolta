@@ -26,7 +26,7 @@ const TermsAndPrivacy = () => {
       <div className="p-16 text-base">
         <TermsAndPrivacyHeader />
         <div className="  p-6">
-          <ol className="list-decimal list-inside space-y-2 font-bold ">
+          <ol className="list-decimal list-inside space-y-2 font-bold  text-grayscale600">
             {termsData.terms.map((item, index) => (
               <li key={index}>
                 {item.title}
@@ -40,8 +40,8 @@ const TermsAndPrivacy = () => {
           </ol>
 
           <div>
-            <h2 className="text-2xl font-semibold mb-4">Privacy Policy</h2>
-            <ol className="list-decimal list-inside space-y-2 font-bold ">
+            <h2 className="text-2xl font-semibold mb-4 text-grayscale600">Privacy Policy</h2>
+            <ol className="list-decimal list-inside space-y-2 font-bold text-grayscale600 ">
               {termsData.privacyPolicy.map((item, index) => (
                 <li key={index}>
                   {item.title}

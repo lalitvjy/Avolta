@@ -107,7 +107,7 @@ const Ai = () => {
         )}
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center text-grayscale600">
         <div className="bg-white flex items-center rounded-full font-bold py-6 px-16 text-2xl gap-2">
           <LuScanFace size={24} />
           <button onClick={handelButtonClick}> AI Scanning...</button>

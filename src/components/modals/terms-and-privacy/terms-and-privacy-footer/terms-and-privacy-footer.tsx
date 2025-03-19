@@ -22,7 +22,7 @@ const TermsAndPrivacyFooter = () => {
           onChange={(e) => setIsChecked(e.target.checked)}
           className="w-5 h-5  cursor-pointer"
         />
-        <label htmlFor="terms-checkbox" className="text-base ">
+        <label htmlFor="terms-checkbox" className="text-base text-gray600 ">
           By continuing, you agree to our brand program, lorem ipsum simply
           dummy text.
         </label>

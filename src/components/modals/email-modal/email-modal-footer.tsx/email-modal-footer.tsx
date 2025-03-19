@@ -3,7 +3,7 @@ import Image from "next/image";
 import MainImage from "../../../../../public/Image 4.jpg";
 const EmailModalFooter = () => {
   return (
-    <div className="flex justify-center items-center gap-32 ">
+    <div className="flex justify-center items-center gap-32 text-black">
       <div>
         <p className="font-bold text-lg text-center mb-2">Scan the code</p>
         <Image src={MainImage} alt="qr code" className="w-[10vh] h-[10vh]" />

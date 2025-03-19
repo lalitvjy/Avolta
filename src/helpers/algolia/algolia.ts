@@ -38,12 +38,18 @@ export const fetchFacets = async (indexName: string) => {
       },
     });
 
-    return {
-      brands: Object.keys(response.facets?.brand || {}),
-      prices: Object.keys(response.facets?.priceDutyFree || {})
-        .map(Number)
-        .sort((a, b) => a - b),
-    };
+    const brands = Object.entries(response.facets?.brand || {}).map(
+      ([name, count]) => ({
+        name,
+        count: Number(count),
+      })
+    );
+
+    const prices = Object.keys(response.facets?.priceDutyFree || {})
+      .map(Number)
+      .sort((a, b) => a - b);
+
+    return { brands, prices };
   } catch (error) {
     console.error("Error fetching facets from Algolia:", error);
     return { brands: [], prices: [] };

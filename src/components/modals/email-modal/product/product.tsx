@@ -13,8 +13,8 @@ const Product = () => {
         className="rounded-3xl"
       />
       <div>
-        <p>{selectedGlasses?.name}</p>
-        <p>{selectedGlasses?.description}</p>
+        <p className="text-black">{selectedGlasses?.name}</p>
+        <p className="text-gray500">{selectedGlasses?.description}</p>
       </div>
     </div>
   );

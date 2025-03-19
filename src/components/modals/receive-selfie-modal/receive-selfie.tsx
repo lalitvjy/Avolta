@@ -47,7 +47,7 @@ const ReceiveSelfie = () => {
             </div>
 
             <div className=" px-20 pt-7">
-              <p className="text-center font-bold text-xl ">
+              <p className="text-center font-bold text-xl  text-gray600">
                 Receive your style on your mobile via QR code / Email
               </p>
               <SelfieModalFooter />

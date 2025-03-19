@@ -3,7 +3,7 @@ import Image from "next/image";
 import MainImage from "../../../../../public/Image 4.jpg";
 const SelfieModalFooter = () => {
   return (
-    <div className="flex items-center justify-center  p-10 gap-40 h-full">
+    <div className="flex items-center justify-center  p-10 gap-40 h-full text-black">
       <div>
         <p className="font-bold text-lg pb-4 text-center ">Scan the code</p>
         <Image src={MainImage} alt="qr code" className="w-[10vh] h-[10vh]" />

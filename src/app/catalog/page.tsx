@@ -91,7 +91,13 @@ const Catalog = () => {
       <h1 className="text-grayscale600 font-bold text-5xl">Catalogue</h1>
       <CatalogHeadder />
       <Filter onApplyFilters={applyFilters} />
-
+      {glasses.length === 0 && !isLoading && activeFilters && (
+        <div className="flex flex-col items-center justify-center mt-10 ">
+          <p className="text-gray-500 text-lg">
+            Oops! No products match your filters.
+          </p>
+        </div>
+      )}
       <div className="mt-6 grid grid-cols-2 border rounded-48px max-h-[90vh] overflow-y-auto hide-scrollbar">
         {glasses.map((item, index) => (
           <CatalogCard
