@@ -14,7 +14,7 @@ import Button from "../button/button";
 const Filter = ({
   onApplyFilters,
 }: {
-  onApplyFilters: (filters: string) => void;
+  onApplyFilters: (filters: string, sort: string) => void;
 }) => {
   const { isOpen, closeFilter } = useFilterStore();
   const [brands, setBrands] = useState<{ name: string; count: number }[]>([]);
@@ -62,15 +62,15 @@ const Filter = ({
 
     const filters = [brandFilter, priceFilter].filter(Boolean).join(" AND ");
 
-    onApplyFilters(filters);
+    onApplyFilters(filters, selectedSort || "");
     closeFilter();
   };
 
   const handleApplyReset = () => {
     setSelectedBrands([]);
     setPriceRange([minPrice, maxPrice]);
-    onApplyFilters("");
     setSelectedSort("");
+    onApplyFilters("", "");
     closeFilter();
   };
 

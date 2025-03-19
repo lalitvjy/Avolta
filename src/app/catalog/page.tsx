@@ -13,6 +13,7 @@ const Catalog = () => {
   const ALGOLIA_INDEX_NAME = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
   const [glasses, setGlasses] = useState<AlgoliaProduct[]>([]);
   const [activeFilters, setActiveFilters] = useState("");
+  const [sortOrder, setSortOrder] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [nbPages, setNbPages] = useState(1);
@@ -32,8 +33,10 @@ const Catalog = () => {
           ALGOLIA_INDEX_NAME,
           "",
           page,
-          activeFilters
+          activeFilters,
+          sortOrder || undefined
         );
+
         setGlasses((prevGlasses) => {
           if (page === 0) {
             return data.hits;
@@ -54,10 +57,11 @@ const Catalog = () => {
       }
     };
     loadData();
-  }, [page, ALGOLIA_INDEX_NAME, nbPages, activeFilters]);
+  }, [page, ALGOLIA_INDEX_NAME, nbPages, activeFilters, sortOrder]);
 
-  const applyFilters = (filters: string) => {
+  const applyFilters = (filters: string, sort: string) => {
     setActiveFilters(filters);
+    setSortOrder(sort);
     setPage(0);
     setNbPages(1);
   };

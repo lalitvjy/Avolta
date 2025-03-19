@@ -57,13 +57,17 @@ const CatalogCard = ({ data, index, totalItems }: CardProps) => {
       </div>
 
       <div className="relative w-[360px] h-[230px] flex self-center">
-        <Image
-          src={imageUrlBase ?? ""}
-          alt={name}
-          fill
-          style={{ objectFit: "contain" }}
-          priority={index === 0}
-        />
+        {imageUrlBase ? (
+          <Image
+            src={imageUrlBase ?? ""}
+            alt={name}
+            fill
+            style={{ objectFit: "contain" }}
+            priority={index === 0}
+          />
+        ) : (
+          <div className="flex justify-center items-center ">No Image</div>
+        )}
       </div>
 
       <div className=" text-grayscale600 pt-2 flex flex-col gap-3">

@@ -16,6 +16,7 @@ function Slider() {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [activeFilters, setActiveFilters] = useState("");
+  const [sortOrder, setSortOrder] = useState<string | null>(null);
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -23,7 +24,8 @@ function Slider() {
           ALGOLIA_INDEX_NAME,
           "",
           page,
-          activeFilters
+          activeFilters,
+          sortOrder || undefined
         );
         setGlasses((prevGlasses) => {
           if (page === 0) {
@@ -44,7 +46,7 @@ function Slider() {
     };
 
     loadData();
-  }, [ALGOLIA_INDEX_NAME, activeFilters, page]);
+  }, [ALGOLIA_INDEX_NAME, activeFilters, page, sortOrder]);
 
   const sliderRef = useRef<HTMLDivElement>(null);
   const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
@@ -87,8 +89,9 @@ function Slider() {
       setPage((prevPage) => prevPage + 1);
     }
   };
-  const applyFilters = (filters: string) => {
+  const applyFilters = (filters: string, sort: string) => {
     setActiveFilters(filters);
+    setSortOrder(sort);
     setPage(0);
   };
   return (
@@ -136,14 +139,22 @@ function Slider() {
               </div>
             )}
             <div className=" flex items-center justify-center h-full bg-white">
-              <Image
-                src={item.imageUrlBase ?? ""}
-                alt={item.name}
-                width={144}
-                height={144}
-                style={{ objectFit: "contain", width: "100%", height: "auto" }}
-                priority={true}
-              />
+              {item.imageUrlBase ? (
+                <Image
+                  src={item.imageUrlBase}
+                  alt={item.name}
+                  width={144}
+                  height={144}
+                  style={{
+                    objectFit: "contain",
+                    width: "100%",
+                    height: "auto",
+                  }}
+                  priority={true}
+                />
+              ) : (
+                <div>No Image</div>
+              )}
             </div>
           </div>
         ))}

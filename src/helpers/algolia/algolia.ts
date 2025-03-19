@@ -10,11 +10,19 @@ export const fetchGlasses = async <T>(
   indexName: string,
   query: string,
   page: number,
-  filters?: string
+  filters?: string,
+  sortOrder?: string
 ): Promise<SearchResponse<T>> => {
   try {
+    let sortedIndex = indexName;
+    if (sortOrder === "lowToHigh") {
+      sortedIndex = `${indexName}-asc`;
+    } else if (sortOrder === "highToLow") {
+      sortedIndex = `${indexName}-desc`;
+    }
+
     const response = await client.searchSingleIndex<T>({
-      indexName,
+      indexName: sortedIndex,
       searchParams: {
         query,
         page,
