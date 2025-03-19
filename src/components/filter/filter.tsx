@@ -161,12 +161,14 @@ const Filter = () => {
                       onChange={(newRange) =>
                         setPriceRange(newRange as [number, number])
                       }
-                      trackStyle={{ backgroundColor: "black", height: 4 }}
-                      handleStyle={{
-                        backgroundColor: "white",
-                        border: "3px solid black",
-                        width: 16,
-                        height: 16,
+                      styles={{
+                        track: { backgroundColor: "black", height: 4 },
+                        handle: {
+                          backgroundColor: "white",
+                          border: "3px solid black",
+                          width: 16,
+                          height: 16,
+                        },
                       }}
                     />
                   </div>
