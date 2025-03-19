@@ -7,11 +7,11 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import { useEffect, useState } from "react";
-import ReactSlider from "react-slider";
 import Accordion from "../accordion/accordion";
 import Button from "../button/button";
-
 const Filter = () => {
   const {
     isOpen,
@@ -148,32 +148,25 @@ const Filter = () => {
                 {isLoadingFacets ? (
                   <p>Loading Prices...</p>
                 ) : (
-                  <div className=" ">
+                  <div className=" px-2">
                     <p className="text-gray-500 text-center mb-2">
                       CHF {priceRange[0]} - CHF {priceRange[1]}
                     </p>
 
-                    <ReactSlider
-                      className=" h-2 "
-                      trackClassName="bg-black h-1 rounded-full"
+                    <Slider
+                      range
                       min={minPrice}
                       max={maxPrice}
                       value={priceRange}
                       onChange={(newRange) =>
                         setPriceRange(newRange as [number, number])
                       }
-                      pearling
-                      minDistance={5}
-                      ariaLabel={["Lower price", "Upper price"]}
-                      renderThumb={(props) => {
-                        const { key, ...restProps } = props;
-                        return (
-                          <div
-                            key={key}
-                            {...restProps}
-                            className="text-white bg-white border-4 border-black rounded-full cursor-pointer bottom-[-2px]  p-1"
-                          ></div>
-                        );
+                      trackStyle={{ backgroundColor: "black", height: 4 }}
+                      handleStyle={{
+                        backgroundColor: "white",
+                        border: "3px solid black",
+                        width: 16,
+                        height: 16,
                       }}
                     />
                   </div>
