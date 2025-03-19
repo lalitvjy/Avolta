@@ -11,12 +11,16 @@ import { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 import Accordion from "../accordion/accordion";
 import Button from "../button/button";
-const Filter = ({
-  onApplyFilters,
-}: {
-  onApplyFilters: (filters: string, sort: string) => void;
-}) => {
-  const { isOpen, closeFilter } = useFilterStore();
+
+const Filter = () => {
+  const {
+    isOpen,
+    closeFilter,
+    setFilters,
+    setSortOrder,
+    resetFilters,
+    addAppliedFilter,
+  } = useFilterStore();
   const [brands, setBrands] = useState<{ name: string; count: number }[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
   const [minPrice, setMinPrice] = useState(0);
@@ -50,7 +54,7 @@ const Filter = ({
     );
   };
   const handleSortChange = (sortOrder: string) => {
-    setSelectedSort(sortOrder);
+    setSelectedSort((prevSort) => (prevSort === sortOrder ? "" : sortOrder));
   };
   const handleApplyFilters = () => {
     const brandFilter =
@@ -61,8 +65,9 @@ const Filter = ({
     const priceFilter = `priceDutyFree:${priceRange[0]} TO ${priceRange[1]}`;
 
     const filters = [brandFilter, priceFilter].filter(Boolean).join(" AND ");
-
-    onApplyFilters(filters, selectedSort || "");
+    setFilters(filters);
+    setSortOrder(selectedSort);
+    addAppliedFilter(filters, selectedSort);
     closeFilter();
   };
 
@@ -70,7 +75,7 @@ const Filter = ({
     setSelectedBrands([]);
     setPriceRange([minPrice, maxPrice]);
     setSelectedSort("");
-    onApplyFilters("", "");
+    resetFilters();
     closeFilter();
   };
 
@@ -182,24 +187,39 @@ const Filter = ({
                 }
               >
                 <div className="flex flex-col gap-2 p-2">
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="sort"
-                      value="lowToHigh"
-                      checked={selectedSort === "lowToHigh"}
-                      onChange={() => handleSortChange("lowToHigh")}
-                    />
+                  <label
+                    className="flex items-center space-x-2 cursor-pointer"
+                    onClick={() => handleSortChange("lowToHigh")}
+                  >
+                    <div
+                      className={`w-5 h-5 flex justify-center items-center border-2 rounded-full cursor-pointer ${
+                        selectedSort === "lowToHigh"
+                          ? "bg-primaryAvolta border-primaryAvolta"
+                          : "border-gray-500"
+                      }`}
+                    >
+                      {selectedSort === "lowToHigh" && (
+                        <div className="w-3 h-3 bg-white rounded-full"></div>
+                      )}
+                    </div>
                     <span>Price: Low to High</span>
                   </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      name="sort"
-                      value="highToLow"
-                      checked={selectedSort === "highToLow"}
-                      onChange={() => handleSortChange("highToLow")}
-                    />
+
+                  <label
+                    className="flex items-center space-x-2 cursor-pointer"
+                    onClick={() => handleSortChange("highToLow")}
+                  >
+                    <div
+                      className={`w-5 h-5 flex justify-center items-center border-2 rounded-full cursor-pointer ${
+                        selectedSort === "highToLow"
+                          ? "bg-primaryAvolta border-primaryAvolta"
+                          : "border-gray-500"
+                      }`}
+                    >
+                      {selectedSort === "highToLow" && (
+                        <div className="w-3 h-3 bg-white rounded-full"></div>
+                      )}
+                    </div>
                     <span>Price: High to Low</span>
                   </label>
                 </div>

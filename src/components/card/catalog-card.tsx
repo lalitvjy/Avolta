@@ -11,15 +11,15 @@ interface CardProps {
   totalItems: number;
 }
 
-const CatalogCard = ({ data, index, totalItems }: CardProps) => {
+const CatalogCard = ({ data, index }: CardProps) => {
   const { name, imageUrlBase, priceDutyFree, objectID, currency, brand } = data;
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
   const isFavorite = favorites.some((item) => item.objectID === objectID);
 
   const isFirstRow = index < 2;
-  const isLastRow = index >= totalItems - 2;
-  const isLeftColumn = index % 2 === 0;
-  const isRightColumn = index % 2 === 1;
+  // const isLastRow = index >= totalItems - 2;
+  // const isLeftColumn = index % 2 === 0;
+  // const isRightColumn = index % 2 === 1;
 
   const recommendedIds = [
     "VAN-4001225",
@@ -35,11 +35,8 @@ const CatalogCard = ({ data, index, totalItems }: CardProps) => {
 
   return (
     <div
-      className={` px-10 pt-6 pb-5 border-gray-300 min-h-[410px] flex flex-col justify-between 
-        ${isFirstRow ? "" : ""} 
-        ${isLastRow ? "rounded-b-3xl" : ""} 
-        ${isLeftColumn ? "border-b border-r" : ""} 
-        ${isRightColumn ? "border-b" : ""}`}
+      className={` px-10 pt-6 pb-5 border-gray-300 min-h-[410px] flex flex-col justify-between  border-r border-b
+     ${isFirstRow ? "border-b" : ""} `}
     >
       <div className=" flex pb-4">
         {isRecommended && (

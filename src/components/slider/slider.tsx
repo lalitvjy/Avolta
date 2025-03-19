@@ -5,18 +5,17 @@ import { AlgoliaProduct } from "@/types/algoliaTypes";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import FIlterIcon from "../../../public/ic-filter.svg";
+import { LuSettings2 } from "react-icons/lu";
 import { fetchGlasses } from "../../helpers/algolia/algolia";
 import Filter from "../filter/filter";
 
 function Slider() {
   const ALGOLIA_INDEX_NAME = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
-  const { openFilter } = useFilterStore();
+  const { openFilter, filters, sortOrder } = useFilterStore();
   const [glasses, setGlasses] = useState<AlgoliaProduct[]>([]);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-  const [activeFilters, setActiveFilters] = useState("");
-  const [sortOrder, setSortOrder] = useState<string | null>(null);
+
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -24,7 +23,7 @@ function Slider() {
           ALGOLIA_INDEX_NAME,
           "",
           page,
-          activeFilters,
+          filters,
           sortOrder || undefined
         );
         setGlasses((prevGlasses) => {
@@ -46,7 +45,7 @@ function Slider() {
     };
 
     loadData();
-  }, [ALGOLIA_INDEX_NAME, activeFilters, page, sortOrder]);
+  }, [ALGOLIA_INDEX_NAME, filters, page, sortOrder]);
 
   const sliderRef = useRef<HTMLDivElement>(null);
   const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
@@ -89,24 +88,14 @@ function Slider() {
       setPage((prevPage) => prevPage + 1);
     }
   };
-  const applyFilters = (filters: string, sort: string) => {
-    setActiveFilters(filters);
-    setSortOrder(sort);
-    setPage(0);
-  };
+
   return (
     <div className="relative w-full pt-10 flex  ">
       <button
         onClick={openFilter}
-        className="flex gap-2 absolute z-90 left-[-52px] top-20  pb-4 pt-4 px-8 rounded-t-[32px] bg-black rotate-90 text-white text-lg font-bold"
+        className="flex gap-2 absolute z-90 left-[-52px] top-20  pb-4 pt-4 px-8 rounded-t-[32px] bg-black rotate-90 text-white text-lg font-bold items-center"
       >
-        <Image
-          src={FIlterIcon}
-          alt="Filter Icon"
-          width={20}
-          height={20}
-          style={{ width: "auto", height: "auto" }}
-        />
+        <LuSettings2 size={20} />
         Filters
       </button>
 
@@ -166,7 +155,7 @@ function Slider() {
       >
         <FaChevronRight className="text-white" />
       </button>
-      <Filter onApplyFilters={applyFilters} />
+      <Filter />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import CatalogHeadder from "@/components/catalog-header/catalog-header";
 import Filter from "@/components/filter/filter";
 import { fetchGlasses } from "@/helpers/algolia/algolia";
+import { useFilterStore } from "@/store/useFilter";
 import { AlgoliaProduct } from "@/types/algoliaTypes";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -11,9 +12,8 @@ import CatalogCard from "../../components/card/catalog-card";
 
 const Catalog = () => {
   const ALGOLIA_INDEX_NAME = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
+  const { filters, sortOrder, setSortOrder } = useFilterStore();
   const [glasses, setGlasses] = useState<AlgoliaProduct[]>([]);
-  const [activeFilters, setActiveFilters] = useState("");
-  const [sortOrder, setSortOrder] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [nbPages, setNbPages] = useState(1);
@@ -33,7 +33,7 @@ const Catalog = () => {
           ALGOLIA_INDEX_NAME,
           "",
           page,
-          activeFilters,
+          filters,
           sortOrder || undefined
         );
 
@@ -57,14 +57,8 @@ const Catalog = () => {
       }
     };
     loadData();
-  }, [page, ALGOLIA_INDEX_NAME, nbPages, activeFilters, sortOrder]);
+  }, [page, ALGOLIA_INDEX_NAME, nbPages, setSortOrder, filters, sortOrder]);
 
-  const applyFilters = (filters: string, sort: string) => {
-    setActiveFilters(filters);
-    setSortOrder(sort);
-    setPage(0);
-    setNbPages(1);
-  };
   const lastItemRef = useCallback(
     (node: HTMLDivElement | null) => {
       if (isLoading) return;
@@ -83,9 +77,9 @@ const Catalog = () => {
   );
 
   return (
-    <div className="px-12 py-10 bg-white min-h-screen">
+    <div className="px-12 py-10 bg-white min-h-screen w-full">
       <button
-        className="absolute top-0 right-10 p-4 rounded-b-full bg-primaryL1"
+        className="absolute top-0 right-10 p-3 rounded-b-full bg-primaryL1"
         onClick={handleNavigateHome}
       >
         <p className="bg-white p-4 rounded-full">
@@ -94,15 +88,21 @@ const Catalog = () => {
       </button>
       <h1 className="text-grayscale600 font-bold text-5xl">Catalogue</h1>
       <CatalogHeadder />
-      <Filter onApplyFilters={applyFilters} />
-      {glasses.length === 0 && !isLoading && activeFilters && (
+
+      <Filter />
+
+      {glasses.length === 0 && !isLoading && filters && (
         <div className="flex flex-col items-center justify-center mt-10 ">
           <p className="text-gray-500 text-lg">
             Oops! No products match your filters.
           </p>
         </div>
       )}
-      <div className="mt-6 grid grid-cols-2 border rounded-48px max-h-[90vh] overflow-y-auto hide-scrollbar">
+      <div
+        className={`mt-6 grid  border rounded-48px max-h-[90vh] overflow-y-auto hide-scrollbar ${
+          glasses.length <= 1 ? "grid-cols-1 " : "grid-cols-2 "
+        }`}
+      >
         {glasses.map((item, index) => (
           <CatalogCard
             key={item.objectID}
@@ -119,7 +119,7 @@ const Catalog = () => {
             totalItems={glasses.length}
           />
         ))}
-        <div ref={lastItemRef} className="h-20 w-full"></div>
+        <div ref={lastItemRef}></div>
       </div>
 
       {isLoading && (
