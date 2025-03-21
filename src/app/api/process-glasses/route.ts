@@ -4,7 +4,7 @@ export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
 
-    const response = await fetch("http://34.27.51.74:5000/apply-glasses", {
+    const response = await fetch("http://34.27.51.74:5000/process-glasses", {
       method: "POST",
       body: formData,
     });
@@ -14,8 +14,8 @@ export async function POST(req: NextRequest) {
     }
 
     const contentType = response.headers.get("Content-Type");
-
     let responseBody;
+
     if (contentType?.includes("application/json")) {
       responseBody = await response.json();
     } else {
@@ -24,9 +24,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ data: responseBody }, { status: 200 });
   } catch (error) {
-    console.error("Error fetching from backend:", error);
+    console.error("Error proxying to process-glasses:", error);
     return NextResponse.json(
-      { error: "Failed to fetch from backend" },
+      { error: "Failed to connect to process-glasses" },
       { status: 500 }
     );
   }

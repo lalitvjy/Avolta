@@ -9,6 +9,8 @@ export interface AlgoliaProduct {
   priceDutyFree?: number;
   priceDutyPaid?: number;
   imageUrlBase?: string;
+  triedOnUrl?: string;
+  asset2DUrl?: string;
   shortDescription?: string | null;
   description?: string | null;
   size?: string;

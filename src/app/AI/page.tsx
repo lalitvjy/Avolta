@@ -1,80 +1,58 @@
 "use client";
+import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-// import { useEffect, useState } from "react";
-// import { Spinner } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import { LuScanFace } from "react-icons/lu";
 
 const Ai = () => {
   const router = useRouter();
-
   const { selfie } = useTakeSelfieStore();
-  // const [loading, setLoading] = useState(false);
-  // const [processedImage, setProcessedImage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  // const handleApplyGlasses = async () => {
-  //   if (!selfie) {
-  //     console.error("No selfie available!");
-  //     return;
-  //   }
-  //   setLoading(true);
-  //   // const glassesUrl =
-  //   //   "https://images.shopdutyfree.com/image/upload/c_pad,f_auto,h_1000,w_1000/v1685095787/4001225/4001225_1_en_GB.jpg";
+  const sendSelfieToAI = async () => {
+    if (!selfie) return;
+    setLoading(true);
 
-  //   try {
-  //     const formData = new FormData();
+    try {
+      const blob = await (await fetch(selfie)).blob();
+      const file = new File([blob], "selfie.png", { type: "image/png" });
 
-  //     const byteCharacters = atob(selfie.split(",")[1]);
-  //     const byteNumbers = new Array(byteCharacters.length)
-  //       .fill(0)
-  //       .map((_, i) => byteCharacters.charCodeAt(i));
-  //     const byteArray = new Uint8Array(byteNumbers);
-  //     const selfieBlob = new Blob([byteArray], { type: "image/png" });
+      const formData = new FormData();
+      formData.append("face", file);
 
-  //     formData.append("face", selfieBlob, "selfie.png");
+      const res = await fetch("/api/process-glasses", {
+        method: "POST",
+        body: formData,
+      });
 
-  //     // const glassesResponse = await fetch(glassesUrl);
-  //     // const glassesBlob = await glassesResponse.blob(); // Firs Version
+      const result = await res.json();
 
-  //     const glassesResponse = await fetch("/test.png");
-  //     if (!glassesResponse.ok) throw new Error("Failed to load glasses image");
-  //     const glassesBlob = await glassesResponse.blob(); //Second version
-  //     // const transparentGlassesBlob = await removeBackground(glassesUrl); // third version when dybamicly delete background of image
+      if (!res.ok) {
+        throw new Error(result.error || "Failed to process image");
+      }
 
-  //     formData.append("glasses", glassesBlob, "test.png");
+      const { uuid, recommendations, face_analysis } = result.data;
+      useRecommendetGlassStore.getState().setGlassesData({
+        uuid,
+        recommendations,
+        faceShape: face_analysis?.face_shape || "",
+      });
 
-  //     const response = await fetch("/api/proxy/apply-glasses", {
-  //       method: "POST",
-  //       body: formData,
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error(`Failed to apply glasses: ${response.statusText}`);
-  //     }
-
-  //     const responseData = await response.json();
-
-  //     if (responseData.data && responseData.data.image_url) {
-  //       setProcessedImage(responseData.data.image_url);
-  //     } else {
-  //       throw new Error("No image URL returned from backend");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error applying glasses:", error);
-  //   } finally {
-  //     setLoading(false);
-  //     router.push("/avolta");
-  //   }
-  // };
-  // useEffect(() => {
-  //   if (selfie) {
-  //     handleApplyGlasses();
-  //   }
-  // }, [selfie]);
-  const handelButtonClick = () => {
-    router.push("/avolta");
+      console.log("AI response:", result.data);
+      router.push("/avolta");
+    } catch (err) {
+      console.error("Error processing AI selfie:", err);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    sendSelfieToAI();
+  }, [selfie]);
+
   return (
     <div className="bg-gradient-avolta h-screen w-full flex flex-col justify-between items-center p-16">
       <p className="text-center font-bold text-4xl text-grayscale600 left-10">
@@ -83,18 +61,7 @@ const Ai = () => {
       </p>
 
       <div className="w-full h-full relative flex items-center justify-center mt-12 mb-16">
-        {/* {processedImage ? (
-          <Image
-            src={processedImage}
-            alt="Selfie Image"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-56px"
-          />
-        ) : selfie ? (       ) : (
-          <div className="w-full h-full bg-black rounded-56px"></div>
-        )} */}
-        {selfie ? (
+        {selfie && (
           <Image
             src={selfie}
             alt="Selfie Image"
@@ -102,19 +69,17 @@ const Ai = () => {
             objectFit="cover"
             className="rounded-56px"
           />
-        ) : (
-          ""
         )}
       </div>
 
       <div className="flex justify-center text-grayscale600">
         <div className="bg-white flex items-center rounded-full font-bold py-6 px-16 text-2xl gap-2">
           <LuScanFace size={24} />
-          <button onClick={handelButtonClick}> AI Scanning...</button>
-
-          {/* {loading && (
-            <Spinner animation="grow" className="text-primaryAvolta " />
-          )} */}
+          {loading ? (
+            <span className="animate-pulse">Processing...</span>
+          ) : (
+            <span>Sending to AI...</span>
+          )}
         </div>
       </div>
     </div>

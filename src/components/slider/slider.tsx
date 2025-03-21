@@ -1,5 +1,6 @@
 "use client";
 import { useFilterStore } from "@/store/useFilter";
+import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { AlgoliaProduct } from "@/types/algoliaTypes";
 import Image from "next/image";
@@ -15,7 +16,9 @@ function Slider() {
   const [glasses, setGlasses] = useState<AlgoliaProduct[]>([]);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-
+  const { recommendations } = useRecommendetGlassStore();
+  const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
+  const sliderRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -47,20 +50,22 @@ function Slider() {
     loadData();
   }, [ALGOLIA_INDEX_NAME, filters, page, sortOrder]);
 
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
-  const recommendedIds = useMemo(
-    () => ["VAN-4001225", "889652205076", "889652203638", "889652188621"],
-    []
-  );
-
   const sortedGlassesCatalog = useMemo(() => {
-    return [...glasses].sort((a, b) => {
-      const isARecommended = recommendedIds.includes(a.objectID);
-      const isBRecommended = recommendedIds.includes(b.objectID);
-      return Number(isBRecommended) - Number(isARecommended);
-    });
-  }, [glasses, recommendedIds]);
+    const allGlassesMap = new Map();
+
+    for (const item of recommendations) {
+      allGlassesMap.set(item.objectID, item);
+    }
+
+    for (const item of glasses) {
+      if (!allGlassesMap.has(item.objectID)) {
+        allGlassesMap.set(item.objectID, item);
+      }
+    }
+
+    return Array.from(allGlassesMap.values());
+  }, [glasses, recommendations]);
+
   useEffect(() => {
     if (!selectedGlasses && sortedGlassesCatalog.length > 0) {
       setSelectedGlasses(sortedGlassesCatalog[0]);
@@ -72,23 +77,24 @@ function Slider() {
       sliderRef.current.scrollBy({ left: -200, behavior: "smooth" });
     }
   };
+
   const scrollRight = () => {
     if (sliderRef.current) {
       sliderRef.current.scrollBy({ left: 200, behavior: "smooth" });
     }
   };
+
   const handleSelectGlasses = (glasses: AlgoliaProduct) => {
     setSelectedGlasses(glasses);
   };
+
   const handleScroll = () => {
     if (!sliderRef.current) return;
-
     const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
     if (scrollLeft + clientWidth >= scrollWidth - 10 && hasMore) {
       setPage((prevPage) => prevPage + 1);
     }
   };
-
   return (
     <div className="relative w-full pt-10 flex  ">
       <button
@@ -122,8 +128,8 @@ function Slider() {
           : "border-2 border-transparent"
       }`}
           >
-            {recommendedIds.includes(item.objectID) && (
-              <div className="absolute top-0  left-0 w-full bg-primaryAvolta text-white text-[11px] font-bold rounded-t-lg text-center py-1">
+            {recommendations.some((rec) => rec.objectID === item.objectID) && (
+              <div className="absolute top-0 left-0 w-full bg-primaryAvolta text-white text-[11px] font-bold rounded-t-lg text-center py-1">
                 Recommended
               </div>
             )}

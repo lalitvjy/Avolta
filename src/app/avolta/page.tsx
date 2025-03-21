@@ -6,14 +6,17 @@ import BookmarkModal from "@/components/modals/bookmark-modal/bookmark-modal";
 import EmailModal from "@/components/modals/email-modal/email-modal";
 import ReceiveSelfie from "@/components/modals/receive-selfie-modal/receive-selfie";
 import TabSelector from "@/components/tab-selector/tab-selector";
+import { applyGlasses } from "@/helpers/apply-glasses/applyGlasses";
 import { useDetailModalStore } from "@/store/useDetailModal";
 import { useEmailModalStore } from "@/store/useEmailModal";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
+import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
@@ -33,12 +36,43 @@ const Avolta = () => {
   const { openEmailModal } = useEmailModalStore();
   const [activeTab, setActiveTab] = useState("Static");
   const { selectedGlasses } = useSelectedGlassesStore();
+  const { uuid } = useRecommendetGlassStore();
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
   const isFavorite = favorites.some(
     (item) => item.objectID === selectedGlasses?.objectID
   );
   const { selfie } = useTakeSelfieStore();
+  const [appliedImage, setAppliedImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isApplyingGlasses, setIsApplyingGlasses] = useState(false);
+  console.log(selectedGlasses);
+  useEffect(() => {
+    const generateTryOnImage = async () => {
+      if (!uuid || !selectedGlasses) return;
+      setIsApplyingGlasses(true);
+      if (selectedGlasses.triedOnUrl) {
+        setAppliedImage(selectedGlasses.triedOnUrl);
+        setIsApplyingGlasses(false);
+      } else {
+        const selected = {
+          [selectedGlasses.objectID]: selectedGlasses.asset2DUrl!,
+        };
+
+        const result = await applyGlasses(uuid, selected);
+
+        if (result?.tryon_outputs) {
+          const firstImageUrl = Object.values(
+            result.tryon_outputs
+          )[0] as string;
+          setAppliedImage(firstImageUrl);
+        }
+        setIsApplyingGlasses(false);
+      }
+    };
+
+    generateTryOnImage();
+  }, [uuid, selectedGlasses]);
+
   return (
     <div className="bg-gradient-avolta   pt-8  min-h-screen">
       <div className="px-9">
@@ -65,13 +99,23 @@ const Avolta = () => {
               )}
             </div>
           ) : (
-            <Image
-              src={selfie ?? mainImage}
-              alt="Main image"
-              fill
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
-              className="rounded-56px"
-            />
+            <>
+              <Image
+                src={appliedImage || selfie || mainImage}
+                alt="Selected Glasses"
+                fill
+                style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                className="rounded-56px"
+              />
+              {isApplyingGlasses && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Spinner
+                    animation="grow"
+                    className="bg-primaryAvolta h-20 w-20"
+                  />
+                </div>
+              )}
+            </>
           )}
           <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black/40 to-transparent"></div>
           <div className="absolute  bottom-7 left-6 flex  ">
