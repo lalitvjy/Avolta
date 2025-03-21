@@ -41,7 +41,7 @@ const ReceiveSelfie = () => {
                 Lorem ipsum simply dummy text
               </p>
 
-              <div className="flex items-center justify-center flex-grow">
+              <div className="flex items-center justify-center flex-grow pl-10 ">
                 <ReceiveSelfieSlider />
               </div>
             </div>

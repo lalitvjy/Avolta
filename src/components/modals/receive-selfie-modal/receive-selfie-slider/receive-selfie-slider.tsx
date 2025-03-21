@@ -1,9 +1,13 @@
 import Image from "next/image";
 import { useRef } from "react";
-import Mainimage2 from "../../../../../public/Image 4.jpg";
-import Mainimage from "../../../../../public/image 3.jpg";
+// import Mainimage2 from "../../../../../public/Image 4.jpg";
+import {
+  default as Mainimage,
+  default as Mainimage1,
+  default as Mainimage3,
+} from "../../../../../public/image 3.jpg";
 
-const images = [Mainimage, Mainimage2];
+const images = [Mainimage, Mainimage1, Mainimage3];
 
 const ReceiveSelfieSlider = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -40,12 +44,12 @@ const ReceiveSelfieSlider = () => {
     >
       <div
         ref={sliderRef}
-        className="flex gap-4 overflow-x-auto scroll-smooth scrollbar-hide"
+        className="flex  overflow-x-auto scroll-smooth scrollbar-hide"
       >
         {images.map((image, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-full h-full flex justify-center"
+            className="flex-shrink-0 w-[65%]  h-full flex justify-center"
           >
             <Image
               src={image}
