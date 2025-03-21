@@ -45,7 +45,7 @@ const Avolta = () => {
   const [appliedImage, setAppliedImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isApplyingGlasses, setIsApplyingGlasses] = useState(false);
-  console.log(selectedGlasses);
+
   useEffect(() => {
     const generateTryOnImage = async () => {
       if (!uuid || !selectedGlasses) return;
@@ -110,8 +110,8 @@ const Avolta = () => {
               {isApplyingGlasses && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Spinner
-                    animation="grow"
-                    className="bg-primaryAvolta h-20 w-20"
+                    animation="border"
+                    className="text-primaryAvolta h-20 w-20"
                   />
                 </div>
               )}

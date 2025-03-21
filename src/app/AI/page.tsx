@@ -4,6 +4,7 @@ import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { LuScanFace } from "react-icons/lu";
 
 const Ai = () => {
@@ -75,10 +76,9 @@ const Ai = () => {
       <div className="flex justify-center text-grayscale600">
         <div className="bg-white flex items-center rounded-full font-bold py-6 px-16 text-2xl gap-2">
           <LuScanFace size={24} />
-          {loading ? (
-            <span className="animate-pulse">Processing...</span>
-          ) : (
-            <span>Sending to AI...</span>
+          Processing...
+          {loading && (
+            <Spinner animation="grow" className="bg-primaryAvolta h-10 w-10" />
           )}
         </div>
       </div>
