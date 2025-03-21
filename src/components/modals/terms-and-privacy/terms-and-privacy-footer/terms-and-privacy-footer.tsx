@@ -1,17 +1,18 @@
 "use client";
 import { useTermsModalStore } from "@/store/useTermsModal";
+import { useUserInfo } from "@/store/useUserInfo";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import Button from "../../../button/button";
 
 const TermsAndPrivacyFooter = () => {
   const router = useRouter();
   const { closeTermsModal } = useTermsModalStore();
 
-  const [isChecked, setIsChecked] = useState(false);
+  const { isChecked, setIsChecked } = useUserInfo();
   const handelNavigateTakeSelfie = () => {
     router.push("take-selfie");
   };
+
   return (
     <>
       <div className="flex items-center gap-2  py-6 ">

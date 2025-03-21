@@ -3,6 +3,7 @@ import UserInfo from "@/components/modals/user-info/user-info";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import { useUserInfo } from "@/store/useUserInfo";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IoCameraOutline, IoFlashSharp } from "react-icons/io5";
 import { LuRefreshCw } from "react-icons/lu";
@@ -10,9 +11,10 @@ import Button from "../../components/button/button";
 const TakeSelfie = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const router = useRouter();
   const [stream, setStream] = useState<MediaStream | null>(null);
   const { setSelfie, selfie } = useTakeSelfieStore();
-  const { openUserModal } = useUserInfo();
+  const { openUserModal, isChecked } = useUserInfo();
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -60,7 +62,30 @@ const TakeSelfie = () => {
   const handelOpenUserModal = () => {
     openUserModal();
   };
-
+  const handelBackToHomePage = () => {
+    router.push("/");
+    stopCamera();
+  };
+  if (!isChecked) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen bg-gradient-avolta text-center px-4">
+        <h1 className="text-4xl font-bold text-white mb-4">
+          Terms Not Accepted
+        </h1>
+        <p className="text-white text-lg max-w-xl mb-10">
+          You need to accept the Terms and Conditions before proceeding to take
+          a selfie. Please return and review them to continue.
+        </p>
+        <Button
+          variant="secondary"
+          label="Go to Terms & Conditions"
+          onClick={handelBackToHomePage}
+          rounded
+          className="px-10 py-6 text-xl font-bold"
+        />
+      </div>
+    );
+  }
   return (
     <div className=" bg-gradient-avolta h-screen  w-full flex flex-col justify-between p-14  font-bold text-center text-grayscale600">
       {selfie ? (
