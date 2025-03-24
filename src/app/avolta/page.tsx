@@ -35,7 +35,7 @@ const Avolta = () => {
   const { openDetailModal } = useDetailModalStore();
   const { openEmailModal } = useEmailModalStore();
   const [activeTab, setActiveTab] = useState("Static");
-  const { selectedGlasses } = useSelectedGlassesStore();
+  const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
   const { uuid } = useRecommendetGlassStore();
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
   const isFavorite = favorites.some(
@@ -49,29 +49,49 @@ const Avolta = () => {
   useEffect(() => {
     const generateTryOnImage = async () => {
       if (!uuid || !selectedGlasses) return;
-      setIsApplyingGlasses(true);
+
       if (selectedGlasses.triedOnUrl) {
-        setAppliedImage(selectedGlasses.triedOnUrl);
-        setIsApplyingGlasses(false);
-      } else {
-        const selected = {
-          [selectedGlasses.objectID]: selectedGlasses.asset2DUrl!,
-        };
+        if (appliedImage !== selectedGlasses.triedOnUrl) {
+          setAppliedImage(selectedGlasses.triedOnUrl);
+        }
+        return;
+      }
 
-        const result = await applyGlasses(uuid, selected);
+      setIsApplyingGlasses(true);
 
-        if (result?.tryon_outputs) {
-          const firstImageUrl = Object.values(
-            result.tryon_outputs
-          )[0] as string;
+      try {
+        const asset2DUrl = selectedGlasses.asset2DUrl;
+        if (!asset2DUrl) {
+          console.warn("No asset2DUrl found for selected glasses.");
+          setIsApplyingGlasses(false);
+          return;
+        }
+
+        const result = await applyGlasses(uuid, {
+          [selectedGlasses.objectID]: asset2DUrl,
+        });
+
+        const firstImageUrl = result?.tryon_outputs
+          ? (Object.values(result.tryon_outputs)[0] as string)
+          : null;
+
+        if (firstImageUrl) {
+          setSelectedGlasses({
+            ...selectedGlasses,
+            triedOnUrl: firstImageUrl,
+          });
+
           setAppliedImage(firstImageUrl);
         }
+      } catch (error) {
+        console.error("Failed to apply glasses:", error);
+      } finally {
         setIsApplyingGlasses(false);
       }
     };
 
     generateTryOnImage();
-  }, [uuid, selectedGlasses]);
+  }, [uuid, selectedGlasses, appliedImage, setSelectedGlasses]);
 
   return (
     <div className="bg-gradient-avolta   pt-8  min-h-screen">
@@ -101,12 +121,18 @@ const Avolta = () => {
           ) : (
             <>
               <Image
-                src={appliedImage || selfie || mainImage}
+                src={
+                  selectedGlasses?.triedOnUrl ||
+                  appliedImage ||
+                  selfie ||
+                  mainImage
+                }
                 alt="Selected Glasses"
                 fill
                 style={{ objectFit: "cover", width: "100%", height: "100%" }}
                 className="rounded-56px"
               />
+
               {isApplyingGlasses && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Spinner
@@ -143,6 +169,7 @@ const Avolta = () => {
             <Button
               rounded
               label="Wishlit"
+              disabled={isApplyingGlasses}
               onClick={() => {
                 if (selectedGlasses) {
                   toggleFavorite(selectedGlasses);
@@ -166,7 +193,7 @@ const Avolta = () => {
       </div>
 
       <Slider />
-      <Footer isLoading={isLoading} />
+      <Footer isLoading={isLoading} isApplyingGlasses={isApplyingGlasses} />
       <DetailModal />
       <EmailModal />
       <ReceiveSelfie />

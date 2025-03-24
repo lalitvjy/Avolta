@@ -7,8 +7,9 @@ import Selfie from "../../../public/ic-sefie.svg";
 import Button from "../button/button";
 interface FooterProps {
   isLoading?: boolean;
+  isApplyingGlasses?: boolean;
 }
-const Footer = ({ isLoading }: FooterProps) => {
+const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
   const router = useRouter();
   const handelNavigateCatalog = () => {
     if (!isLoading) {
@@ -30,10 +31,13 @@ const Footer = ({ isLoading }: FooterProps) => {
       <Button
         label="Receive you selfie!"
         rounded
+        disabled={isApplyingGlasses}
         onClick={openReceiveSelfieModal}
         leftIcon={<Image src={Selfie} width={24} height={24} alt="catalog" />}
         rightIcon={<IoChevronForwardSharp />}
-        className="px-6 py-6"
+        className={`px-6 py-6 ${
+          isApplyingGlasses ? "opacity-50 cursor-not-allowed" : ""
+        }`}
       />
     </div>
   );

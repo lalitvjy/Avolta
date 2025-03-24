@@ -10,6 +10,7 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CiHeart, CiMail } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
@@ -17,6 +18,7 @@ import { MdOutlinePersonOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import Button from "../../button/button";
 export default function Detail() {
+  const router = useRouter();
   const { isDetailModalOpen, closeDetailModal } = useDetailModalStore();
   const [showFullDetails, setShowFullDetails] = useState(false);
   const { width, height } = useWindowDimensions();
@@ -25,6 +27,10 @@ export default function Detail() {
   const isFavorite = favorites.some(
     (item) => item.objectID === selectedGlasses?.objectID
   );
+  const handelNavigateMainPage = () => {
+    router.push("/avolta");
+    closeDetailModal();
+  };
   return (
     <Transition show={isDetailModalOpen}>
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
@@ -120,6 +126,7 @@ export default function Detail() {
                   leftIcon={<MdOutlinePersonOutline size={24} />}
                   variant="secondary"
                   className="w-full font-bold py-6 text-lg"
+                  onClick={handelNavigateMainPage}
                   rounded
                 />
               </div>

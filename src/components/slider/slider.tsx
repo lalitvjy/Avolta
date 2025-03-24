@@ -96,7 +96,7 @@ function Slider() {
     }
   };
   return (
-    <div className="relative w-full pt-10 flex  ">
+    <div className="relative w-full pt-10 flex  pl-20">
       <button
         onClick={openFilter}
         className="flex gap-2 absolute z-90 left-[-52px] top-20  pb-4 pt-4 px-8 rounded-t-[32px] bg-black rotate-90 text-white text-lg font-bold items-center"
@@ -115,7 +115,7 @@ function Slider() {
       <div
         ref={sliderRef}
         onScroll={handleScroll}
-        className="flex gap-2 overflow-x-scroll scroll-smooth scrollbar-hide pl-20 py-2"
+        className="flex gap-2 overflow-x-scroll scroll-smooth scrollbar-hide  py-2 pl-2"
       >
         {sortedGlassesCatalog.map((item) => (
           <div

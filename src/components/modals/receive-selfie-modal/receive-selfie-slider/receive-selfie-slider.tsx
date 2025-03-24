@@ -1,18 +1,12 @@
+import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import Image from "next/image";
 import { useRef } from "react";
-// import Mainimage2 from "../../../../../public/Image 4.jpg";
-import {
-  default as Mainimage,
-  default as Mainimage1,
-  default as Mainimage3,
-} from "../../../../../public/image 3.jpg";
-
-const images = [Mainimage, Mainimage1, Mainimage3];
 
 const ReceiveSelfieSlider = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const { favorites } = useFavoriteGlassesStore();
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -28,36 +22,40 @@ const ReceiveSelfieSlider = () => {
     const swipeDistance = touchStartX.current - touchEndX.current;
 
     if (swipeDistance > 50) {
-      sliderRef.current.scrollBy({ left: 400, behavior: "smooth" });
+      sliderRef.current.scrollBy({ left: 800, behavior: "smooth" });
     } else if (swipeDistance < -50) {
-      sliderRef.current.scrollBy({ left: -400, behavior: "smooth" });
+      sliderRef.current.scrollBy({ left: -800, behavior: "smooth" });
     }
   };
 
   return (
-    <div
-      className="relative w-full  flex items-center justify-center overflow-hidden"
-      ref={sliderRef}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
+    <div className="relative w-full flex items-center justify-center overflow-hidden h-full">
       <div
         ref={sliderRef}
-        className="flex  overflow-x-auto scroll-smooth scrollbar-hide"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        className="flex overflow-x-auto scroll-smooth scrollbar-hide gap-20 pl-[17.5%] pr-8"
       >
-        {images.map((image, index) => (
+        {favorites.map((item, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-[65%]  h-full flex justify-center"
+            className="flex-shrink-0 w-[65%] h-[1200px] flex justify-center relative"
           >
-            <Image
-              src={image}
-              alt={`slider-image-${index}`}
-              width={900}
-              height={400}
-              className="rounded-56px object-cover"
-            />
+            {item.triedOnUrl ? (
+              <Image
+                src={item.triedOnUrl}
+                alt={item.name || `Favorite Glasses ${index + 1}`}
+                width={900}
+                height={1000}
+                className="rounded-56px object-cover h-full w-auto"
+                unoptimized
+              />
+            ) : (
+              <div className="text-gray-400 text-center">
+                No image available
+              </div>
+            )}
           </div>
         ))}
       </div>
