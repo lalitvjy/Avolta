@@ -46,7 +46,7 @@ const ReceiveSelfie = () => {
               </div>
             </div>
 
-            <div className=" px-20 pt-7">
+            <div className=" px-20 ">
               <p className="text-center font-bold text-xl  text-gray600">
                 Receive your style on your mobile via QR code / Email
               </p>

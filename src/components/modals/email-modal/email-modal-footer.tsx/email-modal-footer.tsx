@@ -1,12 +1,19 @@
 import Button from "@/components/button/button";
-import Image from "next/image";
-import MainImage from "../../../../../public/Image 4.jpg";
+import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
+import { QRCodeCanvas } from "qrcode.react";
 const EmailModalFooter = () => {
+  const { uuid } = useRecommendetGlassStore();
+
+  const qrUrl = `https://glass-recommendations.mirrar.com/${uuid}`;
   return (
     <div className="flex justify-center items-center gap-32 text-black">
       <div>
-        <p className="font-bold text-lg text-center mb-2">Scan the code</p>
-        <Image src={MainImage} alt="qr code" className="w-[10vh] h-[10vh]" />
+        <p className="font-bold text-lg pb-4 text-center">Scan the code</p>
+        {uuid ? (
+          <QRCodeCanvas value={qrUrl} size={200} />
+        ) : (
+          <p className="text-sm text-gray-500">Generating QR...</p>
+        )}
       </div>
       <div>
         <p>Get it on our inbox</p>

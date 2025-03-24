@@ -66,7 +66,7 @@ const Avolta = () => {
           setIsApplyingGlasses(false);
           return;
         }
-
+        console.log("uuid", uuid);
         const result = await applyGlasses(uuid, {
           [selectedGlasses.objectID]: asset2DUrl,
         });

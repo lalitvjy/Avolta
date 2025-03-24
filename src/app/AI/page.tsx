@@ -35,13 +35,13 @@ const Ai = () => {
       }
 
       const { uuid, recommendations, face_analysis } = result.data;
+
       useRecommendetGlassStore.getState().setGlassesData({
         uuid,
         recommendations,
         faceShape: face_analysis?.face_shape || "",
       });
 
-      console.log("AI response:", result.data);
       router.push("/avolta");
     } catch (err) {
       console.error("Error processing AI selfie:", err);
