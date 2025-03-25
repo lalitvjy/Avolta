@@ -25,7 +25,7 @@ export default function Button({
   const roundedStyle = rounded ? "rounded-full" : "rounded-lg";
 
   const variantStyles = {
-    primary: " bg-white text-black font-bold",
+    primary: " bg-white text-black font-bold ",
     disable: "bg-gray-300 text-white text-sm",
     secondary: "bg-primaryAvolta hover:bg-[#6a4ecc] text-white  ",
   };

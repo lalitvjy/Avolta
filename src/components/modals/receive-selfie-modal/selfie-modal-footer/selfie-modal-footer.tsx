@@ -10,22 +10,22 @@ const SelfieModalFooter = () => {
   return (
     <div className="flex items-center justify-center p-10 gap-40 h-full text-black">
       <div>
-        <p className="font-bold text-lg pb-4 text-center">Scan the code</p>
+        <p className="font-bold text-2xl pb-4 text-center">Scan the code</p>
         {uuid ? (
-          <QRCodeCanvas value={qrUrl} size={200} />
+          <QRCodeCanvas value={qrUrl} size={300} />
         ) : (
-          <p className="text-sm text-gray-500">Generating QR...</p>
+          <p className="text-2xl text-gray-500">Generating QR...</p>
         )}
       </div>
 
       <div>
-        <p className="font-bold text-lg pb-12">Get it on your inbox</p>
-        <form className="space-y-6">
+        <p className="font-bold text-3xl pb-12">Get it on your inbox</p>
+        <form className="space-y-8">
           <div>
             <input
               type="text"
               placeholder="Name"
-              className="w-[20vh] p-1.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAvolta"
+              className="w-[20vh] p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAvolta text-xl"
             />
           </div>
 
@@ -33,13 +33,13 @@ const SelfieModalFooter = () => {
             <input
               type="email"
               placeholder="Email"
-              className="w-full p-1.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-primaryAvolta"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primaryAvolta text-xl"
             />
           </div>
 
           <Button
             label="Send"
-            className="rounded-lg font-bold w-full"
+            className="rounded-lg font-bold w-full py-3 text-3xl"
             variant="secondary"
           />
         </form>

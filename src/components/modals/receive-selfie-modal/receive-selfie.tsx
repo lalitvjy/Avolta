@@ -5,7 +5,9 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
+import Image from "next/image";
 import { RxCross2 } from "react-icons/rx";
+import Banner from "../../../../public/banner.png";
 import ReceiveSelfieSlider from "./receive-selfie-slider/receive-selfie-slider";
 import SelfieModalFooter from "./selfie-modal-footer/selfie-modal-footer";
 const ReceiveSelfie = () => {
@@ -32,13 +34,10 @@ const ReceiveSelfie = () => {
           leaveFrom="translate-y-0"
           leaveTo="translate-y-full"
         >
-          <DialogPanel className="bg-white w-full h-full flex flex-col justify-between     rounded-40px shadow-lg overflow-hidden ">
-            <div className="bg-primaryAvolta h-[70vh] rounded-b-40px relative flex flex-col items-center justify-center">
-              <p className="font-bold text-5xl text-center text-white pt-20">
+          <DialogPanel className="bg-white w-full h-full flex flex-col  justify-between    rounded-40px shadow-lg overflow-hidden ">
+            <div className=" h-[60vh] rounded-b-40px relative flex flex-col items-center justify-center">
+              <p className="font-bold text-[60px] text-center text-black pt-20">
                 Your style
-              </p>
-              <p className="text-center text-white text-base pt-4 ">
-                Lorem ipsum simply dummy text
               </p>
 
               <div className="flex items-center justify-center flex-grow pl-10 ">
@@ -46,12 +45,18 @@ const ReceiveSelfie = () => {
               </div>
             </div>
 
-            <div className=" px-20 ">
-              <p className="text-center font-bold text-xl  text-gray600">
+            <div>
+              <p className="text-center font-bold text-4xl  text-gray600">
                 Receive your style on your mobile via QR code / Email
               </p>
               <SelfieModalFooter />
             </div>
+            <Image
+              src={Banner}
+              alt="Banner"
+              className="object-contain w-screen border-none"
+              priority
+            />
           </DialogPanel>
         </TransitionChild>
       </Dialog>

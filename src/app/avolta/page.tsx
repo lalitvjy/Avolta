@@ -24,6 +24,7 @@ import mainImage from "../../../public/image 2.png";
 import Button from "../../components/button/button";
 import DetailModal from "../../components/modals/detail-modal/detail";
 import Slider from "../../components/slider/slider";
+
 const DeepARCanvas = dynamic(
   () => import("@/components/deepar-canvas/deepar-canvas"),
   {
@@ -94,12 +95,12 @@ const Avolta = () => {
   }, [uuid, selectedGlasses, appliedImage, setSelectedGlasses]);
 
   return (
-    <div className="bg-gradient-avolta   pt-8  min-h-screen">
+    <div className="bg-white   pt-8  min-h-screen">
       <div className="px-9">
         <Header />
       </div>
       <div className="flex justify-center w-full pt-8 px-6 ">
-        <div className="relative w-full   h-[80vh] shadow-lg rounded-56px overflow-hidden">
+        <div className="relative w-full   h-[78vh] shadow-lg rounded-56px overflow-hidden">
           {activeTab === "Live" ? (
             <div className="flex items-center justify-center h-full relative">
               {activeTab === "Live" ? (
@@ -157,14 +158,14 @@ const Avolta = () => {
               rounded
               onClick={openDetailModal}
               label="See Details"
-              className="text-grayscale500 font-bold py-4 px-6 text-lg"
+              className="text-grayscale500 font-bold py-4 px-6 text-3xl"
             />
             <Button
               rounded
               onClick={openEmailModal}
               label="Email"
-              leftIcon={<MdOutlineMailOutline />}
-              className="text-grayscale500 font-bold py-4 px-6 text-lg"
+              leftIcon={<MdOutlineMailOutline size={40} />}
+              className="text-grayscale500 font-bold py-4 px-6 text-3xl"
             />
             <Button
               rounded
@@ -178,15 +179,15 @@ const Avolta = () => {
               leftIcon={
                 isFavorite ? (
                   <>
-                    <FaHeart size={20} className="text-red" />
+                    <FaHeart className="text-red" size={40} />
                   </>
                 ) : (
                   <>
-                    <CiHeart className="text-gray400" size={20} />
+                    <CiHeart className="text-gray400" size={40} />
                   </>
                 )
               }
-              className="text-grayscale500 font-bold py-4 px-6 text-lg"
+              className="text-grayscale500 font-bold py-4 px-6 text-3xl"
             />
           </div>
         </div>

@@ -9,6 +9,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 import { fetchGlasses } from "../../helpers/algolia/algolia";
 import Filter from "../filter/filter";
+import SkeletonGlassesCard from "../skeleton/slider-skeleton";
 
 function Slider() {
   const ALGOLIA_INDEX_NAME = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
@@ -18,10 +19,12 @@ function Slider() {
   const [hasMore, setHasMore] = useState(true);
   const { recommendations } = useRecommendetGlassStore();
   const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
+  const [loading, setLoading] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const loadData = async () => {
       try {
+        setLoading(true);
         const data = await fetchGlasses<AlgoliaProduct>(
           ALGOLIA_INDEX_NAME,
           "",
@@ -44,6 +47,8 @@ function Slider() {
         setHasMore(data.hits.length > 0);
       } catch (error) {
         console.error("Error fetching glasses:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -96,12 +101,12 @@ function Slider() {
     }
   };
   return (
-    <div className="relative w-full pt-10 flex  pl-20">
+    <div className="relative w-full pt-10 flex  pl-28">
       <button
         onClick={openFilter}
-        className="flex gap-2 absolute z-90 left-[-52px] top-20  pb-4 pt-4 px-8 rounded-t-[32px] bg-black rotate-90 text-white text-lg font-bold items-center"
+        className="flex gap-2 absolute z-90 left-[-52px] top-20  pb-4 pt-4 px-8 rounded-t-[32px] bg-black rotate-90 text-white text-3xl font-bold items-center"
       >
-        <LuSettings2 size={20} />
+        <LuSettings2 size={40} />
         Filters
       </button>
 
@@ -117,42 +122,48 @@ function Slider() {
         onScroll={handleScroll}
         className="flex gap-2 overflow-x-scroll scroll-smooth scrollbar-hide  py-2 pl-2"
       >
-        {sortedGlassesCatalog.map((item) => (
-          <div
-            key={item.objectID}
-            onClick={() => handleSelectGlasses(item)}
-            className={`relative min-w-[144px] h-[144px] rounded-3xl overflow-hidden  cursor-pointer transition-all duration-300
-      ${
-        selectedGlasses?.objectID === item.objectID
-          ? "border-4 border-primaryAvolta scale-105 shadow-lg"
-          : "border-2 border-transparent"
-      }`}
-          >
-            {recommendations.some((rec) => rec.objectID === item.objectID) && (
-              <div className="absolute top-0 left-0 w-full bg-primaryAvolta text-white text-[11px] font-bold rounded-t-lg text-center py-1">
-                Recommended
+        {loading
+          ? Array.from({ length: 12 }).map((_, index) => (
+              <SkeletonGlassesCard key={index} />
+            ))
+          : sortedGlassesCatalog.map((item) => (
+              <div
+                key={item.objectID}
+                onClick={() => handleSelectGlasses(item)}
+                className={`relative min-w-[144px] h-[144px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 
+          ${
+            selectedGlasses?.objectID === item.objectID
+              ? "border-4 border-primaryAvolta scale-105"
+              : "border border-transparent"
+          }`}
+              >
+                {recommendations.some(
+                  (rec) => rec.objectID === item.objectID
+                ) && (
+                  <div className="absolute top-0 left-0 w-full bg-primaryAvolta text-white text-[15px] font-bold rounded-t-lg text-center py-1">
+                    Recommended
+                  </div>
+                )}
+                <div className="flex items-center justify-center h-full bg-white">
+                  {item.imageUrlBase ? (
+                    <Image
+                      src={item.imageUrlBase}
+                      alt={item.name}
+                      width={144}
+                      height={144}
+                      style={{
+                        objectFit: "contain",
+                        width: "100%",
+                        height: "auto",
+                      }}
+                      priority={true}
+                    />
+                  ) : (
+                    <div>No Image</div>
+                  )}
+                </div>
               </div>
-            )}
-            <div className=" flex items-center justify-center h-full bg-white">
-              {item.imageUrlBase ? (
-                <Image
-                  src={item.imageUrlBase}
-                  alt={item.name}
-                  width={144}
-                  height={144}
-                  style={{
-                    objectFit: "contain",
-                    width: "100%",
-                    height: "auto",
-                  }}
-                  priority={true}
-                />
-              ) : (
-                <div>No Image</div>
-              )}
-            </div>
-          </div>
-        ))}
+            ))}
       </div>
 
       <button
