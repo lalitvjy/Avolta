@@ -8,7 +8,7 @@ import ReceiveSelfie from "@/components/modals/receive-selfie-modal/receive-self
 import TabSelector from "@/components/tab-selector/tab-selector";
 import { applyGlasses } from "@/helpers/apply-glasses/applyGlasses";
 import { useDetailModalStore } from "@/store/useDetailModal";
-import { useEmailModalStore } from "@/store/useEmailModal";
+
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
@@ -19,7 +19,6 @@ import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
-import { MdOutlineMailOutline } from "react-icons/md";
 import mainImage from "../../../public/image 2.png";
 import Button from "../../components/button/button";
 import DetailModal from "../../components/modals/detail-modal/detail";
@@ -34,7 +33,7 @@ const DeepARCanvas = dynamic(
 
 const Avolta = () => {
   const { openDetailModal } = useDetailModalStore();
-  const { openEmailModal } = useEmailModalStore();
+  // const { openEmailModal } = useEmailModalStore();
   const [activeTab, setActiveTab] = useState("Static");
   const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
   const { uuid } = useRecommendetGlassStore();
@@ -100,7 +99,7 @@ const Avolta = () => {
         <Header />
       </div>
       <div className="flex justify-center w-full pt-8 px-6 ">
-        <div className="relative w-full   h-[78vh] shadow-lg rounded-56px overflow-hidden">
+        <div className="relative w-full   h-[75vh] shadow-lg rounded-56px overflow-hidden">
           {activeTab === "Live" ? (
             <div className="flex items-center justify-center h-full relative">
               {activeTab === "Live" ? (
@@ -145,7 +144,7 @@ const Avolta = () => {
             </>
           )}
           <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black/40 to-transparent"></div>
-          <div className="absolute  bottom-7 left-6 flex  ">
+          <div className="absolute  bottom-12 left-12 flex  ">
             <GlassesInfo />
           </div>
           <TabSelector
@@ -153,20 +152,20 @@ const Avolta = () => {
             setActiveTab={setActiveTab}
             isLoading={isLoading}
           />
-          <div className="absolute bottom-6 right-6 flex gap-14 ">
+          <div className="absolute bottom-12 right-12 flex gap-14 ">
             <Button
               rounded
               onClick={openDetailModal}
               label="See Details"
-              className="text-grayscale500 font-bold py-4 px-6 text-3xl"
+              className="text-grayscale500 font-bold py-4 px-6 text-4xl"
             />
-            <Button
+            {/* <Button
               rounded
               onClick={openEmailModal}
               label="Email"
               leftIcon={<MdOutlineMailOutline size={40} />}
               className="text-grayscale500 font-bold py-4 px-6 text-3xl"
-            />
+            /> */}
             <Button
               rounded
               label="Wishlit"
@@ -187,7 +186,7 @@ const Avolta = () => {
                   </>
                 )
               }
-              className="text-grayscale500 font-bold py-4 px-6 text-3xl"
+              className="text-grayscale500 font-bold py-4 px-6 text-4xl"
             />
           </div>
         </div>

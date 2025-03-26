@@ -57,8 +57,10 @@ const Ai = () => {
   return (
     <div className="bg-gradient-avolta h-screen w-full flex flex-col justify-between items-center p-16">
       <p className="text-center font-bold text-4xl text-grayscale600 left-10">
-        Hang tight! We&apos;re letting our AI work <br /> its magic on your
-        photo.
+        Finding Your Match
+      </p>
+      <p className="text-center font-bold text-2xl text-grayscale600 left-10">
+        Our Ai is analyzing your face fro the perfect fit.
       </p>
 
       <div className="w-full h-full relative flex items-center justify-center mt-12 mb-16">

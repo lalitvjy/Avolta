@@ -28,9 +28,9 @@ const CatalogHeadder = () => {
         label="Filter"
         rounded
         variant="secondary"
-        className="bg-black font-bold py-3 px-4"
+        className="bg-black font-bold py-6 px-8 text-4xl"
         onClick={openFilter}
-        leftIcon={<LuSettings2 size={20} />}
+        leftIcon={<LuSettings2 size={48} />}
       />
       <button
         onClick={scrollLeft}
@@ -49,7 +49,7 @@ const CatalogHeadder = () => {
               {appliedFilters.map((filter) => (
                 <button
                   key={filter.id}
-                  className="px-4 py-3 text-white font-bold text-lg bg-primaryAvolta rounded-[88px] flex-shrink-0"
+                  className="py-6 px-8 text-white font-bold bg-primaryAvolta rounded-[88px] flex-shrink-0 text-4xl"
                   onClick={() => applyStoredFilter(filter.id)}
                 >
                   Quick filter {filter.id}

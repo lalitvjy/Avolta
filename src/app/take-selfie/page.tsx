@@ -90,15 +90,15 @@ const TakeSelfie = () => {
     <div className=" bg-white h-screen  w-full flex flex-col justify-between p-14  font-bold text-center text-grayscale600">
       {selfie ? (
         <div>
-          <p className="  text-5xl   ">Preview Your Style</p>
-          <p className="font-medium text-2xl pt-4">
+          <p className="  text-[60px]   ">Preview Your Style</p>
+          <p className="font-medium text-3xl pt-4">
             Review your look before moving forward
           </p>
         </div>
       ) : (
         <div>
-          <p className=" text-5xl  ">Say Cheese!</p>
-          <p className="font-medium text-2xl pt-4">
+          <p className=" text-[60px] ">Say Cheese!</p>
+          <p className="font-medium text-3xl pt-4">
             Capture you best look for better results.
           </p>
         </div>
@@ -126,12 +126,16 @@ const TakeSelfie = () => {
               className="w-full h-full rounded-60px object-cover"
             />
 
-            <div className="absolute z-10 w-[45vh] h-[55vh] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-              <div className="absolute top-0 right-0 w-80 h-80 border-t-8 border-r-8 border-white rounded-tr-[12px]" />
-              <div className="absolute bottom-0 left-0 w-80 h-80 border-b-8 border-l-8 border-white rounded-bl-[12px]" />
+            <div className="absolute z-10 w-[40vh] h-[45vh] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+              <div className="absolute top-0 right-0 w-80 h-80 border-t-8 border-r-8 border-white " />
+              <div className="absolute bottom-0 left-0 w-80 h-80 border-b-8 border-l-8 border-white " />
             </div>
 
             <canvas ref={canvasRef} className="hidden" />
+            <p className="text-3xl pt-4">
+              For optimal results, keep your face centered within the guidelines
+              and remove any glasses.
+            </p>
           </div>
         )}
       </div>
@@ -145,7 +149,7 @@ const TakeSelfie = () => {
               rounded
               onClick={handelRetakeSelfie}
               variant="secondary"
-              className="font-bold py-6 px-8 text-black text-4xl"
+              className="font-bold  text-black py-12 px-12 text-4xl"
             />
             <p className="text-white text-sm text-center ">
               Not satisfied? try again.
@@ -158,7 +162,7 @@ const TakeSelfie = () => {
               rounded
               variant="secondary"
               onClick={handelOpenUserModal}
-              className="font-bold  py-6 px-8 text-black text-4xl"
+              className="font-bold   text-black py-12 px-12 text-4xl"
             />
             <p className="text-white text-sm text-center ">
               Move ahead with this stylish choice.
@@ -172,8 +176,8 @@ const TakeSelfie = () => {
             rounded
             onClick={captureSelfie}
             variant="secondary"
-            className="font-bold text-black py-6 px-[70px] text-4xl"
-            leftIcon={<IoCameraOutline size={40} />}
+            className="font-bold text-black py-12 px-12 text-4xl"
+            leftIcon={<IoCameraOutline size={48} />}
           />
         </div>
       )}

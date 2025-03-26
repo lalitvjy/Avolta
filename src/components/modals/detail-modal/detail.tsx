@@ -58,14 +58,14 @@ export default function Detail() {
                 src={selectedGlasses?.imageUrlBase ?? ""}
                 alt="glasses-image"
                 width={width * 0.8}
-                height={height * 0.6}
+                height={height * 0.3}
                 className="object-contain"
               />
             </div>
 
             <div className="text-start px-20 pb-16 bg-white rounded-b-40px text-grayscale600">
               <div className="flex items-center justify-between pb-4">
-                <p className="font-semibold text-xl">
+                <p className="font-semibold text-[60px]">
                   {selectedGlasses?.brand}
                 </p>
                 <Button
@@ -79,11 +79,11 @@ export default function Detail() {
                   leftIcon={
                     isFavorite ? (
                       <>
-                        <FaHeart size={40} className="text-red" />
+                        <FaHeart size={60} className="text-red" />
                       </>
                     ) : (
                       <>
-                        <CiHeart className="text-gray400" size={40} />
+                        <CiHeart className="text-gray400" size={60} />
                       </>
                     )
                   }
@@ -91,15 +91,15 @@ export default function Detail() {
                 />
               </div>
 
-              <h6 className="text-2xl pb-4">{selectedGlasses?.name}</h6>
-              <p className="font-bold text-xl ">
+              <h6 className="text-4xl pb-4">{selectedGlasses?.name}</h6>
+              <p className="font-bold text-3xl ">
                 {selectedGlasses?.currency} {selectedGlasses?.priceDutyFree}
               </p>
               <hr className="my-6" />
 
-              <p className="text-lg font-medium ">Product Details</p>
+              <p className="text-4xl font-medium ">Product Details</p>
               <p
-                className={`text-sm text-gray-600 mt-2 ${
+                className={`text-3xl text-gray-600 mt-2 ${
                   showFullDetails ? "" : "line-clamp-3"
                 }`}
               >
@@ -108,7 +108,7 @@ export default function Detail() {
 
               <button
                 onClick={() => setShowFullDetails(!showFullDetails)}
-                className="text-xl text-primaryAvolta"
+                className="text-2xl text-primaryAvolta"
               >
                 {showFullDetails ? "See Less" : "See More"}
               </button>
@@ -116,16 +116,16 @@ export default function Detail() {
               <div className="flex items-center justify-between gap-4 pt-4 ">
                 <Button
                   label="Email"
-                  leftIcon={<CiMail size={24} />}
+                  leftIcon={<CiMail size={48} />}
                   variant="primary"
-                  className="w-full font-bold py-6 text-lg border"
+                  className="w-full font-bold py-6 text-4xl border"
                   rounded
                 />
                 <Button
                   label="Try Now"
-                  leftIcon={<MdOutlinePersonOutline size={24} />}
+                  leftIcon={<MdOutlinePersonOutline size={48} />}
                   variant="secondary"
-                  className="w-full font-bold py-6 text-lg"
+                  className="w-full font-bold py-6 text-4xl"
                   onClick={handelNavigateMainPage}
                   rounded
                 />

@@ -53,7 +53,7 @@ const CatalogCard = ({ data, index }: CardProps) => {
         )}
       </div>
 
-      <div className="relative w-[360px] h-[230px] flex self-center">
+      <div className="relative w-[460px] h-[330px] flex self-center">
         {imageUrlBase ? (
           <Image
             src={imageUrlBase ?? ""}
@@ -68,10 +68,10 @@ const CatalogCard = ({ data, index }: CardProps) => {
       </div>
 
       <div className=" text-grayscale600 pt-2 flex flex-col gap-3">
-        <h2 className="font-bold text-sm">{brand}</h2>
-        <h2 className="font-medium text-sm">{name}</h2>
+        <h2 className="font-bold text-4xl">{brand}</h2>
+        <h2 className="font-medium text-3xl">{name}</h2>
         <div className="flex items-center justify-between ">
-          <p className="font-bold text-lg">
+          <p className="font-bold text-4xl">
             {currency}
             {priceDutyFree}
           </p>

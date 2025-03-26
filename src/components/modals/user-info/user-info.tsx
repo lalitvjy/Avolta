@@ -22,21 +22,21 @@ const UserInfo = () => {
       show={isUserModalOpen}
       onHide={closeUserModal}
       centered
-      size="lg"
+      size="xl"
       dialogClassName="border-radius-2"
       aria-labelledby="contained-modal-title-vcenter"
     >
       <div className=" bg-white rounded-[64px]  text-black py-14 px-28">
-        <h2 className="text-4xl font-bold leading-[120%]  text-center ">
+        <h2 className="text-[60px] font-bold leading-[120%]  text-center ">
           Tell Us About You
         </h2>
-        <p className="text-base font-medium text-center leading-[130%] pt-3">
+        <p className="text-3xl font-medium text-center leading-[130%] py-4">
           Share an email to receive your favorite <br /> sunglasses in your
           inbox
         </p>
-        <Form>
-          <Form.Group className="mb-3">
-            <Form.Label className="text-base font-medium leading-[130%]">
+        <Form className="text-3xl">
+          <Form.Group className="mb-6">
+            <Form.Label className=" font-medium leading-[130%]">
               Your Name
             </Form.Label>
             <Form.Control
@@ -44,12 +44,12 @@ const UserInfo = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter your name"
-              className="py-2.5 px-3 border border-gray200 text-sm rounded-lg"
+              className="py-4 px-3 border border-gray200  text-3xl rounded-lg"
             />
           </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label className="text-base font-medium leading-[130%]">
+          <Form.Group className="mb-6">
+            <Form.Label className=" font-medium leading-[130%]">
               Your Email
             </Form.Label>
             <Form.Control
@@ -57,12 +57,12 @@ const UserInfo = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="abc@gmail.com"
-              className="py-2.5 px-3 border border-gray200 text-sm rounded-lg"
+              className="py-4 px-3 border border-gray200 text-3xl  rounded-lg"
             />
           </Form.Group>
         </Form>
 
-        <div className="flex justify-center flex-col">
+        <div className="flex justify-center flex-col text-3xl">
           <Button
             label="Save and Continue"
             variant="secondary"

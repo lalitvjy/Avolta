@@ -101,8 +101,8 @@ const Filter = () => {
           leaveFrom="translate-x-0"
           leaveTo="-translate-x-full"
         >
-          <DialogPanel className="w-[500px] bg-white shadow-lg p-8 absolute left-6 top-4 bottom-4 rounded-3xl flex flex-col justify-between">
-            <h2 className="text-4xl font-bold leading-10 text-grayscale600">
+          <DialogPanel className="w-[700px] bg-white shadow-lg p-8 absolute left-6 top-4 bottom-4 rounded-3xl flex flex-col justify-between">
+            <h2 className="text-5xl font-bold leading-10 text-grayscale600 pb-10">
               Filter
             </h2>
             <div className="h-full ">
@@ -149,7 +149,7 @@ const Filter = () => {
                   <p>Loading Prices...</p>
                 ) : (
                   <div className=" px-2">
-                    <p className="text-gray-500 text-center mb-2">
+                    <p className="text-gray-500 text-center mb-2  ">
                       CHF {priceRange[0]} - CHF {priceRange[1]}
                     </p>
 
@@ -187,7 +187,7 @@ const Filter = () => {
                     onClick={() => handleSortChange("lowToHigh")}
                   >
                     <div
-                      className={`w-5 h-5 flex justify-center items-center border-2 rounded-full cursor-pointer ${
+                      className={`w-8 h-8 flex justify-center items-center border-2 rounded-full cursor-pointer ${
                         selectedSort === "lowToHigh"
                           ? "bg-primaryAvolta border-primaryAvolta"
                           : "border-gray-500"
@@ -205,7 +205,7 @@ const Filter = () => {
                     onClick={() => handleSortChange("highToLow")}
                   >
                     <div
-                      className={`w-5 h-5 flex justify-center items-center border-2 rounded-full cursor-pointer ${
+                      className={`w-8 h-8 flex justify-center items-center border-2 rounded-full cursor-pointer ${
                         selectedSort === "highToLow"
                           ? "bg-primaryAvolta border-primaryAvolta"
                           : "border-gray-500"
@@ -227,14 +227,14 @@ const Filter = () => {
                 rounded
                 onClick={handleApplyReset}
                 variant="secondary"
-                className="bg-black font-bold py-6 w-full"
+                className="bg-black font-bold py-6 w-full text-3xl"
               />
               <Button
                 label="Apply"
                 rounded
                 onClick={handleApplyFilters}
                 variant="secondary"
-                className="font-bold py-6 w-full"
+                className="font-bold py-6 w-full text-3xl"
               />
             </div>
           </DialogPanel>

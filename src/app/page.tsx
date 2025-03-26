@@ -24,11 +24,11 @@ export default function Home() {
 
       <div className="absolute bottom-0 left-0 w-full h-[30%] bg-gradient-main-img z-20"></div>
 
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center text-center text-white w-full px-[400px] z-30">
-        <p className="font-bold text-[104px] leading-[124px] pb-7">
+      <div className="absolute bottom-60 left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center text-center text-white w-full px-[200px] z-30">
+        <p className="font-bold text-[150px] leading-[200px] pb-20">
           Step into the World of Style!
         </p>
-        <p className="font-bold text-4xl mt-2 pb-7">
+        <p className="font-bold text-[55px] mt-2 pb-20">
           Find sunglasses that fit your vibe perfectly.
         </p>
 
@@ -37,7 +37,7 @@ export default function Home() {
           label="Get Started!"
           rounded
           variant="secondary"
-          className="w-auto px-20 py-5 text-4xl font-bold "
+          className="w-auto px-20 py-5 text-[55px] font-bold "
         />
       </div>
 

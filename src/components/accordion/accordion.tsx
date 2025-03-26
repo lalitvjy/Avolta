@@ -15,7 +15,7 @@ const Accordion = ({
     <div className="border-b border-gray-300 pb-2 ">
       <button
         onClick={onClick}
-        className="flex justify-between items-center w-full py-3 text-lg font-semibold text-gray-800"
+        className="flex justify-between items-center w-full py-3 text-3xl font-semibold text-gray-800"
       >
         {title}
         <FaChevronDown
@@ -30,7 +30,7 @@ const Accordion = ({
           isOpen ? "max-h-96" : "max-h-0"
         }`}
       >
-        <div className="py-3 text-gray-700">{children}</div>
+        <div className="py-3 text-gray-700 text-3xl font-bold">{children}</div>
       </div>
     </div>
   );

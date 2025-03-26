@@ -86,14 +86,14 @@ const Catalog = () => {
   return (
     <div className="px-12 py-10 bg-white min-h-screen w-full">
       <button
-        className="absolute top-0 right-10 p-3 rounded-b-full bg-primaryL1"
+        className="absolute top-0 right-10 p-4 rounded-b-full bg-primaryL1"
         onClick={handleNavigateHome}
       >
         <p className="bg-white p-4 rounded-full">
           <RxCross2 className="text-black" size={36} />
         </p>
       </button>
-      <h1 className="text-grayscale600 font-bold text-5xl">Catalogue</h1>
+      <h1 className="text-grayscale600 font-bold text-[80px]">Catalogue</h1>
       <CatalogHeadder />
 
       <Filter />

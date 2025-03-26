@@ -23,7 +23,7 @@ const TermsAndPrivacy = () => {
       >
         <MdClose size={32} className="text-white" />
       </button>
-      <div className="p-16 text-base">
+      <div className="p-16 text-xl">
         <TermsAndPrivacyHeader />
         <div className="  p-6">
           <ol className="list-decimal list-inside space-y-2 font-bold  text-grayscale600">
@@ -40,12 +40,14 @@ const TermsAndPrivacy = () => {
           </ol>
 
           <div>
-            <h2 className="text-2xl font-semibold mb-4 text-grayscale600">Privacy Policy</h2>
+            <h2 className="text-3xl font-semibold mb-4 text-grayscale600">
+              Privacy Policy
+            </h2>
             <ol className="list-decimal list-inside space-y-2 font-bold text-grayscale600 ">
               {termsData.privacyPolicy.map((item, index) => (
                 <li key={index}>
                   {item.title}
-                  <ul className="list-disc list-inside text-grayscale600 ml-6  font-normal">
+                  <ul className="list-disc list-inside  text-grayscale600 ml-6  font-normal">
                     {item.content.map((line, i) => (
                       <li key={i}>{line}</li>
                     ))}
