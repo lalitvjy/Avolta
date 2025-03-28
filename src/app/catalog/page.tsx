@@ -106,7 +106,7 @@ const Catalog = () => {
         </div>
       )}
       <div
-        className={`mt-6 grid  border rounded-48px max-h-[90vh] overflow-y-auto hide-scrollbar ${
+        className={`mt-10 grid  border rounded-48px max-h-[86vh] overflow-y-auto hide-scrollbar ${
           glasses.length <= 1 ? "grid-cols-1 " : "grid-cols-2 "
         }`}
       >

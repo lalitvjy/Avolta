@@ -12,7 +12,6 @@ const SelfieModalFooter = () => {
   const qrUrl = `https://glass-recommendations.mirrar.com/${uuid}`;
   const { name, email, setName, setEmail } = useUserInfo();
 
-  console.log(recommendations);
   const handleSend = async () => {
     const objects = recommendations.map((item) => ({
       brand: item.brand || "Unknown",

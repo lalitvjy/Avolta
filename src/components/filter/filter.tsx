@@ -27,7 +27,7 @@ const Filter = () => {
   const [maxPrice, setMaxPrice] = useState(1000);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [isLoadingFacets, setIsLoadingFacets] = useState(false);
-  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+  const [openAccordion, setOpenAccordion] = useState<string | null>("Sort");
   const [selectedSort, setSelectedSort] = useState<string>("");
   useEffect(() => {
     if (isOpen) {
@@ -107,74 +107,6 @@ const Filter = () => {
             </h2>
             <div className="h-full ">
               <Accordion
-                title="Brands"
-                isOpen={openAccordion === "Brands"}
-                onClick={() =>
-                  setOpenAccordion(openAccordion === "Brands" ? null : "Brands")
-                }
-              >
-                {isLoadingFacets ? (
-                  <p>Loading brands...</p>
-                ) : (
-                  brands.map((brand, index) => (
-                    <label key={index} className="block">
-                      <div className="flex justify-between items-center">
-                        <div className="flex ">
-                          <input
-                            type="checkbox"
-                            className="mr-2"
-                            checked={selectedBrands.includes(brand.name)}
-                            onChange={(e) =>
-                              handleBrandChange(brand.name, e.target.checked)
-                            }
-                          />
-
-                          {brand.name}
-                        </div>
-                        <p className="text-gray-500 pr-2">({brand.count})</p>
-                      </div>
-                    </label>
-                  ))
-                )}
-              </Accordion>
-
-              <Accordion
-                title="Price"
-                isOpen={openAccordion === "Price"}
-                onClick={() =>
-                  setOpenAccordion(openAccordion === "Price" ? null : "Price")
-                }
-              >
-                {isLoadingFacets ? (
-                  <p>Loading Prices...</p>
-                ) : (
-                  <div className=" px-2">
-                    <p className="text-gray-500 text-center mb-2  ">
-                      CHF {priceRange[0]} - CHF {priceRange[1]}
-                    </p>
-
-                    <Slider
-                      range
-                      min={minPrice}
-                      max={maxPrice}
-                      value={priceRange}
-                      onChange={(newRange) =>
-                        setPriceRange(newRange as [number, number])
-                      }
-                      styles={{
-                        track: { backgroundColor: "black", height: 4 },
-                        handle: {
-                          backgroundColor: "white",
-                          border: "3px solid black",
-                          width: 16,
-                          height: 16,
-                        },
-                      }}
-                    />
-                  </div>
-                )}
-              </Accordion>
-              <Accordion
                 title="Sort By"
                 isOpen={openAccordion === "Sort"}
                 onClick={() =>
@@ -218,6 +150,74 @@ const Filter = () => {
                     <span>Price: High to Low</span>
                   </label>
                 </div>
+              </Accordion>
+
+              <Accordion
+                title="Price"
+                isOpen={openAccordion === "Price"}
+                onClick={() =>
+                  setOpenAccordion(openAccordion === "Price" ? null : "Price")
+                }
+              >
+                {isLoadingFacets ? (
+                  <p>Loading Prices...</p>
+                ) : (
+                  <div className=" px-2">
+                    <p className="text-gray-500 text-center mb-2  ">
+                      CHF {priceRange[0]} - CHF {priceRange[1]}
+                    </p>
+
+                    <Slider
+                      range
+                      min={minPrice}
+                      max={maxPrice}
+                      value={priceRange}
+                      onChange={(newRange) =>
+                        setPriceRange(newRange as [number, number])
+                      }
+                      styles={{
+                        track: { backgroundColor: "black", height: 4 },
+                        handle: {
+                          backgroundColor: "white",
+                          border: "3px solid black",
+                          width: 16,
+                          height: 16,
+                        },
+                      }}
+                    />
+                  </div>
+                )}
+              </Accordion>
+              <Accordion
+                title="Brands"
+                isOpen={openAccordion === "Brands"}
+                onClick={() =>
+                  setOpenAccordion(openAccordion === "Brands" ? null : "Brands")
+                }
+              >
+                {isLoadingFacets ? (
+                  <p>Loading brands...</p>
+                ) : (
+                  brands.map((brand, index) => (
+                    <label key={index} className="block">
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center ">
+                          <input
+                            type="checkbox"
+                            className="mr-2 w-8 h-10"
+                            checked={selectedBrands.includes(brand.name)}
+                            onChange={(e) =>
+                              handleBrandChange(brand.name, e.target.checked)
+                            }
+                          />
+
+                          {brand.name}
+                        </div>
+                        {/* <p className="text-gray-500 pr-2">({brand.count})</p> */}
+                      </div>
+                    </label>
+                  ))
+                )}
               </Accordion>
             </div>
 

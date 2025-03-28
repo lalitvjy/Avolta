@@ -24,13 +24,13 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
         rounded
         variant="secondary"
         onClick={handelNavigateCatalog}
-        className={`py-12 px-12 text-4xl pr-6 gap-4 font-bold ${
+        className={`py-12 pl-12 pr-16 text-4xl  gap-4 font-bold ${
           isLoading ? "opacity-50 cursor-not-allowed" : ""
         }`}
         leftIcon={<Image src={Catalog} width={48} height={48} alt="catalog" />}
       />
       <Button
-        label="Receive you selfie!"
+        label="Receive your recommendations!"
         rounded
         variant="secondary"
         disabled={isApplyingGlasses}

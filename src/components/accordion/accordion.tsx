@@ -27,10 +27,12 @@ const Accordion = ({
 
       <div
         className={`overflow-auto transition-max-height duration-300 ${
-          isOpen ? "max-h-96" : "max-h-0"
+          isOpen ? "max-h-[800px]" : "max-h-0"
         }`}
       >
-        <div className="py-3 text-gray-700 text-3xl font-bold">{children}</div>
+        <div className="py-3 text-gray-700 text-4xl leading-[60px]">
+          {children}
+        </div>
       </div>
     </div>
   );

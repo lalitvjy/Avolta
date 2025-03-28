@@ -80,7 +80,7 @@ const BookmarkModal = () => {
                 className="w-full bg-transparent border-2 border-gray400 py-12  text-4xl"
               />
             </div>
-            <UserInfo purpose="wishlist" />
+            <UserInfo purpose="wishlist" buttonlabel="Send Email" />
           </DialogPanel>
         </TransitionChild>
       </Dialog>

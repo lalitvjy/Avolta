@@ -1,27 +1,27 @@
 import { useFilterStore } from "@/store/useFilter";
-import { useRef } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+// import { useRef } from "react";
+// import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 
 import Button from "../button/button";
 const CatalogHeadder = () => {
   const { openFilter } = useFilterStore();
-  const { appliedFilters, applyStoredFilter } = useFilterStore();
+  // const { appliedFilters, applyStoredFilter } = useFilterStore();
 
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const scrollLeft = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -200, behavior: "smooth" });
-    }
-  };
-  const scrollRight = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 200, behavior: "smooth" });
-    }
-  };
-  const handleScroll = () => {
-    if (!sliderRef.current) return;
-  };
+  // const sliderRef = useRef<HTMLDivElement>(null);
+  // const scrollLeft = () => {
+  //   if (sliderRef.current) {
+  //     sliderRef.current.scrollBy({ left: -200, behavior: "smooth" });
+  //   }
+  // };
+  // const scrollRight = () => {
+  //   if (sliderRef.current) {
+  //     sliderRef.current.scrollBy({ left: 200, behavior: "smooth" });
+  //   }
+  // };
+  // const handleScroll = () => {
+  //   if (!sliderRef.current) return;
+  // };
   return (
     <div className="mt-12 flex gap-4">
       <Button
@@ -32,7 +32,7 @@ const CatalogHeadder = () => {
         onClick={openFilter}
         leftIcon={<LuSettings2 size={48} />}
       />
-      <button
+      {/* <button
         onClick={scrollLeft}
         className="hidden  absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 p-3 rounded-full"
       >
@@ -64,7 +64,7 @@ const CatalogHeadder = () => {
         className="hidden  absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 p-3 rounded-full"
       >
         <FaChevronRight className="text-white" />
-      </button>
+      </button> */}
     </div>
   );
 };

@@ -8,8 +8,9 @@ import { Form, Modal } from "react-bootstrap";
 import Button from "../../button/button";
 interface UserInfoProps {
   purpose: string;
+  buttonlabel: string;
 }
-const UserInfo = ({ purpose }: UserInfoProps) => {
+const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
   const router = useRouter();
   const { isUserModalOpen, closeUserModal, name, email, setName, setEmail } =
     useUserInfo();
@@ -111,7 +112,7 @@ const UserInfo = ({ purpose }: UserInfoProps) => {
 
         <div className="flex justify-center flex-col text-3xl">
           <Button
-            label="Save and Continue"
+            label={buttonlabel}
             variant="secondary"
             rounded
             onClick={handelContinue}

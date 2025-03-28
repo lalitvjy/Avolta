@@ -138,7 +138,7 @@ export default function Detail() {
                 />
               </div>
             </div>
-            <UserInfo purpose="product-details" />
+            <UserInfo purpose="product-details" buttonlabel="Send Email" />
           </DialogPanel>
         </TransitionChild>
       </Dialog>

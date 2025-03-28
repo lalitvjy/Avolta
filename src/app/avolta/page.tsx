@@ -7,17 +7,19 @@ import EmailModal from "@/components/modals/email-modal/email-modal";
 import ReceiveSelfie from "@/components/modals/receive-selfie-modal/receive-selfie";
 // import TabSelector from "@/components/tab-selector/tab-selector";
 import { applyGlasses } from "@/helpers/apply-glasses/applyGlasses";
-import { useDetailModalStore } from "@/store/useDetailModal";
-
+// import { useDetailModalStore } from "@/store/useDetailModal";
+import { useEmailModalStore } from "@/store/useEmailModal";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
+import { MdOutlineMailOutline } from "react-icons/md";
 import mainImage from "../../../public/image 2.png";
 import Button from "../../components/button/button";
 import DetailModal from "../../components/modals/detail-modal/detail";
@@ -31,8 +33,8 @@ import Slider from "../../components/slider/slider";
 // );
 
 const Avolta = () => {
-  const { openDetailModal } = useDetailModalStore();
-  // const { openEmailModal } = useEmailModalStore();
+  // const { openDetailModal } = useDetailModalStore();
+  const { openEmailModal } = useEmailModalStore();
   // const [activeTab, setActiveTab] = useState("Static");
   const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
   const { uuid } = useRecommendetGlassStore();
@@ -44,7 +46,7 @@ const Avolta = () => {
   const [appliedImage, setAppliedImage] = useState<string | null>(null);
   // const [isLoading, setIsLoading] = useState(false);
   const [isApplyingGlasses, setIsApplyingGlasses] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
     const generateTryOnImage = async () => {
       if (!uuid || !selectedGlasses) return;
@@ -91,7 +93,11 @@ const Avolta = () => {
 
     generateTryOnImage();
   }, [uuid, selectedGlasses, appliedImage, setSelectedGlasses]);
-
+  useEffect(() => {
+    if (!selfie) {
+      router.push("/");
+    }
+  }, [router, selfie]);
   return (
     <div className="bg-white   pt-8  min-h-screen">
       <div className="px-9 ">
@@ -148,19 +154,19 @@ const Avolta = () => {
           </div>
           {/* <TabSelector activeTab={activeTab} setActiveTab={setActiveTab} /> */}
           <div className="absolute bottom-12 right-12 flex gap-14 ">
-            <Button
+            {/* <Button
               rounded
               onClick={openDetailModal}
-              label="See Details"
+              label="See Detail"
               className="text-grayscale500 font-bold py-4 px-6 text-4xl"
-            />
-            {/* <Button
+            /> */}
+            <Button
               rounded
               onClick={openEmailModal}
               label="Email"
               leftIcon={<MdOutlineMailOutline size={40} />}
               className="text-grayscale500 font-bold py-4 px-6 text-3xl"
-            /> */}
+            />
             <Button
               rounded
               label="Wishlit"

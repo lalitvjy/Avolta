@@ -1,4 +1,5 @@
 import { useEmailModalStore } from "@/store/useEmailModal";
+import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import {
   Dialog,
   DialogPanel,
@@ -6,14 +7,14 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import Image from "next/image";
-
 import { RxCross2 } from "react-icons/rx";
+import Banner from "../../../../public/banner.png";
 import Mainimage from "../../../../public/image 3.jpg";
 import EmailModalFooter from "./email-modal-footer.tsx/email-modal-footer";
 import Product from "./product/product";
 const EmailModal = () => {
   const { isEmailModalOpen, closeEmailModal } = useEmailModalStore();
-
+  const { selectedGlasses } = useSelectedGlassesStore();
   return (
     <Transition show={isEmailModalOpen}>
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
@@ -47,11 +48,22 @@ const EmailModal = () => {
             <div
               className={` absolute w-[55vh]  h-[45vh]  bg-white shadow-md left-1/2 -translate-x-1/2 top-48 rounded-40px flex justify-center `}
             >
-              <Image
-                src={Mainimage}
-                alt="22"
-                className="absolute top-[-25px] w-[30vh] h-[42vh] rounded-56px"
-              />
+              {selectedGlasses?.triedOnUrl ? (
+                <Image
+                  src={selectedGlasses.triedOnUrl}
+                  alt="22"
+                  width={400}
+                  height={300}
+                  className="absolute top-[-25px] w-[38vh] h-[40vh] rounded-56px"
+                />
+              ) : (
+                <Image
+                  src={Mainimage}
+                  alt="22"
+                  className="absolute top-[-25px] w-[30vh] h-[42vh] rounded-56px"
+                />
+              )}
+
               <div className={`absolute flex-1 self-end pb-4  w-[34vh]`}>
                 <Product />
               </div>
@@ -59,6 +71,12 @@ const EmailModal = () => {
             <div className=" px-24 pb-40 ">
               <EmailModalFooter />
             </div>
+            <Image
+              src={Banner}
+              alt="Banner"
+              className="object-contain w-screen border-none"
+              priority
+            />
           </DialogPanel>
         </TransitionChild>
       </Dialog>

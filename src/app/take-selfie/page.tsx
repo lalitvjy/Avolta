@@ -1,6 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
-import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import { useUserInfo } from "@/store/useUserInfo";
 import Image from "next/image";
@@ -15,7 +13,6 @@ const TakeSelfie = () => {
   const router = useRouter();
   const [stream, setStream] = useState<MediaStream | null>(null);
   const { setSelfie, selfie } = useTakeSelfieStore();
-  const [loading, setLoading] = useState(false);
   const { isChecked } = useUserInfo();
   const startCamera = async () => {
     try {
@@ -54,44 +51,6 @@ const TakeSelfie = () => {
     stopCamera();
   };
 
-  const sendSelfieToAI = async () => {
-    if (!selfie) return;
-    setLoading(true);
-
-    try {
-      const blob = await (await fetch(selfie)).blob();
-      const file = new File([blob], "selfie.png", { type: "image/png" });
-
-      const formData = new FormData();
-      formData.append("face", file);
-
-      const res = await fetch("/api/process-glasses", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await res.json();
-
-      if (!res.ok) {
-        throw new Error(result.error || "Failed to process image");
-      }
-
-      const { uuid, recommendations, face_analysis } = result.data;
-
-      useRecommendetGlassStore.getState().setGlassesData({
-        uuid,
-        recommendations,
-        faceShape: face_analysis?.face_shape || "",
-      });
-
-      router.push("/AI");
-    } catch (err) {
-      console.error("Error processing AI selfie:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     startCamera();
   }, []);
@@ -101,7 +60,7 @@ const TakeSelfie = () => {
     startCamera();
   };
   const handelNavigateAIpage = () => {
-    sendSelfieToAI();
+    router.push("/AI");
   };
   const handelBackToHomePage = () => {
     router.push("/");
@@ -157,15 +116,6 @@ const TakeSelfie = () => {
                   objectFit="cover"
                   className="rounded-60px"
                 />
-                {loading && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 z-10">
-                    <img
-                      src="/spinner.gif"
-                      alt="Loading"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                )}
               </>
             )}
           </div>
