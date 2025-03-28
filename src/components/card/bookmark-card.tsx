@@ -8,7 +8,7 @@ interface CardProps {
 }
 
 const BookmarkCard = ({ data }: CardProps) => {
-  const { name, imageUrlBase, brand, description } = data;
+  const { name, imageUrlBase, brand, priceDutyFree, currency, objectID } = data;
   const { toggleFavorite } = useFavoriteGlassesStore();
 
   return (
@@ -17,21 +17,22 @@ const BookmarkCard = ({ data }: CardProps) => {
         <Image
           src={imageUrlBase ?? ""}
           alt={name}
-          width={80}
-          height={80}
-          className="rounded-xl shadow-md object-cover"
-          style={{ width: "80px", height: "80px" }}
+          width={300}
+          height={300}
+          className="rounded-xl  object-cover"
+          style={{ width: "300px", height: "300px" }}
         />
 
-        <div className="pl-6">
-          <p className="font-bold text-lg">{brand}</p>
-          <p className="text-gray-500 font-medium text-base">{description}</p>
+        <div className="pl-10">
+          <p className="font-bold text-4xl">{brand}</p>
+          <p className="text-gray-500 font-medium text-3xl">
+            {currency}
+            {priceDutyFree}
+          </p>
+          <p className="text-gray-500 font-medium text-3xl">{objectID}</p>
         </div>
         <button onClick={() => toggleFavorite(data)} className="ml-auto px-4">
-          <RiDeleteBin6Fill
-            size={20}
-            className="text-black hover:text-gray-400"
-          />
+          <RiDeleteBin6Fill size={48} className="text-gray-500" />
         </button>
       </div>
     </div>

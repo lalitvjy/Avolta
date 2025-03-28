@@ -1,4 +1,4 @@
-import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
+import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import Image from "next/image";
 import { useRef } from "react";
 
@@ -6,7 +6,8 @@ const ReceiveSelfieSlider = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
-  const { favorites } = useFavoriteGlassesStore();
+
+  const { recommendations } = useRecommendetGlassStore();
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -37,7 +38,7 @@ const ReceiveSelfieSlider = () => {
         onTouchEnd={handleTouchEnd}
         className="flex overflow-x-auto scroll-smooth scrollbar-hide gap-20 pl-[17.5%] pr-8"
       >
-        {favorites.map((item, index) => (
+        {recommendations.map((item, index) => (
           <div
             key={index}
             className="flex-shrink-0 w-[65%] h-[1200px] flex justify-center relative"
@@ -49,7 +50,6 @@ const ReceiveSelfieSlider = () => {
                 width={900}
                 height={1000}
                 className="rounded-56px object-cover h-full w-auto"
-                unoptimized
               />
             ) : (
               <div className="text-gray-400 text-center">

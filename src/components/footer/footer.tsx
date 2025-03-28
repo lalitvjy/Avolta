@@ -24,7 +24,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
         rounded
         variant="secondary"
         onClick={handelNavigateCatalog}
-        className={`py-4 pl-4 pr-6 gap-4 text-4xl font-bold ${
+        className={`py-12 px-12 text-4xl pr-6 gap-4 font-bold ${
           isLoading ? "opacity-50 cursor-not-allowed" : ""
         }`}
         leftIcon={<Image src={Catalog} width={48} height={48} alt="catalog" />}
@@ -37,7 +37,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
         onClick={openReceiveSelfieModal}
         leftIcon={<MdOutlineEmail size={48} />}
         rightIcon={<IoChevronForwardSharp size={48} />}
-        className={`px-4 py-4 text-4xl font-bold ${
+        className={`py-12 px-12 text-4xl font-bold ${
           isApplyingGlasses ? "opacity-50 cursor-not-allowed" : ""
         }`}
       />

@@ -1,61 +1,28 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
+import Button from "@/components/button/button";
+import UserInfo from "@/components/modals/user-info/user-info";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
+import { useUserInfo } from "@/store/useUserInfo";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
 import { LuScanFace } from "react-icons/lu";
-
 const Ai = () => {
-  const router = useRouter();
   const { selfie } = useTakeSelfieStore();
-  const [loading, setLoading] = useState(false);
-
-  const sendSelfieToAI = async () => {
-    if (!selfie) return;
-    setLoading(true);
-
-    try {
-      const blob = await (await fetch(selfie)).blob();
-      const file = new File([blob], "selfie.png", { type: "image/png" });
-
-      const formData = new FormData();
-      formData.append("face", file);
-
-      const res = await fetch("/api/process-glasses", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await res.json();
-
-      if (!res.ok) {
-        throw new Error(result.error || "Failed to process image");
-      }
-
-      const { uuid, recommendations, face_analysis } = result.data;
-
-      useRecommendetGlassStore.getState().setGlassesData({
-        uuid,
-        recommendations,
-        faceShape: face_analysis?.face_shape || "",
-      });
-
-      router.push("/avolta");
-    } catch (err) {
-      console.error("Error processing AI selfie:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { openUserModal } = useUserInfo();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    sendSelfieToAI();
-  }, [selfie]);
+    const timer = setTimeout(() => {
+      openUserModal();
+      setLoading(true);
+    }, 6000);
+
+    return () => clearTimeout(timer);
+  }, [openUserModal]);
 
   return (
-    <div className="bg-gradient-avolta h-screen w-full flex flex-col justify-between items-center p-16">
+    <div className="bg-white h-screen w-full flex flex-col justify-between items-center p-16">
       <p className="text-center font-bold text-4xl text-grayscale600 left-10">
         Finding Your Match
       </p>
@@ -73,17 +40,25 @@ const Ai = () => {
             className="rounded-56px"
           />
         )}
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/30 z-10">
+            <img
+              src="/spinner.gif"
+              alt="Loading"
+              className="w-full h-full object-contain"
+            />
+          </div>
+        )}
       </div>
 
-      <div className="flex justify-center text-grayscale600">
-        <div className="bg-white flex items-center rounded-full font-bold py-6 px-16 text-2xl gap-2">
-          <LuScanFace size={24} />
-          Processing...
-          {loading && (
-            <Spinner animation="grow" className="bg-primaryAvolta h-10 w-10" />
-          )}
-        </div>
-      </div>
+      <Button
+        variant="secondary"
+        label="    Processing..."
+        rounded
+        leftIcon={<LuScanFace size={48} />}
+        className="font-bold   text-black py-12 px-12 text-4xl"
+      />
+      <UserInfo />
     </div>
   );
 };

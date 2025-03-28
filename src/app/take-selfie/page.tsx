@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import UserInfo from "@/components/modals/user-info/user-info";
+import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import { useUserInfo } from "@/store/useUserInfo";
 import Image from "next/image";
@@ -14,7 +15,8 @@ const TakeSelfie = () => {
   const router = useRouter();
   const [stream, setStream] = useState<MediaStream | null>(null);
   const { setSelfie, selfie } = useTakeSelfieStore();
-  const { openUserModal, isChecked } = useUserInfo();
+  const [loading, setLoading] = useState(false);
+  const { isChecked } = useUserInfo();
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -51,6 +53,45 @@ const TakeSelfie = () => {
     setSelfie(imageData);
     stopCamera();
   };
+
+  const sendSelfieToAI = async () => {
+    if (!selfie) return;
+    setLoading(true);
+
+    try {
+      const blob = await (await fetch(selfie)).blob();
+      const file = new File([blob], "selfie.png", { type: "image/png" });
+
+      const formData = new FormData();
+      formData.append("face", file);
+
+      const res = await fetch("/api/process-glasses", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.error || "Failed to process image");
+      }
+
+      const { uuid, recommendations, face_analysis } = result.data;
+
+      useRecommendetGlassStore.getState().setGlassesData({
+        uuid,
+        recommendations,
+        faceShape: face_analysis?.face_shape || "",
+      });
+
+      router.push("/AI");
+    } catch (err) {
+      console.error("Error processing AI selfie:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     startCamera();
   }, []);
@@ -59,8 +100,8 @@ const TakeSelfie = () => {
     setSelfie("");
     startCamera();
   };
-  const handelOpenUserModal = () => {
-    openUserModal();
+  const handelNavigateAIpage = () => {
+    sendSelfieToAI();
   };
   const handelBackToHomePage = () => {
     router.push("/");
@@ -106,16 +147,27 @@ const TakeSelfie = () => {
 
       <div className="flex justify-center h-full  py-[55px] ">
         {selfie ? (
-          <div className="w-full h-full relative flex items-center justify-center  ">
-            {selfie ? (
-              <Image
-                src={selfie}
-                alt="Main image"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-60px"
-              />
-            ) : null}
+          <div className="w-full h-full relative flex items-center justify-center">
+            {selfie && (
+              <>
+                <Image
+                  src={selfie}
+                  alt="Main image"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-60px"
+                />
+                {loading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 z-10">
+                    <img
+                      src="/spinner.gif"
+                      alt="Loading"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                )}
+              </>
+            )}
           </div>
         ) : (
           <div className="relative flex flex-col justify-center items-center w-full flex-grow">
@@ -151,7 +203,7 @@ const TakeSelfie = () => {
               variant="secondary"
               className="font-bold  text-black py-12 px-12 text-4xl"
             />
-            <p className="text-white text-sm text-center ">
+            <p className="text-black text-2xl text-center ">
               Not satisfied? try again.
             </p>
           </div>
@@ -161,10 +213,10 @@ const TakeSelfie = () => {
               leftIcon={<IoFlashSharp size={40} />}
               rounded
               variant="secondary"
-              onClick={handelOpenUserModal}
+              onClick={handelNavigateAIpage}
               className="font-bold   text-black py-12 px-12 text-4xl"
             />
-            <p className="text-white text-sm text-center ">
+            <p className="text-black text-2xl text-center ">
               Move ahead with this stylish choice.
             </p>
           </div>
@@ -181,8 +233,6 @@ const TakeSelfie = () => {
           />
         </div>
       )}
-
-      <UserInfo />
     </div>
   );
 };

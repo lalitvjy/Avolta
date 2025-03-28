@@ -11,11 +11,11 @@ const UserInfo = () => {
 
   const handelContinue = () => {
     closeUserModal();
-    router.push("AI");
+    router.push("/avolta");
   };
   const handelClose = () => {
     closeUserModal();
-    router.push("AI");
+    router.push("/avolta");
   };
   return (
     <Modal

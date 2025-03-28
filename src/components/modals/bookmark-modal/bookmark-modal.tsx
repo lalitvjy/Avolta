@@ -11,7 +11,7 @@ import { RxCross2 } from "react-icons/rx";
 import Button from "@/components/button/button";
 import BookmarkCard from "@/components/card/bookmark-card";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
-import { FaBookmark } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 const BookmarkModal = () => {
   const { isBookmarkModalOpen, closeBookmarkModal } = useBookmarkModalStore();
@@ -41,12 +41,12 @@ const BookmarkModal = () => {
             <div>
               <div className="flex justify-between items-center">
                 <div>
-                  <h1 className="font-bold text-4xl">Your Bookmars</h1>
-                  <p className="font-medium text-base mt-2">
-                    Lorem ipsum simply dummy text
-                  </p>
+                  <h1 className="font-bold text-[60px]">Your Wishlist</h1>
                 </div>
-                <FaBookmark size={48} className="text-primaryAvolta" />
+                <FaHeart
+                  className={`${favorites.length > 0 ? "text-red " : " "}`}
+                  size={40}
+                />
               </div>
               <div className=" grid grid-cols-1  gap-y-4 pt-16 ">
                 {favorites.map((item) => (
@@ -54,9 +54,10 @@ const BookmarkModal = () => {
                     key={item.objectID}
                     data={{
                       name: item.name,
-                      description: item.description,
                       imageUrlBase: item.imageUrlBase,
                       brand: item.brand,
+                      priceDutyFree: item.priceDutyFree,
+                      currency: item.currency,
                       objectID: item.objectID,
                     }}
                   />
