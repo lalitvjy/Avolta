@@ -1,9 +1,9 @@
 import { useBookmarkModalStore } from "@/store/useBookmarkModal";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaHeart } from "react-icons/fa";
-import Button from "../button/button";
-
+import Logo from "../../../public/logo.svg";
 const Header = () => {
   const { openBookmarkModal } = useBookmarkModalStore();
   const { favorites } = useFavoriteGlassesStore();
@@ -13,12 +13,19 @@ const Header = () => {
   };
   return (
     <div className="flex items-center gap-3.5 justify-between">
-      <Button
+      {/* <Button
         label="Club Avolta"
         rounded
         onClick={handelNavigateHomePage}
         variant="secondary"
         className="font-bold py-12 px-12 text-4xl"
+      /> */}
+      <Image
+        src={Logo}
+        alt="logo"
+        width={300}
+        height={200}
+        onClick={handelNavigateHomePage}
       />
       <button
         onClick={openBookmarkModal}
