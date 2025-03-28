@@ -164,6 +164,7 @@ const Avolta = () => {
               rounded
               onClick={openEmailModal}
               label="Email"
+              disabled={isApplyingGlasses}
               leftIcon={<MdOutlineMailOutline size={40} />}
               className="text-grayscale500 font-bold py-4 px-6 text-3xl"
             />

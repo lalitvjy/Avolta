@@ -58,8 +58,14 @@ function Slider() {
   const sortedGlassesCatalog = useMemo(() => {
     const allGlassesMap = new Map();
 
+    if (selectedGlasses) {
+      allGlassesMap.set(selectedGlasses.objectID, selectedGlasses);
+    }
+
     for (const item of recommendations) {
-      allGlassesMap.set(item.objectID, item);
+      if (!allGlassesMap.has(item.objectID)) {
+        allGlassesMap.set(item.objectID, item);
+      }
     }
 
     for (const item of glasses) {
@@ -69,7 +75,7 @@ function Slider() {
     }
 
     return Array.from(allGlassesMap.values());
-  }, [glasses, recommendations]);
+  }, [glasses, recommendations, selectedGlasses]);
 
   useEffect(() => {
     if (!selectedGlasses && sortedGlassesCatalog.length > 0) {
