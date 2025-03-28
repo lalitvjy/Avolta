@@ -36,7 +36,7 @@ const SelfieModalFooter = () => {
       router.push("/");
     }
   };
-  console.log(recommendations);
+
   return (
     <div className="flex items-center justify-center p-10 gap-40 h-full text-black">
       <div>
