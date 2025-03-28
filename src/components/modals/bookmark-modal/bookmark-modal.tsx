@@ -11,11 +11,18 @@ import { RxCross2 } from "react-icons/rx";
 import Button from "@/components/button/button";
 import BookmarkCard from "@/components/card/bookmark-card";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
+import { useUserInfo } from "@/store/useUserInfo";
 import { FaHeart } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import UserInfo from "../user-info/user-info";
 const BookmarkModal = () => {
   const { isBookmarkModalOpen, closeBookmarkModal } = useBookmarkModalStore();
   const { favorites } = useFavoriteGlassesStore();
+  const { openUserModal } = useUserInfo();
+  const handelOpenUserModal = () => {
+    openUserModal();
+  };
+
   return (
     <Transition show={isBookmarkModalOpen}>
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
@@ -68,10 +75,12 @@ const BookmarkModal = () => {
               <Button
                 label="Email"
                 rounded
-                leftIcon={<MdOutlineEmail size={24} />}
-                className="w-full bg-transparent border border-gray400 py-6 text-lg"
+                onClick={handelOpenUserModal}
+                leftIcon={<MdOutlineEmail size={48} />}
+                className="w-full bg-transparent border-2 border-gray400 py-12  text-4xl"
               />
             </div>
+            <UserInfo purpose="wishlist" />
           </DialogPanel>
         </TransitionChild>
       </Dialog>

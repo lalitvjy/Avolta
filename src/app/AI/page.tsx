@@ -58,7 +58,7 @@ const Ai = () => {
         leftIcon={<LuScanFace size={48} />}
         className="font-bold   text-black py-12 px-12 text-4xl"
       />
-      <UserInfo />
+      <UserInfo purpose="user-info" />
     </div>
   );
 };

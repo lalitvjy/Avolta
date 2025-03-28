@@ -1,12 +1,42 @@
 import Button from "@/components/button/button";
+import { sendEmail } from "@/helpers/send-email/sendEmail";
+import { useReceiveSelfieModalStore } from "@/store/useReceiveSelfieModal";
 import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
+import { useUserInfo } from "@/store/useUserInfo";
+import { useRouter } from "next/navigation";
 import { QRCodeCanvas } from "qrcode.react";
-
 const SelfieModalFooter = () => {
-  const { uuid } = useRecommendetGlassStore();
-
+  const { uuid, recommendations } = useRecommendetGlassStore();
+  const router = useRouter();
+  const { closeReceiveSelfieModal } = useReceiveSelfieModalStore();
   const qrUrl = `https://glass-recommendations.mirrar.com/${uuid}`;
+  const { name, email, setName, setEmail } = useUserInfo();
 
+  console.log(recommendations);
+  const handleSend = async () => {
+    const objects = recommendations.map((item) => ({
+      brand: item.brand || "Unknown",
+      imageUrlBase: item.imageUrlBase ?? "",
+      priceDutyFree: item.priceDutyFree ?? 0,
+      productUrl: item.productUrl || "",
+      triedOnImage: item.triedOnUrl || "",
+    }));
+
+    try {
+      await sendEmail({
+        name,
+        email,
+        purpose: "selfie",
+        objects,
+      });
+    } catch (error) {
+      console.error("Failed to send email:", error);
+    } finally {
+      closeReceiveSelfieModal();
+      router.push("/");
+    }
+  };
+  console.log(recommendations);
   return (
     <div className="flex items-center justify-center p-10 gap-40 h-full text-black">
       <div>
@@ -20,11 +50,13 @@ const SelfieModalFooter = () => {
 
       <div>
         <p className="font-bold text-3xl pb-12">Get it on your inbox</p>
-        <form className="space-y-8">
+        <div className="space-y-8">
           <div>
             <input
               type="text"
               placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="w-[20vh] p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAvolta text-xl"
             />
           </div>
@@ -33,6 +65,8 @@ const SelfieModalFooter = () => {
             <input
               type="email"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primaryAvolta text-xl"
             />
           </div>
@@ -41,8 +75,9 @@ const SelfieModalFooter = () => {
             label="Send"
             className="rounded-lg font-bold w-full py-3 text-3xl"
             variant="secondary"
+            onClick={handleSend}
           />
-        </form>
+        </div>
       </div>
     </div>
   );

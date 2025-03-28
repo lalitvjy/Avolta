@@ -1,18 +1,65 @@
 "use client";
+import { sendEmail } from "@/helpers/send-email/sendEmail";
+import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
+import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { useUserInfo } from "@/store/useUserInfo";
+import { useRouter } from "next/navigation";
 import { Form, Modal } from "react-bootstrap";
 import Button from "../../button/button";
-
-import { useRouter } from "next/navigation";
-const UserInfo = () => {
+interface UserInfoProps {
+  purpose: string;
+}
+const UserInfo = ({ purpose }: UserInfoProps) => {
   const router = useRouter();
   const { isUserModalOpen, closeUserModal, name, email, setName, setEmail } =
     useUserInfo();
 
-  const handelContinue = () => {
+  const handelContinue = async () => {
+    let objects;
+
+    if (purpose === "wishlist") {
+      const { favorites } = useFavoriteGlassesStore.getState();
+      objects = favorites.map((item) => ({
+        brand: item.brand || "Unknown Brand",
+        imageUrlBase: item.imageUrlBase ?? "",
+        priceDutyFree: item.priceDutyFree ?? 0,
+        productUrl: item.productUrl || "",
+        triedOnImage: item.triedOnUrl || "",
+      }));
+    }
+
+    if (purpose === "product-details") {
+      const { selectedGlasses } = useSelectedGlassesStore.getState();
+      if (selectedGlasses) {
+        objects = [
+          {
+            brand: selectedGlasses.brand || "Unknown Brand",
+            imageUrlBase: selectedGlasses.imageUrlBase ?? "",
+            priceDutyFree: selectedGlasses.priceDutyFree ?? 0,
+            productUrl: selectedGlasses.productUrl || "",
+            triedOnImage: selectedGlasses.triedOnUrl || "",
+          },
+        ];
+      }
+    }
+
+    if (purpose !== "user-info") {
+      try {
+        await sendEmail({
+          name,
+          email,
+          purpose,
+          ...(objects ? { objects } : {}),
+        });
+      } catch (error) {
+        console.error("Failed to send user info email:", error);
+      }
+    }
+
     closeUserModal();
     router.push("/avolta");
   };
+
   const handelClose = () => {
     closeUserModal();
     router.push("/avolta");

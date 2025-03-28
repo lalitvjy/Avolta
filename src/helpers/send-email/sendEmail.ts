@@ -16,7 +16,7 @@ export const sendEmail = async ({
   }[];
 }) => {
   try {
-    const res = await fetch("/api/send-email", {
+    const res = await fetch("https://glass-tryon.mirrar.com/send-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

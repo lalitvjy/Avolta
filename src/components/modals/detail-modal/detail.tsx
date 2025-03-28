@@ -3,6 +3,7 @@ import useWindowDimensions from "@/hooks/useWindowDimensions";
 import { useDetailModalStore } from "@/store/useDetailModal";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
+import { useUserInfo } from "@/store/useUserInfo";
 import {
   Dialog,
   DialogPanel,
@@ -17,6 +18,7 @@ import { FaHeart } from "react-icons/fa";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import Button from "../../button/button";
+import UserInfo from "../user-info/user-info";
 export default function Detail() {
   const router = useRouter();
   const { isDetailModalOpen, closeDetailModal } = useDetailModalStore();
@@ -24,6 +26,10 @@ export default function Detail() {
   const { width, height } = useWindowDimensions();
   const { selectedGlasses } = useSelectedGlassesStore();
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
+  const { openUserModal } = useUserInfo();
+  const handelOpenUserModal = () => {
+    openUserModal();
+  };
   const isFavorite = favorites.some(
     (item) => item.objectID === selectedGlasses?.objectID
   );
@@ -118,6 +124,7 @@ export default function Detail() {
                   label="Email"
                   leftIcon={<CiMail size={48} />}
                   variant="primary"
+                  onClick={handelOpenUserModal}
                   className="w-full font-bold py-6 text-4xl border"
                   rounded
                 />
@@ -131,6 +138,7 @@ export default function Detail() {
                 />
               </div>
             </div>
+            <UserInfo purpose="product-details" />
           </DialogPanel>
         </TransitionChild>
       </Dialog>
