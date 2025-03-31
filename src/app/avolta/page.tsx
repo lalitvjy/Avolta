@@ -14,6 +14,7 @@ import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import { useUserInfo } from "@/store/useUserInfo";
+import { resetUserFlow } from "@/utils/resetUserFlow";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -25,7 +26,6 @@ import mainImage from "../../../public/image 2.png";
 import Button from "../../components/button/button";
 import DetailModal from "../../components/modals/detail-modal/detail";
 import Slider from "../../components/slider/slider";
-
 // const DeepARCanvas = dynamic(
 //   () => import("@/components/deepar-canvas/deepar-canvas"),
 //   {
@@ -97,11 +97,8 @@ const Avolta = () => {
   }, [uuid, selectedGlasses, appliedImage, setSelectedGlasses]);
   useEffect(() => {
     if (!selfie) {
-      setIsChecked(false);
-      setSelfie("");
-      setName("");
-      setEmail("");
       router.push("/");
+      resetUserFlow();
     }
   }, [router, selfie, setEmail, setIsChecked, setName, setSelfie]);
   return (

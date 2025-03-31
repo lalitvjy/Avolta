@@ -1,23 +1,18 @@
 import { useBookmarkModalStore } from "@/store/useBookmarkModal";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
-import { useTakeSelfieStore } from "@/store/useTakeSelfie";
-import { useUserInfo } from "@/store/useUserInfo";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaHeart } from "react-icons/fa";
 import Logo from "../../../public/logo.svg";
+import { resetUserFlow } from "@/utils/resetUserFlow";
 const Header = () => {
   const { openBookmarkModal } = useBookmarkModalStore();
-  const { setSelfie } = useTakeSelfieStore();
-  const { setIsChecked,setName, setEmail, } = useUserInfo();
+
   const { favorites } = useFavoriteGlassesStore();
   const router = useRouter();
   const handelNavigateHomePage = () => {
-    setIsChecked(false);
-    setSelfie("");
-    setName('')
-    setEmail('')
     router.push("/");
+    resetUserFlow();
   };
   return (
     <div className="flex items-center gap-3.5 justify-between">

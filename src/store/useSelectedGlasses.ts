@@ -3,10 +3,10 @@ import { AlgoliaProduct } from "@/types/algoliaTypes";
 
 interface SelectedGlassesState {
   selectedGlasses: AlgoliaProduct | null;
-  setSelectedGlasses: (glasses: AlgoliaProduct) => void;
+  setSelectedGlasses: (glasses: AlgoliaProduct | null) => void;
 
   tryOnGlasses: AlgoliaProduct | null;
-  setTryOnGlasses: (glasses: AlgoliaProduct) => void;
+  setTryOnGlasses: (glasses: AlgoliaProduct | null) => void;
 }
 
 export const useSelectedGlassesStore = create<SelectedGlassesState>((set) => ({

@@ -2,16 +2,16 @@ import Button from "@/components/button/button";
 import { sendEmail } from "@/helpers/send-email/sendEmail";
 import { useReceiveSelfieModalStore } from "@/store/useReceiveSelfieModal";
 import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
-import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import { useUserInfo } from "@/store/useUserInfo";
+import { resetUserFlow } from "@/utils/resetUserFlow";
 import { useRouter } from "next/navigation";
 import { QRCodeCanvas } from "qrcode.react";
 const SelfieModalFooter = () => {
   const { uuid, recommendations } = useRecommendetGlassStore();
   const router = useRouter();
   const { closeReceiveSelfieModal } = useReceiveSelfieModalStore();
-  const { setSelfie } = useTakeSelfieStore();
-  const { name, email, setName, setEmail, setIsChecked } = useUserInfo();
+
+  const { name, email, setName, setEmail } = useUserInfo();
   const qrUrl = `https://glass-recommendations.mirrar.com/${uuid}`;
 
   const handleSend = async () => {
@@ -34,11 +34,8 @@ const SelfieModalFooter = () => {
       console.error("Failed to send email:", error);
     } finally {
       closeReceiveSelfieModal();
-      setIsChecked(false);
-      setName("");
-      setEmail("");
-      setSelfie("");
       router.push("/");
+      resetUserFlow();
     }
   };
 

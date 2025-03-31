@@ -4,6 +4,7 @@ import { AlgoliaProduct } from "@/types/algoliaTypes";
 interface FavoriteGlassesState {
   favorites: AlgoliaProduct[];
   toggleFavorite: (glasses: AlgoliaProduct) => void;
+  clearFavorites: () => void;
 }
 
 export const useFavoriteGlassesStore = create<FavoriteGlassesState>(
@@ -21,5 +22,6 @@ export const useFavoriteGlassesStore = create<FavoriteGlassesState>(
           : [...favorites, glasses],
       });
     },
+    clearFavorites: () => set({ favorites: [] }),
   })
 );

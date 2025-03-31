@@ -1,6 +1,7 @@
 "use client";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import { useUserInfo } from "@/store/useUserInfo";
+import { resetUserFlow } from "@/utils/resetUserFlow";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -13,7 +14,7 @@ const TakeSelfie = () => {
   const router = useRouter();
   const [stream, setStream] = useState<MediaStream | null>(null);
   const { setSelfie, selfie } = useTakeSelfieStore();
-  const { isChecked, setName, setEmail } = useUserInfo();
+  const { isChecked } = useUserInfo();
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -64,9 +65,7 @@ const TakeSelfie = () => {
   };
   const handelBackToHomePage = () => {
     router.push("/");
-    setName("");
-    setEmail("");
-    stopCamera();
+    resetUserFlow();
   };
   if (!isChecked) {
     return (
