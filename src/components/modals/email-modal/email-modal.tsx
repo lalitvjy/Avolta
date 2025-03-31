@@ -38,10 +38,10 @@ const EmailModal = () => {
         >
           <DialogPanel className="bg-white w-full h-full   flex flex-col justify-between   rounded-40px shadow-lg overflow-hidden ">
             <div className="bg-primaryL2 h-[55vh] rounded-b-40px relative">
-              <p className="font-bold text-3xl text-center text-gray-900 pt-10">
+              <p className="font-bold text-5xl text-center text-gray-900 pt-10">
                 Email your look!
               </p>
-              <p className="text-center text-gray-700 text-md">
+              <p className="text-center text-gray-700 text-2xl">
               Get the vibe right with your fave sunnies!
               </p>
             </div>
