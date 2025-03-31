@@ -13,7 +13,7 @@ const TakeSelfie = () => {
   const router = useRouter();
   const [stream, setStream] = useState<MediaStream | null>(null);
   const { setSelfie, selfie } = useTakeSelfieStore();
-  const { isChecked } = useUserInfo();
+  const { isChecked, setName, setEmail } = useUserInfo();
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -64,6 +64,8 @@ const TakeSelfie = () => {
   };
   const handelBackToHomePage = () => {
     router.push("/");
+    setName("");
+    setEmail("");
     stopCamera();
   };
   if (!isChecked) {

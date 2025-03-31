@@ -13,6 +13,7 @@ import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
+import { useUserInfo } from "@/store/useUserInfo";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -38,11 +39,12 @@ const Avolta = () => {
   // const [activeTab, setActiveTab] = useState("Static");
   const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
   const { uuid } = useRecommendetGlassStore();
+  const { setIsChecked, setName, setEmail } = useUserInfo();
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
   const isFavorite = favorites.some(
     (item) => item.objectID === selectedGlasses?.objectID
   );
-  const { selfie } = useTakeSelfieStore();
+  const { selfie, setSelfie } = useTakeSelfieStore();
   const [appliedImage, setAppliedImage] = useState<string | null>(null);
   // const [isLoading, setIsLoading] = useState(false);
   const [isApplyingGlasses, setIsApplyingGlasses] = useState(false);
@@ -95,9 +97,13 @@ const Avolta = () => {
   }, [uuid, selectedGlasses, appliedImage, setSelectedGlasses]);
   useEffect(() => {
     if (!selfie) {
+      setIsChecked(false);
+      setSelfie("");
+      setName("");
+      setEmail("");
       router.push("/");
     }
-  }, [router, selfie]);
+  }, [router, selfie, setEmail, setIsChecked, setName, setSelfie]);
   return (
     <div className="bg-white   pt-8  min-h-screen">
       <div className="px-9 ">
