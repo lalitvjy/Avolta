@@ -24,8 +24,7 @@ const TermsAndPrivacyFooter = () => {
           className="w-5 h-5  cursor-pointer"
         />
         <label htmlFor="terms-checkbox" className="text-xl text-gray600 ">
-          By continuing, you agree to our brand program, lorem ipsum simply
-          dummy text.
+          By continuing, you agree to our brand program.
         </label>
       </div>
       <Button
