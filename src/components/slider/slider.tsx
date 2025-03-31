@@ -18,7 +18,9 @@ function Slider() {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const { recommendations } = useRecommendetGlassStore();
-  const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
+  const { selectedGlasses, setSelectedGlasses, tryOnGlasses } =
+    useSelectedGlassesStore();
+
   const [loading, setLoading] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -57,11 +59,9 @@ function Slider() {
 
   const sortedGlassesCatalog = useMemo(() => {
     const allGlassesMap = new Map();
-
-    if (selectedGlasses) {
-      allGlassesMap.set(selectedGlasses.objectID, selectedGlasses);
+    if (tryOnGlasses) {
+      allGlassesMap.set(tryOnGlasses.objectID, tryOnGlasses);
     }
-
     for (const item of recommendations) {
       if (!allGlassesMap.has(item.objectID)) {
         allGlassesMap.set(item.objectID, item);
@@ -75,13 +75,19 @@ function Slider() {
     }
 
     return Array.from(allGlassesMap.values());
-  }, [glasses, recommendations, selectedGlasses]);
+  }, [glasses, recommendations, tryOnGlasses]);
 
   useEffect(() => {
-    if (!selectedGlasses && sortedGlassesCatalog.length > 0) {
+    if (tryOnGlasses) {
+      setSelectedGlasses(tryOnGlasses);
+    }
+  }, [tryOnGlasses, setSelectedGlasses]);
+
+  useEffect(() => {
+    if (!selectedGlasses && !tryOnGlasses && sortedGlassesCatalog.length > 0) {
       setSelectedGlasses(sortedGlassesCatalog[0]);
     }
-  }, [selectedGlasses, setSelectedGlasses, sortedGlassesCatalog]);
+  }, [selectedGlasses, tryOnGlasses, setSelectedGlasses, sortedGlassesCatalog]);
 
   const scrollLeft = () => {
     if (sliderRef.current) {
@@ -106,6 +112,7 @@ function Slider() {
       setPage((prevPage) => prevPage + 1);
     }
   };
+
   return (
     <div className="relative w-full pt-10 flex  pl-28">
       <button

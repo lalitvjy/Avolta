@@ -24,7 +24,7 @@ export default function Detail() {
   const { isDetailModalOpen, closeDetailModal } = useDetailModalStore();
   const [showFullDetails, setShowFullDetails] = useState(false);
   const { width, height } = useWindowDimensions();
-  const { selectedGlasses } = useSelectedGlassesStore();
+  const { selectedGlasses, tryOnGlasses } = useSelectedGlassesStore();
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
   const { openUserModal } = useUserInfo();
   const handelOpenUserModal = () => {
@@ -61,7 +61,7 @@ export default function Detail() {
           <DialogPanel className="bg-white w-full h-full flex flex-col   rounded-40px shadow-lg  ">
             <div className="flex justify-center items-center h-full">
               <Image
-                src={selectedGlasses?.imageUrlBase ?? ""}
+                src={tryOnGlasses?.imageUrlBase ?? ""}
                 alt="glasses-image"
                 width={width * 0.8}
                 height={height * 0.3}
@@ -72,7 +72,7 @@ export default function Detail() {
             <div className="text-start px-20 pb-16 bg-white rounded-b-40px text-grayscale600">
               <div className="flex items-center justify-between pb-4">
                 <p className="font-semibold text-[60px]">
-                  {selectedGlasses?.brand}
+                  {tryOnGlasses?.brand}
                 </p>
                 <Button
                   rounded
@@ -97,9 +97,9 @@ export default function Detail() {
                 />
               </div>
 
-              <h6 className="text-4xl pb-4">{selectedGlasses?.name}</h6>
+              <h6 className="text-4xl pb-4">{tryOnGlasses?.name}</h6>
               <p className="font-bold text-3xl ">
-                {selectedGlasses?.currency} {selectedGlasses?.priceDutyFree}
+                {tryOnGlasses?.currency} {tryOnGlasses?.priceDutyFree}
               </p>
               <hr className="my-6" />
 
@@ -109,7 +109,7 @@ export default function Detail() {
                   showFullDetails ? "" : "line-clamp-3"
                 }`}
               >
-                {selectedGlasses?.description}
+                {tryOnGlasses?.description}
               </p>
 
               <button

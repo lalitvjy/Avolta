@@ -16,7 +16,8 @@ const Catalog = () => {
   const ALGOLIA_INDEX_NAME = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
   const { filters, sortOrder, setSortOrder } = useFilterStore();
   const [glasses, setGlasses] = useState<AlgoliaProduct[]>([]);
-  const { setSelectedGlasses } = useSelectedGlassesStore();
+
+  const { setTryOnGlasses } = useSelectedGlassesStore();
   const { openDetailModal } = useDetailModalStore();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
@@ -80,7 +81,7 @@ const Catalog = () => {
     [isLoading, page, nbPages]
   );
   const handleSelectGlasses = (glass: AlgoliaProduct) => {
-    setSelectedGlasses(glass);
+    setTryOnGlasses(glass);
     openDetailModal();
   };
   return (
