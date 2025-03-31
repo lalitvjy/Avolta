@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Banner from "../../public/banner.png";
+import Banner from "../../public/club_avolta_banner_e2e_black.png";
 import MainImage from "../../public/image 1.png";
 import Button from "../components/button/button";
 import TermsAndPrivacy from "../components/modals/terms-and-privacy/terms-and-privacy";
