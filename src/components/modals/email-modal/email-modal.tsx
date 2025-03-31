@@ -41,12 +41,12 @@ const EmailModal = () => {
               <p className="font-bold text-5xl text-center text-gray-900 pt-10">
                 Email your look!
               </p>
-              <p className="text-center text-gray-700 text-2xl">
+              <p className="text-center text-gray-700 text-2xl pt-4">
               Get the vibe right with your fave sunnies!
               </p>
             </div>
             <div
-              className={` absolute w-[55vh]  h-[45vh]  bg-white shadow-md left-1/2 -translate-x-1/2 top-48 rounded-40px flex justify-center `}
+              className={` absolute w-[55vh]  h-[45vh]  bg-white shadow-md left-1/2 -translate-x-1/2 top-56 rounded-40px flex justify-center `}
             >
               {selectedGlasses?.triedOnUrl ? (
                 <Image
@@ -54,7 +54,7 @@ const EmailModal = () => {
                   alt="22"
                   width={400}
                   height={340}
-                  className="absolute top-[-25px] w-[38vh] h-[40vh] rounded-56px"
+                  className="absolute top-[-25px] w-[44vh] h-[40vh] rounded-56px"
                 />
               ) : (
                 <Image
@@ -64,7 +64,7 @@ const EmailModal = () => {
                 />
               )}
 
-              <div className={`absolute flex-1 self-end pb-4  w-[34vh]`}>
+              <div className={`absolute flex-1 self-end pb-4  w-[46vh]`}>
                 <Product />
               </div>
             </div>
