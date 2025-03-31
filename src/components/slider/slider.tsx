@@ -84,10 +84,17 @@ function Slider() {
   }, [tryOnGlasses, setSelectedGlasses]);
 
   useEffect(() => {
-    if (!selectedGlasses && !tryOnGlasses && sortedGlassesCatalog.length > 0) {
+    if (!selectedGlasses && recommendations.length > 0) {
+      setSelectedGlasses(recommendations[0]);
+    } else if (!selectedGlasses && sortedGlassesCatalog.length > 0) {
       setSelectedGlasses(sortedGlassesCatalog[0]);
     }
-  }, [selectedGlasses, tryOnGlasses, setSelectedGlasses, sortedGlassesCatalog]);
+  }, [
+    selectedGlasses,
+    recommendations,
+    sortedGlassesCatalog,
+    setSelectedGlasses,
+  ]);
 
   const scrollLeft = () => {
     if (sliderRef.current) {

@@ -46,6 +46,7 @@ const Avolta = () => {
   const [appliedImage, setAppliedImage] = useState<string | null>(null);
   // const [isLoading, setIsLoading] = useState(false);
   const [isApplyingGlasses, setIsApplyingGlasses] = useState(false);
+
   const router = useRouter();
   useEffect(() => {
     const generateTryOnImage = async () => {
@@ -63,7 +64,6 @@ const Avolta = () => {
       try {
         const asset2DUrl = selectedGlasses.asset2DUrl;
         if (!asset2DUrl) {
-          console.warn("No asset2DUrl found for selected glasses.");
           setIsApplyingGlasses(false);
           return;
         }
@@ -136,6 +136,7 @@ const Avolta = () => {
               fill
               style={{ objectFit: "cover", width: "100%", height: "100%" }}
               className="rounded-56px"
+              unoptimized
             />
 
             {isApplyingGlasses && (
