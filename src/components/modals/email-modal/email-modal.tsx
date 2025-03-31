@@ -38,11 +38,11 @@ const EmailModal = () => {
         >
           <DialogPanel className="bg-white w-full h-full   flex flex-col justify-between   rounded-40px shadow-lg overflow-hidden ">
             <div className="bg-primaryL2 h-[55vh] rounded-b-40px relative">
-              <p className="font-bold text-3xl text-center text-gray-900 pt-10">
-                Email Look!
+              <p className="font-bold text-5xl text-center text-gray-900 pt-10">
+                Email your look!
               </p>
-              <p className="text-center text-gray-700 text-sm">
-                Lorem ipsum simply dummy text
+              <p className="text-center text-gray-700 text-2xl">
+              Get the vibe right with your fave sunnies!
               </p>
             </div>
             <div
@@ -53,7 +53,7 @@ const EmailModal = () => {
                   src={selectedGlasses.triedOnUrl}
                   alt="22"
                   width={400}
-                  height={300}
+                  height={340}
                   className="absolute top-[-25px] w-[38vh] h-[40vh] rounded-56px"
                 />
               ) : (
