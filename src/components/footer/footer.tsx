@@ -30,7 +30,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
         leftIcon={<Image src={Catalog} width={48} height={48} alt="catalog" />}
       />
       <Button
-        label="Get your recommendations"
+        label="Get recommendations"
         rounded
         variant="secondary"
         disabled={isApplyingGlasses}

@@ -40,7 +40,7 @@ const EmailModalFooter = () => {
     <div className="flex justify-center items-center gap-32 text-black">
       <div>
         <p className="font-bold text-3xl pb-12 text-center">
-          Get it on your inbox
+        Receive an email
         </p>
 
         <div className="space-y-12">

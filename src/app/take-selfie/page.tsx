@@ -160,7 +160,7 @@ const TakeSelfie = () => {
           </div>
           <div className="flex flex-col gap-2">
             <Button
-              label="Looks Great! Continue"
+              label="Looks great! Continue"
               leftIcon={<IoFlashSharp size={40} />}
               rounded
               variant="secondary"
