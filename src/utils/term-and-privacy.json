@@ -1,109 +1,18 @@
 {
   "terms": [
-    {
-      "title": "Introduction",
-      "content": [
-        "Welcome to the Avolta Sunglasses Recommendation App. By using this app, you agree to the following terms. If you do not agree, please refrain from using the app."
-      ]
-    },
+
     {
       "title": "Use of the App",
       "content": [
-        "The app is for personal use to recommend sunglasses based on facial scanning.",
-        "Users must provide accurate information during their interaction.",
-        "The app's recommendations are for informational purposes and may vary based on user preferences."
-      ]
-    },
-    {
-      "title": "Intellectual Property",
-      "content": [
-        "All content, including designs, logos, and software, is owned by Avolta Design Agency. Reproduction or use without permission is prohibited."
-      ]
-    },
-    {
-      "title": "Data Collection and Usage",
-      "content": [
-        "Refer to our Privacy Policy for details on data collection and handling.",
-        "By using the app, you consent to the use of your data for improving recommendations."
-      ]
-    },
-    {
-      "title": "Limitation of Liability",
-      "content": [
-        "Avolta is not liable for any issues arising from the use or inability to use the app.",
-        "Recommendations provided are based on available data and should not be considered as professional advice."
-      ]
-    },
-    {
-      "title": "Governing Law",
-      "content": [
-        "These terms are governed by the laws of India. Disputes will be resolved in the courts of Indore, India."
-      ]
-    },
-    {
-      "title": "Updates to Terms",
-      "content": [
-        "Avolta may update these terms periodically. Users will be notified of changes within the app."
+        "Our virtual try on service provider may collect, capture, store, use, receive or otherwise obtain a scan of your face or any data or information based on the scan of your face which may include your face geometry (“biometric data”) for the purpose of providing you with a personalized virtual try on experience. Your biometric data will not be stored on any server, system or location outside of the device you use to access the virtual try on experience and will be permanently deleted after your use of the virtual try on experience has completed."
       ]
     }
   ],
   "privacyPolicy": [
     {
-      "title": "Information We Collect",
+      "title": "Service Terms",
       "content": [
-        "Facial Scans: Used only to provide sunglass recommendations. No facial data is stored.",
-        "Email Address: If provided, used to send shortlisted products.",
-        "App Usage Data: Collected to improve app functionality and user experience."
-      ]
-    },
-    {
-      "title": "How We Use Your Information",
-      "content": [
-        "To recommend sunglasses that suit your face.",
-        "To send you shortlisted products via email (if opted).",
-        "To display other product ranges and provide relevant services."
-      ]
-    },
-    {
-      "title": "Sharing Your Information",
-      "content": [
-        "Sales Agents: If you call an agent via the app, necessary details (like shortlisted products) may be shared to assist you.",
-        "Third-Party Services: No personal data is shared without your consent."
-      ]
-    },
-    {
-      "title": "Data Storage",
-      "content": [
-        "Your data is stored temporarily on the iPad and deleted after your session ends.",
-        "Emails sent for shortlisting are handled securely."
-      ]
-    },
-    {
-      "title": "User Choices",
-      "content": [
-        "You can choose not to provide your email, but this will limit the app's functionality for saving shortlists."
-      ]
-    },
-    {
-      "title": "Security",
-      "content": [
-        "We employ industry-standard measures to secure your data.",
-        "However, we cannot guarantee complete security."
-      ]
-    },
-    {
-      "title": "Updates to Policy",
-      "content": [
-        "This Privacy Policy may be updated periodically.",
-        "Changes will be communicated in the app."
-      ]
-    },
-    {
-      "title": "Contact Us",
-      "content": [
-        "For questions or concerns, contact us at:",
-        "Email: support@avolta.com",
-        "Phone: +91-1234567890"
+        "In order to provide the virtual try on service, you acknowledge that your action of checking this box, constitute an express consent to authorize mirrar.com to process your biometric data according to the <a href='https://www.mirrar.com/privacy' target='_blank'> privacy policy </a>"
       ]
     }
   ]

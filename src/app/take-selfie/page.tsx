@@ -155,7 +155,7 @@ const TakeSelfie = () => {
               className="font-bold  text-black py-12 px-12 text-4xl"
             />
             <p className="text-black text-2xl text-center ">
-              Not satisfied? try again.
+              {/* Not satisfied? try again. */}
             </p>
           </div>
           <div className="flex flex-col gap-2">
@@ -168,7 +168,7 @@ const TakeSelfie = () => {
               className="font-bold   text-black py-12 px-12 text-4xl"
             />
             <p className="text-black text-2xl text-center ">
-              Move ahead with this stylish choice.
+              {/* Move ahead with this stylish choice. */}
             </p>
           </div>
         </div>
