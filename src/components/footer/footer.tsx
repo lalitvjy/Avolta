@@ -20,7 +20,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
   return (
     <div className="flex justify-between items-center px-8 pt-16  ">
       <Button
-        label="Catalogue"
+        label=" View Catalogue"
         rounded
         variant="secondary"
         onClick={handelNavigateCatalog}

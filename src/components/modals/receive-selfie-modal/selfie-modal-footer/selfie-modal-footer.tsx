@@ -51,7 +51,7 @@ const SelfieModalFooter = () => {
       </div>
 
       <div>
-        <p className="font-bold text-3xl pb-12">Get it on your inbox</p>
+        <p className="font-bold text-3xl pb-12">Receive an email</p>
         <div className="space-y-8">
           <div>
             <input
