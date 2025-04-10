@@ -76,7 +76,7 @@ const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
     >
       <div className=" bg-white rounded-[64px]  text-black py-14 px-28">
         <h2 className="text-[60px] font-bold leading-[120%]  text-center ">
-        Share an email...
+        Share an email ...
         </h2>
         <p className="text-3xl font-medium text-center leading-[130%] py-4">
           Share an email to receive details your favorite <br /> sunglasses.
