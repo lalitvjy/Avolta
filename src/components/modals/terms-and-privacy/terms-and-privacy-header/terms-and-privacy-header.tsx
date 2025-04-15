@@ -1,6 +1,6 @@
 import { useTermsModalStore } from "@/store/useTermsModal";
 import { IoLockClosedOutline } from "react-icons/io5";
-// import { MdClose } from "react-icons/md";
+
 const TermsAndPrivacyHeader = () => {
   const { closeTermsModal } = useTermsModalStore();
   return (
@@ -22,7 +22,7 @@ const TermsAndPrivacyHeader = () => {
         onClick={closeTermsModal}
         className=" absolute right-0 top-[-130px]  bg-black rounded-full p-4 shadow-lg"
       >
-        {/* <MdClose size={48} className="text-white" /> */}
+        
       </button>
     </div>
   );
