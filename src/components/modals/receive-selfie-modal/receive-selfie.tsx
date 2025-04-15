@@ -37,8 +37,8 @@ const ReceiveSelfie = () => {
           <DialogPanel className="bg-white w-full h-full flex flex-col  justify-between    rounded-40px shadow-lg overflow-hidden ">
             <div className=" h-[60vh] rounded-b-40px relative flex flex-col items-center justify-center">
               <div className="flex items-center justify-center pt-20">
-                <p className="font-bold text-[60px] text-center text-black ">
-                  Your style
+                <p className="font-bold text-[48px] text-center text-black ">
+                Receive recommendations via QR code or email
                 </p>
               </div>
 
@@ -48,9 +48,9 @@ const ReceiveSelfie = () => {
             </div>
 
             <div>
-              <p className="text-center font-bold text-4xl  text-gray600">
+              {/* <p className="text-center font-bold text-4xl  text-gray600">
                 Receive recommendations via QR code or email
-              </p>
+              </p> */}
               <SelfieModalFooter />
             </div>
             <Image
