@@ -1,4 +1,4 @@
-import { useTermsModalStore } from "@/store/useTermsModal";
+
 import { IoLockClosedOutline } from "react-icons/io5";
 
 const TermsAndPrivacyHeader = () => {
