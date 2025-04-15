@@ -20,12 +20,6 @@ const ReceiveSelfie = () => {
         onClose={closeReceiveSelfieModal}
         className="fixed inset-0 flex items-center justify-center pt-10 pb-40 px-10"
       >
-        <button
-          className="absolute bottom-10 p-3 rounded-full bg-grayscale600"
-          onClick={closeReceiveSelfieModal}
-        >
-          <RxCross2 className="text-white" size={30} />
-        </button>
         <TransitionChild
           enter="transition-transform duration-500"
           enterFrom="translate-y-full"
@@ -36,9 +30,18 @@ const ReceiveSelfie = () => {
         >
           <DialogPanel className="bg-white w-full h-full flex flex-col  justify-between    rounded-40px shadow-lg overflow-hidden ">
             <div className=" h-[60vh] rounded-b-40px relative flex flex-col items-center justify-center">
-              <p className="font-bold text-[60px] text-center text-black pt-20">
-                Your style
-              </p>
+              <button
+                className="absolute top-20 right-10 p-4 rounded-full bg-grayscale600 flex justify-center items-center z-10"
+                onClick={closeReceiveSelfieModal}
+              >
+                <RxCross2 className="text-white" size={48} />
+              </button>
+
+              <div className="flex items-center justify-center pt-20">
+                <p className="font-bold text-[60px] text-center text-black ">
+                  Your style
+                </p>
+              </div>
 
               <div className="flex items-center justify-center flex-grow pl-10 ">
                 <ReceiveSelfieSlider />

@@ -30,12 +30,6 @@ const BookmarkModal = () => {
         onClose={closeBookmarkModal}
         className="fixed inset-0 flex flex-col items-center pt-10 pb-40 px-20"
       >
-        <button
-          className="absolute bottom-10 p-4 rounded-full bg-grayscale600"
-          onClick={closeBookmarkModal}
-        >
-          <RxCross2 className="text-white" size={30} />
-        </button>
         <TransitionChild
           enter="transition-transform duration-500"
           enterFrom="translate-y-full"
@@ -50,10 +44,18 @@ const BookmarkModal = () => {
                 <div>
                   <h1 className="font-bold text-[60px]">Your Wishlist</h1>
                 </div>
-                <FaHeart
-                  className={`${favorites.length > 0 ? "text-red " : " "}`}
-                  size={40}
-                />
+                <div className="flex items-center gap-8">
+                  <FaHeart
+                    className={`${favorites.length > 0 ? "text-red " : " "}`}
+                    size={40}
+                  />
+                  <button
+                    className="  p-4 rounded-full bg-grayscale600"
+                    onClick={closeBookmarkModal}
+                  >
+                    <RxCross2 className="text-white" size={48} />
+                  </button>
+                </div>
               </div>
               <div className=" grid grid-cols-1  gap-y-4 pt-16 ">
                 {favorites.map((item) => (

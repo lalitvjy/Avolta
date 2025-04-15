@@ -1,6 +1,6 @@
 import { useTermsModalStore } from "@/store/useTermsModal";
 import Modal from "react-bootstrap/Modal";
-import { MdClose } from "react-icons/md";
+
 import termsData from "../../../utils/term-and-privacy.json";
 import TermsAndPrivacyFooter from "./terms-and-privacy-footer/terms-and-privacy-footer";
 import TermsAndPrivacyHeader from "./terms-and-privacy-header/terms-and-privacy-header";
@@ -17,12 +17,7 @@ const TermsAndPrivacy = () => {
       dialogClassName="border-radius-1"
       aria-labelledby="contained-modal-title-vcenter"
     >
-      <button
-        onClick={closeTermsModal}
-        className="absolute   bottom-[-126px] left-1/2 transform -translate-x-1/2   bg-black rounded-full p-4 shadow-lg"
-      >
-        <MdClose size={32} className="text-white" />
-      </button>
+
       <div className="p-16 text-xl">
         <TermsAndPrivacyHeader />
         <div className="  p-6">

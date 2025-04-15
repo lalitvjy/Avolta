@@ -44,12 +44,6 @@ export default function Detail() {
         onClose={closeDetailModal}
         className="fixed inset-0 flex flex-col items-center pt-10 pb-40 px-10"
       >
-        <button
-          className="absolute bottom-10 p-6 rounded-full bg-grayscale600"
-          onClick={closeDetailModal}
-        >
-          <RxCross2 className="text-white" size={30} />
-        </button>
         <TransitionChild
           enter="transition-transform duration-500"
           enterFrom="translate-y-full"
@@ -59,6 +53,12 @@ export default function Detail() {
           leaveTo="translate-y-full"
         >
           <DialogPanel className="bg-white w-full h-full flex flex-col   rounded-40px shadow-lg  ">
+            <button
+              className="absolute  right-20 top-20 p-4 rounded-full bg-grayscale600"
+              onClick={closeDetailModal}
+            >
+              <RxCross2 className="text-white" size={48} />
+            </button>
             <div className="flex justify-center items-center h-full">
               <Image
                 src={tryOnGlasses?.imageUrlBase ?? ""}
