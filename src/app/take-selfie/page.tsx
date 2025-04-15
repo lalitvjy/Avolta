@@ -145,14 +145,14 @@ const TakeSelfie = () => {
 
       {selfie ? (
         <div className="flex justify-between ">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2" >
             <Button
-              label="Retake a selfie"
+              label="   Retake a selfie   "
               leftIcon={<LuRefreshCw size={40} />}
               rounded
               onClick={handelRetakeSelfie}
               variant="secondary"
-              className="font-bold  text-black py-12 px-12 text-4xl"
+              className="font-bold  text-black py-12 px-12 text-4xl button-width-500"
             />
             <p className="text-black text-2xl text-center ">
               {/* Not satisfied? try again. */}
@@ -165,7 +165,7 @@ const TakeSelfie = () => {
               rounded
               variant="secondary"
               onClick={handelNavigateAIpage}
-              className="font-bold   text-black py-12 px-12 text-4xl"
+              className="font-bold   text-black py-12 px-12 text-4xl "
             />
             <p className="text-black text-2xl text-center ">
               {/* Move ahead with this stylish choice. */}

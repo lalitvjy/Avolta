@@ -18,9 +18,9 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
   };
   const { openReceiveSelfieModal } = useReceiveSelfieModalStore();
   return (
-    <div className="flex justify-between items-center px-8 pt-16  ">
-      <Button
-        label=" View Catalogue"
+    <div className=" flex justify-between items-center px-8 pt-16 gap-64 ">
+      {/* <Button
+        label=" View catalogue"
         rounded
         variant="secondary"
         onClick={handelNavigateCatalog}
@@ -30,7 +30,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
         leftIcon={<Image src={Catalog} width={48} height={48} alt="catalog" />}
       />
       <Button
-        label="Get recommendations"
+        label=" Get recommendations"
         rounded
         variant="secondary"
         disabled={isApplyingGlasses}
@@ -40,7 +40,33 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
         className={`py-12 px-12 text-4xl font-bold ${
           isApplyingGlasses ? "opacity-50 cursor-not-allowed" : ""
         }`}
-      />
+      /> */}
+       <div className="flex-1">
+    <Button
+      label=" View catalogue"
+      rounded
+      variant="secondary"
+      onClick={handelNavigateCatalog}
+      className={`w-full py-12 pl-12 pr-16 text-4xl gap-4 font-bold ${
+        isLoading ? "opacity-50 cursor-not-allowed" : ""
+      }`}
+      leftIcon={<Image src={Catalog} width={48} height={48} alt="catalog" />}
+    />
+  </div>
+  <div className="flex-1">
+    <Button
+      label=" Get recommendations"
+      rounded
+      variant="secondary"
+      disabled={isApplyingGlasses}
+      onClick={openReceiveSelfieModal}
+      leftIcon={<MdOutlineEmail size={48} />}
+      rightIcon={<IoChevronForwardSharp size={48} />}
+      className={`w-full py-12 px-12 text-4xl font-bold ${
+        isApplyingGlasses ? "opacity-50 cursor-not-allowed" : ""
+      }`}
+    />
+  </div>
     </div>
   );
 };

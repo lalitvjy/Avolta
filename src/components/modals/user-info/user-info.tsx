@@ -75,16 +75,17 @@ const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
       aria-labelledby="contained-modal-title-vcenter"
     >
       <div className=" bg-white rounded-[64px]  text-black py-14 px-28">
-        <h2 className="text-[60px] font-bold leading-[120%]  text-center ">
-        Share an email ...
-        </h2>
-        <p className="text-3xl font-medium text-center leading-[130%] py-4">
-          Share an email to receive details your favorite <br /> sunglasses.
+        
+        <p className="text-4xl font-medium text-center leading-[130%] py-4">
+          <b>Share an email to receive details your <br />favorite  sunglasses.</b>
+          <br />
+          <br />
+          
         </p>
         <Form className="text-3xl">
           <Form.Group className="mb-6">
             <Form.Label className=" font-medium leading-[130%]">
-              Your Name
+              Your name
             </Form.Label>
             <Form.Control
               type="text"
@@ -97,7 +98,7 @@ const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
 
           <Form.Group className="mb-6">
             <Form.Label className=" font-medium leading-[130%]">
-              Your Email
+              Your email
             </Form.Label>
             <Form.Control
               type="email"

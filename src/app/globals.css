@@ -12,6 +12,9 @@
     --foreground: #ededed;
   }
 }
+.button-width-500 {
+  width: 530px;
+}
 
 body {
   color: var(--foreground);
