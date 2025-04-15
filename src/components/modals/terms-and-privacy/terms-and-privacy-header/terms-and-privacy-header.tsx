@@ -20,9 +20,9 @@ const TermsAndPrivacyHeader = () => {
       </div>
       <button
         onClick={closeTermsModal}
-        className="   bg-black rounded-full p-4 shadow-lg"
+        className=" absolute right-0 top-[-130px]  bg-black rounded-full p-4 shadow-lg"
       >
-        <MdClose size={32} className="text-white" />
+        <MdClose size={48} className="text-white" />
       </button>
     </div>
   );

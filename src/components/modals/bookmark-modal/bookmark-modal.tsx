@@ -28,8 +28,14 @@ const BookmarkModal = () => {
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
       <Dialog
         onClose={closeBookmarkModal}
-        className="fixed inset-0 flex flex-col items-center pt-10 pb-40 px-20"
+        className="fixed inset-0 flex flex-col items-center pt-40 pb-10 px-20"
       >
+        <button
+          className="absolute right-20 top-10  p-4 rounded-full bg-grayscale600"
+          onClick={closeBookmarkModal}
+        >
+          <RxCross2 className="text-white" size={48} />
+        </button>
         <TransitionChild
           enter="transition-transform duration-500"
           enterFrom="translate-y-full"
@@ -49,12 +55,6 @@ const BookmarkModal = () => {
                     className={`${favorites.length > 0 ? "text-red " : " "}`}
                     size={40}
                   />
-                  <button
-                    className="  p-4 rounded-full bg-grayscale600"
-                    onClick={closeBookmarkModal}
-                  >
-                    <RxCross2 className="text-white" size={48} />
-                  </button>
                 </div>
               </div>
               <div className=" grid grid-cols-1  gap-y-4 pt-16 ">

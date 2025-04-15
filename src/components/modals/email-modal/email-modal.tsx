@@ -20,8 +20,14 @@ const EmailModal = () => {
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
       <Dialog
         onClose={closeEmailModal}
-        className="fixed inset-0 flex items-center justify-center pt-10 pb-40 px-10"
+        className="fixed inset-0 flex items-center justify-center pt-40 pb-20 px-10"
       >
+        <button
+          className="absolute right-10  top-10 z-100 p-4 rounded-full bg-grayscale600"
+          onClick={closeEmailModal}
+        >
+          <RxCross2 className="text-white" size={48} />
+        </button>
         <TransitionChild
           enter="transition-transform duration-500"
           enterFrom="translate-y-full"
@@ -31,13 +37,7 @@ const EmailModal = () => {
           leaveTo="translate-y-full"
         >
           <DialogPanel className="bg-white w-full h-full   flex flex-col justify-between   rounded-40px shadow-lg overflow-hidden ">
-            <div className="bg-primaryL2 h-[55vh] rounded-b-40px relative">
-              <button
-                className="absolute right-8  top-8 z-100 p-4 rounded-full bg-grayscale600"
-                onClick={closeEmailModal}
-              >
-                <RxCross2 className="text-white" size={48} />
-              </button>
+            <div className="bg-primaryL2 h-[58vh] rounded-b-40px relative">
               <p className="font-bold text-5xl text-center text-gray-900 pt-10">
                 Email your look!
               </p>
@@ -46,7 +46,7 @@ const EmailModal = () => {
               </p>
             </div>
             <div
-              className={` absolute w-[55vh]  h-[45vh]  bg-white shadow-md left-1/2 -translate-x-1/2 top-56 rounded-40px flex justify-center `}
+              className={` absolute w-[55vh]  h-[45vh]  bg-white shadow-md left-1/2 -translate-x-1/2 top-96 rounded-40px flex justify-center `}
             >
               {selectedGlasses?.triedOnUrl ? (
                 <Image
@@ -68,7 +68,7 @@ const EmailModal = () => {
                 <Product />
               </div>
             </div>
-            <div className=" px-24 pb-40 ">
+            <div className=" px-24  ">
               <EmailModalFooter />
             </div>
             <Image
