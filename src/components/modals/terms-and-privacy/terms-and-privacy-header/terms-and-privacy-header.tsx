@@ -2,7 +2,7 @@ import { useTermsModalStore } from "@/store/useTermsModal";
 import { IoLockClosedOutline } from "react-icons/io5";
 
 const TermsAndPrivacyHeader = () => {
-  const { closeTermsModal } = useTermsModalStore();
+  
   return (
     <div className="flex justify-between items-center">
       <div className="flex items-center gap-4">
@@ -18,12 +18,7 @@ const TermsAndPrivacyHeader = () => {
           </p>
         </div>
       </div>
-      {/* <button
-        onClick={closeTermsModal}
-        className=" absolute right-0 top-[-130px]  bg-black rounded-full p-4 shadow-lg"
-      >
-        
-      </button> */}
+      
     </div>
   );
 };
