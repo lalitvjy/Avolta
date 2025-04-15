@@ -18,12 +18,12 @@ const TermsAndPrivacyHeader = () => {
           </p>
         </div>
       </div>
-      <button
+      {/* <button
         onClick={closeTermsModal}
         className=" absolute right-0 top-[-130px]  bg-black rounded-full p-4 shadow-lg"
       >
         
-      </button>
+      </button> */}
     </div>
   );
 };
