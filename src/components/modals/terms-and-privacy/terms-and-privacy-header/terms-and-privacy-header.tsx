@@ -1,6 +1,6 @@
 import { useTermsModalStore } from "@/store/useTermsModal";
 import { IoLockClosedOutline } from "react-icons/io5";
-import { MdClose } from "react-icons/md";
+// import { MdClose } from "react-icons/md";
 const TermsAndPrivacyHeader = () => {
   const { closeTermsModal } = useTermsModalStore();
   return (
