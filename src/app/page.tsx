@@ -13,18 +13,9 @@ export default function Home() {
     <div className="relative w-full h-[100vh] bg-white overflow-hidden">
       <Image src={MainImage} alt="Main image" fill className="object-cover " />
 
-      <div className="absolute   h-[10vh]  z-10 flex justify-center items-start ">
-        <Image
-          src={Banner}
-          alt="Banner"
-          className="object-contain w-screen"
-          priority
-        />
-      </div>
+      <div className="absolute bottom-60 left-0 w-full h-[30%] bg-gradient-main-img z-20"></div>
 
-      <div className="absolute bottom-0 left-0 w-full h-[30%] bg-gradient-main-img z-20"></div>
-
-      <div className="absolute bottom-60 left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center text-center text-white w-full px-[200px] z-30">
+      <div className="absolute bottom-80 left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center text-center text-white w-full px-[200px] z-30">
         <p className="font-bold text-[150px] leading-[200px] pb-20">
           Step into the World of Style!
         </p>
@@ -40,7 +31,14 @@ export default function Home() {
           className="w-auto px-20 py-5 text-[55px] font-bold "
         />
       </div>
-
+      <div className="absolute bottom-0   h-[10vh]  z-10 flex justify-center items-start ">
+        <Image
+          src={Banner}
+          alt="Banner"
+          className="object-contain w-screen"
+          priority
+        />
+      </div>
       <TermsAndPrivacy />
     </div>
   );
