@@ -42,16 +42,16 @@ const SelfieModalFooter = () => {
   return (
     <div className="flex items-center justify-center p-10 gap-40 h-full text-black">
       <div>
-        <p className="font-bold text-2xl pb-4 text-center">Scan the code</p>
+        <p className="text-center text-2xl font-bold leading-tight tracking-tight pb-4">Scan the code</p>
         {uuid ? (
-          <QRCodeCanvas value={qrUrl} size={300} />
+          <QRCodeCanvas value={qrUrl} size={250} />
         ) : (
           <p className="text-2xl text-gray-500">Generating QR...</p>
         )}
       </div>
 
       <div>
-        <p className="font-bold text-3xl pb-12">Receive an email</p>
+        <p className="text-center text-2xl font-bold leading-tight tracking-tight pb-4">Receive an email</p>
         <div className="space-y-8">
           <div>
             <input
