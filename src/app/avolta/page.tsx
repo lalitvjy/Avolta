@@ -174,7 +174,7 @@ const Avolta = () => {
             />
             <Button
               rounded
-              label="Wishlit"
+              label="Wishlist"
               disabled={isApplyingGlasses}
               onClick={() => {
                 if (selectedGlasses) {

@@ -38,7 +38,7 @@ const ReceiveSelfie = () => {
             <div className=" h-[60vh] rounded-b-40px relative flex flex-col items-center justify-center">
               <div className="flex items-center justify-center pt-20">
                 <p className="font-bold text-[48px] text-center text-black ">
-                Receive recommendations via QR code or email
+                Receive your next perfect pair via QR code or email
                 </p>
               </div>
 

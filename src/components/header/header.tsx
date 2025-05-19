@@ -3,7 +3,7 @@ import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaHeart } from "react-icons/fa";
-import Logo from "../../../public/logo.svg";
+import LogoVideo from "../../../public/logo_club_avolta.mp4";
 import { resetUserFlow } from "@/utils/resetUserFlow";
 const Header = () => {
   const { openBookmarkModal } = useBookmarkModalStore();
@@ -23,12 +23,15 @@ const Header = () => {
         variant="secondary"
         className="font-bold py-12 px-12 text-4xl"
       /> */}
-      <Image
-        src={Logo}
-        alt="logo"
-        width={300}
+      <video
+        src={LogoVideo}
+
+        width={700}
         height={200}
         onClick={handelNavigateHomePage}
+        autoPlay
+        loop
+        muted
       />
       <button
         onClick={openBookmarkModal}
