@@ -36,12 +36,12 @@ const ReceiveSelfieSlider = () => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="flex overflow-x-auto scroll-smooth scrollbar-hide gap-20 pl-[17.5%] pr-8"
+        className="flex overflow-x-auto scroll-smooth scrollbar-hide gap-3 pl-[17.5%] pr-8"
       >
         {recommendations.map((item, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-[65%] h-[1200px] flex justify-center relative"
+            className="flex-shrink-0 w-[65%] h-[600px] flex justify-center relative"
           >
             {item.triedOnUrl ? (
               <Image
