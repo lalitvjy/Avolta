@@ -55,10 +55,10 @@ const Ai = () => {
 
   return (
     <div className="bg-white h-screen w-full flex flex-col justify-between items-center p-16">
-      <p className="text-center font-bold text-[60px] text-grayscale600 left-10">
+      <p className="text-center font-bold text-[3rem] text-grayscale600 left-10">
         Finding Your Match
       </p>
-      <p className="text-center font-bold text-3xl text-grayscale600 left-10">
+      <p className="font-medium text-xl pt-4">
         Our AI is analyzing your face for the perfect fit
       </p>
 
@@ -87,8 +87,8 @@ const Ai = () => {
         variant="secondary"
         label="    Processing..."
         rounded
-        leftIcon={<LuScanFace size={48} />}
-        className="font-bold   text-black py-12 px-12 text-4xl"
+        leftIcon={<LuScanFace size={32} />}
+        className="font-bold text-black py-3 px-3 text-xl"
       />
       <UserInfo purpose="user-info" buttonlabel='Save and continue' />
     </div>

@@ -91,15 +91,15 @@ const TakeSelfie = () => {
     <div className=" bg-white h-screen  w-full flex flex-col justify-between p-14  font-bold text-center text-grayscale600">
       {selfie ? (
         <div>
-          <p className="  text-[60px]   ">Preview Your Style</p>
-          <p className="font-medium text-3xl pt-4">
+          <p className="  text-[3rem]   ">Preview Your Style</p>
+          <p className="font-medium text-xl pt-4">
             Review your look before moving forward
           </p>
         </div>
       ) : (
         <div>
-          <p className=" text-[60px] ">Say Cheese</p>
-          <p className="font-medium text-3xl pt-4">
+          <p className=" text-[3rem] ">Say Cheese</p>
+          <p className="font-medium text-xl pt-4">
             Capture your best look for better results
           </p>
         </div>
@@ -135,7 +135,7 @@ const TakeSelfie = () => {
             </div>
 
             <canvas ref={canvasRef} className="hidden" />
-            <p className="text-3xl pt-4">
+            <p className="text-l pt-4">
               For optimal results, keep your face centered within the guidelines
               and remove any glasses.
             </p>
@@ -148,11 +148,11 @@ const TakeSelfie = () => {
           <div className="flex flex-col gap-2" >
             <Button
               label="   Retake a selfie   "
-              leftIcon={<LuRefreshCw size={40} />}
+              leftIcon={<LuRefreshCw size={32} />}
               rounded
               onClick={handelRetakeSelfie}
               variant="secondary"
-              className="font-bold  text-black py-12 px-12 text-4xl button-width-500"
+              className="font-bold text-black py-3 px-3 text-xl min-w-[287px]"
             />
             <p className="text-black text-2xl text-center ">
               {/* Not satisfied? try again. */}
@@ -161,11 +161,11 @@ const TakeSelfie = () => {
           <div className="flex flex-col gap-2">
             <Button
               label="Looks great! Continue"
-              leftIcon={<IoFlashSharp size={40} />}
+              leftIcon={<IoFlashSharp size={32} />}
               rounded
               variant="secondary"
               onClick={handelNavigateAIpage}
-              className="font-bold   text-black py-12 px-12 text-4xl "
+              className="font-bold text-black py-3 px-3 text-xl "
             />
             <p className="text-black text-2xl text-center ">
               {/* Move ahead with this stylish choice. */}
@@ -179,8 +179,8 @@ const TakeSelfie = () => {
             rounded
             onClick={captureSelfie}
             variant="secondary"
-            className="font-bold text-black py-12 px-12 text-4xl"
-            leftIcon={<IoCameraOutline size={48} />}
+            className="font-bold text-black py-3 px-3 text-xl"
+            leftIcon={<IoCameraOutline size={32} />}
           />
         </div>
       )}

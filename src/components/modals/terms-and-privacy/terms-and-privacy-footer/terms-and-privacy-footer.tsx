@@ -23,7 +23,7 @@ const TermsAndPrivacyFooter = () => {
           onChange={(e) => setIsChecked(e.target.checked)}
           className="w-5 h-5  cursor-pointer"
         />
-        <label htmlFor="terms-checkbox" className="text-xl text-gray600 ">
+        <label htmlFor="terms-checkbox" className="text-lg text-gray600 ">
           By continuing, you agree to our brand program.
         </label>
       </div>
@@ -31,7 +31,7 @@ const TermsAndPrivacyFooter = () => {
         label="Accept and proceed"
         rounded
         variant={`${isChecked ? "secondary" : "disable"}`}
-        className="w-full font-bold text-3xl py-10"
+        className="w-full font-bold text-xl py-6"
         onClick={() => {
           if (isChecked) {
             closeTermsModal();

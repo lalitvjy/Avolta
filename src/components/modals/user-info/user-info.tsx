@@ -70,19 +70,19 @@ const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
       show={isUserModalOpen}
       onHide={closeUserModal}
       centered
-      size="xl"
+      size="lg"
       dialogClassName="border-radius-2"
       aria-labelledby="contained-modal-title-vcenter"
     >
-      <div className=" bg-white rounded-[64px]  text-black py-14 px-28">
+      <div className=" bg-white rounded-[64px]  text-black py-14 px-10">
         
-        <p className="text-4xl font-medium text-center leading-[130%] py-4">
+        <p className="text-xl font-medium text-center leading-[130%] py-4">
           <b>Share an email to receive details of your <br />favorite sunglasses</b>
           <br />
           <br />
           
         </p>
-        <Form className="text-3xl">
+        <Form className="text-xl">
           <Form.Group className="mb-6">
             <Form.Label className=" font-medium leading-[130%]">
               Your name
@@ -92,7 +92,7 @@ const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter your name"
-              className="py-4 px-3 border border-gray200  text-3xl rounded-lg"
+              className="py-4 px-3 border border-gray200  text-xl rounded-lg"
             />
           </Form.Group>
 
@@ -105,12 +105,12 @@ const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="abc@gmail.com"
-              className="py-4 px-3 border border-gray200 text-3xl  rounded-lg"
+              className="py-4 px-3 border border-gray200 text-xl  rounded-lg"
             />
           </Form.Group>
         </Form>
 
-        <div className="flex justify-center flex-col text-3xl">
+        <div className="flex justify-center flex-col text-xl">
           <Button
             label={buttonlabel}
             variant="secondary"

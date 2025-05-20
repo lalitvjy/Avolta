@@ -162,15 +162,15 @@ const Avolta = () => {
               rounded
               onClick={openDetailModal}
               label="See Detail"
-              className="text-grayscale500 font-bold py-4 px-6 text-4xl"
+              className="text-grayscale500 font-bold py-4 px-6 text-xl"
             /> */}
             <Button
               rounded
               onClick={openEmailModal}
               label="Email"
               disabled={isApplyingGlasses}
-              leftIcon={<MdOutlineMailOutline size={40} />}
-              className="text-grayscale500 font-bold py-4 px-6 text-4xl w-60"
+              leftIcon={<MdOutlineMailOutline size={32} />}
+              className="text-grayscale500 font-bold py-4 px-6 text-xl w-60"
             />
             <Button
               rounded
@@ -184,15 +184,15 @@ const Avolta = () => {
               leftIcon={
                 isFavorite ? (
                   <>
-                    <FaHeart className="text-red" size={40} />
+                    <FaHeart className="text-red" size={32} />
                   </>
                 ) : (
                   <>
-                    <CiHeart className="text-gray400" size={40} />
+                    <CiHeart className="text-gray400" size={32} />
                   </>
                 )
               }
-              className="text-grayscale500 font-bold py-4 px-6 text-4xl w-60"
+              className="text-grayscale500 font-bold py-4 px-6 text-xl w-60"
             />
           </div>
         </div>
