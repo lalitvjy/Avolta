@@ -10,7 +10,7 @@ const TabSelector = ({
   setActiveTab,
 }: TabSelectorProps) => {
   return (
-    <div className="absolute top-12 left-12 text-3xl flex bg-white rounded-56px p-3">
+    <div className="absolute top-12 left-12 text-xl flex bg-white rounded-56px p-3">
       <button
         className={`py-2 px-4 rounded-full transition font-bold ${
           activeTab === "Live" ? "bg-primaryAvolta text-white" : "text-gray500"

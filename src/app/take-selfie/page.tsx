@@ -105,7 +105,7 @@ const TakeSelfie = () => {
         </div>
       )}
 
-      <div className="flex justify-center h-full  py-[40px] ">
+      <div className="flex justify-center h-full  py-[20px] ">
         {selfie ? (
           <div className="w-full h-full relative flex items-center justify-center">
             {selfie && (

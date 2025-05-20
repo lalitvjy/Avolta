@@ -121,10 +121,10 @@ function Slider() {
   };
 
   return (
-    <div className="relative w-full pt-10 flex  pl-28">
+    <div className="relative w-full pt-4 flex  pl-28">
       <button
         onClick={openFilter}
-        className="flex gap-2 absolute z-90 left-[-52px] top-20  pb-4 pt-4 px-8 rounded-t-[32px] bg-black rotate-90 text-white text-3xl font-bold items-center"
+        className="flex gap-2 absolute z-90 left-[-52px] top-20  pb-4 pt-4 px-8 rounded-t-[32px] bg-black rotate-90 text-white text-xl font-bold items-center"
       >
         <LuSettings2 size={40} />
         Filters
@@ -150,7 +150,7 @@ function Slider() {
               <div
                 key={item.objectID}
                 onClick={() => handleSelectGlasses(item)}
-                className={`relative min-w-[200px] h-[200px] rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 
+                className={`relative min-w-[200px] h-[200px] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 
           ${
             selectedGlasses?.objectID === item.objectID
               ? "border-4 border-primaryAvolta scale-105"

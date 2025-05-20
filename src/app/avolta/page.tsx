@@ -107,7 +107,7 @@ const Avolta = () => {
         <Header />
       </div>
       <div className="flex justify-center w-full pt-2 px-6 ">
-        <div className="relative w-full   h-[64vh] shadow-lg rounded-56px overflow-hidden">
+        <div className="relative w-full   h-[68vh] shadow-lg rounded-56px overflow-hidden">
           {/* {activeTab === "Live" ? (
             <div className="flex items-center justify-center h-full relative">
               {activeTab === "Live" ? (
@@ -157,7 +157,7 @@ const Avolta = () => {
             <GlassesInfo />
           </div>
           {/* <TabSelector activeTab={activeTab} setActiveTab={setActiveTab} /> */}
-          <div className="absolute bottom-12 right-12 flex gap-14 ">
+          <div className="absolute bottom-6 right-6 flex gap-6 ">
             {/* <Button
               rounded
               onClick={openDetailModal}

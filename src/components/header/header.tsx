@@ -33,7 +33,7 @@ const Header = () => {
       />
       <button
         onClick={openBookmarkModal}
-        className="bg-white  rounded-full flex items-center gap-x-6 py-4 px-4 text-xl border-2  "
+        className="bg-white  rounded-full flex items-center gap-x-6 py-3 px-3 text-xl border-2  "
       >
         <FaHeart className="text-red" size={32} />
         <p className="text-black  font-bold"> Wishlist</p>

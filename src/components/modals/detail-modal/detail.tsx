@@ -58,7 +58,7 @@ export default function Detail() {
           leaveFrom="translate-y-0"
           leaveTo="translate-y-full"
         >
-          <DialogPanel className="bg-white w-full h-full flex flex-col   rounded-40px shadow-lg  ">
+          <DialogPanel className="bg-white w-full h-full flex flex-col rounded-40px shadow-lg  ">
             <div className="flex justify-center items-center h-full">
               <Image
                 src={tryOnGlasses?.imageUrlBase ?? ""}
@@ -69,9 +69,9 @@ export default function Detail() {
               />
             </div>
 
-            <div className="text-start px-20 pb-16 bg-white rounded-b-40px text-grayscale600">
-              <div className="flex items-center justify-between pb-4">
-                <p className="font-semibold text-4xl">
+            <div className="text-start px-20  bg-white rounded-b-40px text-grayscale600">
+              <div className="flex items-center justify-between">
+                <p className="font-semibold text-2xl">
                   {tryOnGlasses?.brand}
                 </p>
                 <Button
@@ -85,11 +85,11 @@ export default function Detail() {
                   leftIcon={
                     isFavorite ? (
                       <>
-                        <FaHeart size={60} className="text-red" />
+                        <FaHeart size={48} className="text-red" />
                       </>
                     ) : (
                       <>
-                        <CiHeart className="text-gray400" size={60} />
+                        <CiHeart className="text-gray400" size={48} />
                       </>
                     )
                   }
@@ -97,15 +97,15 @@ export default function Detail() {
                 />
               </div>
 
-              <h6 className="text-4xl pb-4">{tryOnGlasses?.name}</h6>
-              <p className="font-bold text-3xl ">
+              <h6 className="text-2xl pb-4">{tryOnGlasses?.name}</h6>
+              <p className="font-bold text-xl ">
                 {tryOnGlasses?.currency} {tryOnGlasses?.priceDutyFree}
               </p>
               <hr className="my-6" />
 
-              <p className="text-4xl font-medium ">Product Details</p>
+              <p className="text-2xl font-medium ">Product Details</p>
               <p
-                className={`text-3xl text-gray-600 mt-2 ${
+                className={`text-2xl text-gray-600 mt-2 ${
                   showFullDetails ? "" : "line-clamp-3"
                 }`}
               >
@@ -122,17 +122,17 @@ export default function Detail() {
               <div className="flex items-center justify-between gap-4 pt-4 ">
                 <Button
                   label="Email"
-                  leftIcon={<CiMail size={48} />}
+                  leftIcon={<CiMail size={32} />}
                   variant="primary"
                   onClick={handelOpenUserModal}
-                  className="w-full font-bold py-6 text-4xl border"
+                  className="w-full font-bold py-6 text-2l border"
                   rounded
                 />
                 <Button
                   label="Try Now"
-                  leftIcon={<MdOutlinePersonOutline size={48} />}
+                  leftIcon={<MdOutlinePersonOutline size={32} />}
                   variant="secondary"
-                  className="w-full font-bold py-6 text-4xl"
+                  className="w-full font-bold py-6 text-2xl"
                   onClick={handelNavigateMainPage}
                   rounded
                 />

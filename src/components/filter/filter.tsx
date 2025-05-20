@@ -227,14 +227,14 @@ const Filter = () => {
                 rounded
                 onClick={handleApplyReset}
                 variant="secondary"
-                className="bg-black font-bold py-6 w-full text-3xl"
+                className="bg-black font-bold py-6 w-full text-xl"
               />
               <Button
                 label="Apply"
                 rounded
                 onClick={handleApplyFilters}
                 variant="secondary"
-                className="font-bold py-6 w-full text-3xl"
+                className="font-bold py-6 w-full text-xl"
               />
             </div>
           </DialogPanel>

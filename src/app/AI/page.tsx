@@ -54,7 +54,7 @@ const Ai = () => {
   }, [sendSelfieToAI]);
 
   return (
-    <div className="bg-white h-screen w-full flex flex-col justify-between items-center p-16">
+    <div className="bg-white h-screen w-full flex flex-col justify-between items-center p-14 pt-4">
       <p className="text-center font-bold text-[3rem] text-grayscale600 left-10">
         Finding Your Match
       </p>
