@@ -88,7 +88,7 @@ const TakeSelfie = () => {
     );
   }
   return (
-    <div className=" bg-white h-screen  w-full flex flex-col justify-between p-14  font-bold text-center text-grayscale600">
+    <div className=" bg-white h-screen  w-full flex flex-col justify-between p-14 pt-4 font-bold text-center text-grayscale600">
       {selfie ? (
         <div>
           <p className="  text-[3rem]   ">Preview Your Style</p>
@@ -99,13 +99,13 @@ const TakeSelfie = () => {
       ) : (
         <div>
           <p className=" text-[3rem] ">Say Cheese</p>
-          <p className="font-medium text-xl pt-4">
+          <p className="font-medium text-xl pt-1">
             Capture your best look for better results
           </p>
         </div>
       )}
 
-      <div className="flex justify-center h-full  py-[55px] ">
+      <div className="flex justify-center h-full  py-[40px] ">
         {selfie ? (
           <div className="w-full h-full relative flex items-center justify-center">
             {selfie && (

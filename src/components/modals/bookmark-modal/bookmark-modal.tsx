@@ -28,13 +28,13 @@ const BookmarkModal = () => {
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
       <Dialog
         onClose={closeBookmarkModal}
-        className="fixed inset-0 flex flex-col items-center pt-40 pb-10 px-20"
+        className="fixed inset-0 flex flex-col items-center pt-20 pb-10 px-20"
       >
         <button
-          className="absolute right-20 top-10  p-4 rounded-full bg-grayscale600"
+          className="absolute right-12 top-10  p-4 rounded-full bg-grayscale600"
           onClick={closeBookmarkModal}
         >
-          <RxCross2 className="text-white" size={48} />
+          <RxCross2 className="text-white" size={32} />
         </button>
         <TransitionChild
           enter="transition-transform duration-500"
@@ -48,16 +48,16 @@ const BookmarkModal = () => {
             <div>
               <div className="flex justify-between items-center">
                 <div>
-                  <h1 className="font-bold text-[60px]">Your wishlist</h1>
+                  <h1 className="font-bold text-3xl">Your wishlist</h1>
                 </div>
-                <div className="flex items-center gap-8">
+                <div className="flex items-center gap-2">
                   <FaHeart
                     className={`${favorites.length > 0 ? "text-red " : " "}`}
                     size={40}
                   />
                 </div>
               </div>
-              <div className=" grid grid-cols-1  gap-y-4 pt-16 ">
+              <div className=" grid grid-cols-1  gap-y-4 pt-4 ">
                 {favorites.map((item) => (
                   <BookmarkCard
                     key={item.objectID}
@@ -78,8 +78,8 @@ const BookmarkModal = () => {
                 label="Receive via email"
                 rounded
                 onClick={handelOpenUserModal}
-                leftIcon={<MdOutlineEmail size={48} />}
-                className="w-full bg-transparent border-2 border-gray400 py-12  text-4xl"
+                leftIcon={<MdOutlineEmail size={32} />}
+                className="w-full bg-transparent border-2 border-gray400 py-4  text-xl"
               />
             </div>
             <UserInfo purpose="wishlist" buttonlabel="Send Email" />

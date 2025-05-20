@@ -35,7 +35,7 @@ const CatalogCard = ({ data, index }: CardProps) => {
 
   return (
     <div
-      className={` px-10 pt-6 pb-5 border-gray-300 min-h-[410px] flex flex-col justify-between  border-r border-b
+      className={` px-10 pt-3 pb-3 border-gray-300 min-h-[410px] flex flex-col justify-between  border-r border-b
      ${isFirstRow ? "border-b" : ""} `}
     >
       <div className=" flex pb-4">
@@ -53,7 +53,7 @@ const CatalogCard = ({ data, index }: CardProps) => {
         )}
       </div>
 
-      <div className="relative w-[460px] h-[330px] flex self-center">
+      <div className="relative w-[350px] h-[250px] flex self-center">
         {imageUrlBase ? (
           <Image
             src={imageUrlBase ?? ""}
@@ -67,22 +67,22 @@ const CatalogCard = ({ data, index }: CardProps) => {
         )}
       </div>
 
-      <div className=" text-grayscale600 pt-2 flex flex-col gap-3">
-        <h2 className="font-bold text-4xl">{brand}</h2>
-        <h2 className="font-medium text-3xl">{name}</h2>
+      <div className=" text-grayscale600 pt-1 flex flex-col gap-1">
+        <h2 className="font-bold text-2xl">{brand}</h2>
+        <h2 className="font-medium text-xl">{name}</h2>
         <div className="flex items-center justify-between ">
-          <p className="font-bold text-4xl">
+          <p className="font-bold text-xl">
             {currency}
             {priceDutyFree}
           </p>
           <button onClick={() => toggleFavorite(data)}>
             {isFavorite ? (
               <>
-                <FaHeart size={30} className="text-red" />
+                <FaHeart size={32} className="text-red" />
               </>
             ) : (
               <>
-                <CiHeart className="text-gray400" size={30} />
+                <CiHeart className="text-gray400" size={32} />
               </>
             )}
           </button>

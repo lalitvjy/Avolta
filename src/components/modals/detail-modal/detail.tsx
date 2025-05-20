@@ -42,13 +42,13 @@ export default function Detail() {
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
       <Dialog
         onClose={closeDetailModal}
-        className="fixed inset-0 flex flex-col items-center pt-40 pb-10 px-10"
+        className="fixed inset-0 flex flex-col items-center pt-16 pb-10 px-10"
       >
         <button
-          className="absolute  right-10 top-10 p-4 rounded-full bg-grayscale600"
+          className="absolute  right-8 top-10 p-4 rounded-full bg-grayscale600"
           onClick={closeDetailModal}
         >
-          <RxCross2 className="text-white" size={48} />
+          <RxCross2 className="text-white" size={32} />
         </button>
         <TransitionChild
           enter="transition-transform duration-500"
@@ -71,7 +71,7 @@ export default function Detail() {
 
             <div className="text-start px-20 pb-16 bg-white rounded-b-40px text-grayscale600">
               <div className="flex items-center justify-between pb-4">
-                <p className="font-semibold text-[60px]">
+                <p className="font-semibold text-4xl">
                   {tryOnGlasses?.brand}
                 </p>
                 <Button

@@ -94,7 +94,7 @@ const Catalog = () => {
           <RxCross2 className="text-black" size={36} />
         </p>
       </button>
-      <h1 className="text-grayscale600 font-bold text-[80px]">Catalogue</h1>
+      <h1 className="text-grayscale600 font-bold text-6xl">Catalogue</h1>
       <CatalogHeadder />
 
       <Filter />
