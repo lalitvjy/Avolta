@@ -25,7 +25,7 @@ export default function Home() {
 
         <Button
           onClick={openTermsModal}
-          label="Get Started"
+          label="Get started"
           rounded
           variant="secondary"
           className="w-auto px-20 py-5 text-[55px] font-bold "

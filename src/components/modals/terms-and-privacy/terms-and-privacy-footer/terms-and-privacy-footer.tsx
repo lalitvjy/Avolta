@@ -28,7 +28,7 @@ const TermsAndPrivacyFooter = () => {
         </label>
       </div>
       <Button
-        label="Accept and Proceed"
+        label="Accept and proceed"
         rounded
         variant={`${isChecked ? "secondary" : "disable"}`}
         className="w-full font-bold text-3xl py-10"

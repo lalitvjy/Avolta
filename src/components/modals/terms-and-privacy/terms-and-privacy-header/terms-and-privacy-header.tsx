@@ -11,7 +11,7 @@ const TermsAndPrivacyHeader = () => {
         </div>
         <div>
           <h3 className="text-4xl font-bold  text-grayscale600">
-            Privacy Matters
+            Privacy matters
           </h3>
           <p className="text-gray500 text-base font-medium ">
             Your data is safe with us.
