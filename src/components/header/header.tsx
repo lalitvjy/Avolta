@@ -24,7 +24,7 @@ const Header = () => {
       /> */}
       <video
         src="/logo_club_avolta.mp4"
-        width={700}
+        width={300}
         height={200}
         onClick={handelNavigateHomePage}
         autoPlay
@@ -33,9 +33,9 @@ const Header = () => {
       />
       <button
         onClick={openBookmarkModal}
-        className="bg-white  rounded-full flex items-center gap-x-8 py-12 px-12 text-4xl border-2  "
+        className="bg-white  rounded-full flex items-center gap-x-6 py-4 px-4 text-xl border-2  "
       >
-        <FaHeart className="text-red" size={42} />
+        <FaHeart className="text-red" size={32} />
         <p className="text-black  font-bold"> Wishlist</p>
         <div className="bg-softPink  rounded-full ">
           <p className="text-deepRed  leading-4 font-bold">

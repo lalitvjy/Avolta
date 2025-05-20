@@ -102,12 +102,12 @@ const Avolta = () => {
     }
   }, [router, selfie, setEmail, setIsChecked, setName, setSelfie]);
   return (
-    <div className="bg-white   pt-8  min-h-screen">
+    <div className="bg-white   pt-2  max-h-screen">
       <div className="px-9 ">
         <Header />
       </div>
-      <div className="flex justify-center w-full pt-8 px-6 ">
-        <div className="relative w-full   h-[72vh] shadow-lg rounded-56px overflow-hidden">
+      <div className="flex justify-center w-full pt-2 px-6 ">
+        <div className="relative w-full   h-[64vh] shadow-lg rounded-56px overflow-hidden">
           {/* {activeTab === "Live" ? (
             <div className="flex items-center justify-center h-full relative">
               {activeTab === "Live" ? (
@@ -170,7 +170,7 @@ const Avolta = () => {
               label="Email"
               disabled={isApplyingGlasses}
               leftIcon={<MdOutlineMailOutline size={32} />}
-              className="text-grayscale500 font-bold py-4 px-6 text-xl w-60"
+              className="text-grayscale500 font-bold py-4 px-6 text-xl w-50"
             />
             <Button
               rounded
@@ -192,7 +192,7 @@ const Avolta = () => {
                   </>
                 )
               }
-              className="text-grayscale500 font-bold py-4 px-6 text-xl w-60"
+              className="text-grayscale500 font-bold py-4 px-6 text-xl w-50"
             />
           </div>
         </div>

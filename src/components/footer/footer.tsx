@@ -18,7 +18,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
   };
   const { openReceiveSelfieModal } = useReceiveSelfieModalStore();
   return (
-    <div className=" flex justify-between items-center px-8 pt-16 gap-64 ">
+    <div className=" flex justify-between items-center px-8 pt-2 gap-48 ">
       {/* <Button
         label=" View catalogue"
         rounded
@@ -47,7 +47,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
       rounded
       variant="secondary"
       onClick={handelNavigateCatalog}
-      className={`w-full py-12 pl-12 pr-16 text-xl gap-4 font-bold ${
+      className={`w-full py-6 pl-6 pr-6 text-xl gap-4 font-bold ${
         isLoading ? "opacity-50 cursor-not-allowed" : ""
       }`}
       leftIcon={<Image src={Catalog} width={32} height={32} alt="catalog" />}
@@ -62,7 +62,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
       onClick={openReceiveSelfieModal}
       leftIcon={<MdOutlineEmail size={32} />}
       rightIcon={<IoChevronForwardSharp size={32} />}
-      className={`w-full py-12 px-12 text-xl font-bold ${
+      className={`w-full py-6 px-6 text-xl font-bold ${
         isApplyingGlasses ? "opacity-50 cursor-not-allowed" : ""
       }`}
     />

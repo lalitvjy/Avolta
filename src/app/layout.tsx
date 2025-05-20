@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <div className="relative flex flex-col min-h-screen w-full bg-gray-100">
+        <div className="relative flex flex-col max-h-screen w-full bg-gray-100">
           {children}
         </div>
       </body>
