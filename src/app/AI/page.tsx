@@ -59,7 +59,7 @@ const Ai = () => {
         Finding Your Match
       </p>
       <p className="text-center font-bold text-3xl text-grayscale600 left-10">
-        Our AI is analyzing your face for the perfect fit.
+        Our AI is analyzing your face for the perfect fit
       </p>
 
       <div className="w-full h-full relative flex items-center justify-center mt-12 mb-16">

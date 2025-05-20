@@ -170,7 +170,7 @@ const Avolta = () => {
               label="Email"
               disabled={isApplyingGlasses}
               leftIcon={<MdOutlineMailOutline size={40} />}
-              className="text-grayscale500 font-bold py-4 px-6 text-3xl"
+              className="text-grayscale500 font-bold py-4 px-6 text-4xl w-60"
             />
             <Button
               rounded
@@ -192,7 +192,7 @@ const Avolta = () => {
                   </>
                 )
               }
-              className="text-grayscale500 font-bold py-4 px-6 text-4xl "
+              className="text-grayscale500 font-bold py-4 px-6 text-4xl w-60"
             />
           </div>
         </div>

@@ -20,12 +20,12 @@ export default function Home() {
           Step into the World of Style!
         </p>
         <p className="font-bold text-[55px] mt-2 pb-20">
-          Find sunglasses that fit your vibe perfectly.
+          Find sunglasses that fit your vibe perfectly
         </p>
 
         <Button
           onClick={openTermsModal}
-          label="Get Started!"
+          label="Get Started"
           rounded
           variant="secondary"
           className="w-auto px-20 py-5 text-[55px] font-bold "

@@ -48,7 +48,7 @@ const BookmarkModal = () => {
             <div>
               <div className="flex justify-between items-center">
                 <div>
-                  <h1 className="font-bold text-[60px]">Your Wishlist</h1>
+                  <h1 className="font-bold text-[60px]">Your wishlist</h1>
                 </div>
                 <div className="flex items-center gap-8">
                   <FaHeart
@@ -75,7 +75,7 @@ const BookmarkModal = () => {
             </div>
             <div className="flex justify-center mt-10 ">
               <Button
-                label="Email"
+                label="Receive via email"
                 rounded
                 onClick={handelOpenUserModal}
                 leftIcon={<MdOutlineEmail size={48} />}

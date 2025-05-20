@@ -98,9 +98,9 @@ const TakeSelfie = () => {
         </div>
       ) : (
         <div>
-          <p className=" text-[60px] ">Say Cheese!</p>
+          <p className=" text-[60px] ">Say Cheese</p>
           <p className="font-medium text-3xl pt-4">
-            Capture you best look for better results.
+            Capture your best look for better results
           </p>
         </div>
       )}
@@ -175,7 +175,7 @@ const TakeSelfie = () => {
       ) : (
         <div className="flex justify-center ">
           <Button
-            label="Take a Selfie"
+            label="Take a selfie"
             rounded
             onClick={captureSelfie}
             variant="secondary"
