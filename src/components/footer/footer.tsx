@@ -1,7 +1,6 @@
 import { useReceiveSelfieModalStore } from "@/store/useReceiveSelfieModal";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { IoChevronForwardSharp } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
 import Catalog from "../../../public/catalog.svg";
 import Button from "../button/button";
