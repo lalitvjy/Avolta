@@ -35,7 +35,7 @@ const CatalogCard = ({ data, index }: CardProps) => {
 
   return (
     <div
-      className={` px-10 pt-3 pb-3 border-gray-300 min-h-[410px] flex flex-col justify-between  border-r border-b
+      className={` px-10 pt-3 pb-3 border-gray-300 min-h-[410px] flex flex-col justify-between  border-t border-l
      ${isFirstRow ? "border-b" : ""} `}
     >
       <div className=" flex pb-4">

@@ -40,48 +40,55 @@ const SelfieModalFooter = () => {
   };
 
   return (
-    <div className="flex items-center justify-center p-10 gap-40 h-full text-black">
-      <div>
-        <p className="text-center text-2xl font-bold leading-tight tracking-tight pb-4">Scan the code</p>
-        {uuid ? (
-          <QRCodeCanvas value={qrUrl} size={250} />
-        ) : (
-          <p className="text-2xl text-gray-500">Generating QR...</p>
-        )}
-      </div>
-
-      <div>
-        <p className="text-center text-2xl font-bold leading-tight tracking-tight pb-4">Receive an email</p>
-        <div className="space-y-8">
-          <div>
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-[20vh] p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAvolta text-xl"
-            />
-          </div>
-
-          <div>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-primaryAvolta text-xl"
-            />
-          </div>
-
-          <Button
-            label="Send"
-            className="rounded-lg font-bold w-full py-3 text-xl"
-            variant="secondary"
-            onClick={handleSend}
-          />
-        </div>
-      </div>
+    <div className="flex items-start justify-center p-10 gap-20 h-full text-black">
+  {/* Left: QR Code Section */}
+  <div className="w-1/2 max-w-sm flex flex-col items-center">
+    <p className="text-center text-2xl font-bold leading-tight tracking-tight pb-4">
+      Scan the QR code
+    </p>
+    <div className="flex justify-center items-center min-h-[250px]">
+      {uuid ? (
+        <QRCodeCanvas value={qrUrl} size={250} />
+      ) : (
+        <p className="text-2xl text-gray-500">Generating QR...</p>
+      )}
     </div>
+  </div>
+
+  {/* Right: Email Section */}
+  <div className="w-1/2 max-w-sm flex flex-col items-center">
+    <p className="text-center text-2xl font-bold leading-tight tracking-tight pb-4">
+      Receive an email
+    </p>
+    <div className="space-y-4 w-full">
+      <div>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAvolta text-xl"
+        />
+      </div>
+      <div>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryAvolta text-xl"
+        />
+      </div>
+      <Button
+        label="Send"
+        className="rounded-lg font-bold w-full py-3 text-xl"
+        variant="secondary"
+        onClick={handleSend}
+      />
+    </div>
+  </div>
+</div>
+
   );
 };
 

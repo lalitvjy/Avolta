@@ -28,9 +28,9 @@ const CatalogHeadder = () => {
         label="Filter"
         rounded
         variant="secondary"
-        className="bg-black font-bold py-6 px-8 text-4xl"
+        className="bg-black font-bold py-3 px-8 text-2xl"
         onClick={openFilter}
-        leftIcon={<LuSettings2 size={48} />}
+        leftIcon={<LuSettings2 size={32} />}
       />
       {/* <button
         onClick={scrollLeft}

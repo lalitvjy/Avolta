@@ -20,13 +20,13 @@ const EmailModal = () => {
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
       <Dialog
         onClose={closeEmailModal}
-        className="fixed inset-0 flex items-center justify-center pt-40 pb-20 px-10"
+        className="fixed inset-0 flex items-center justify-center pt-20 pb-20 px-10"
       >
         <button
-          className="absolute right-10  top-10 z-100 p-4 rounded-full bg-grayscale600"
+          className="absolute right-10  top-10 z-10 p-4 rounded-full bg-grayscale600"
           onClick={closeEmailModal}
         >
-          <RxCross2 className="text-white" size={48} />
+          <RxCross2 className="text-white" size={28} />
         </button>
         <TransitionChild
           enter="transition-transform duration-500"
@@ -52,15 +52,15 @@ const EmailModal = () => {
                 <Image
                   src={selectedGlasses.triedOnUrl}
                   alt="22"
-                  width={400}
-                  height={340}
-                  className="absolute top-[-25px] w-[44vh] h-[40vh] rounded-56px"
+                  width={300}
+                  height={300}
+                  className="absolute top-[-135px] w-[44vh] h-[40vh] rounded-56px object-cover"
                 />
               ) : (
                 <Image
                   src={Mainimage}
                   alt="22"
-                  className="absolute top-[-25px] w-[30vh] h-[42vh] rounded-56px"
+                  className="absolute w-[44vh] h-[40vh] rounded-[56px] object-cover"
                 />
               )}
 
