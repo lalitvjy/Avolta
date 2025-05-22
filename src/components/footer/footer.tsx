@@ -17,7 +17,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
   };
   const { openReceiveSelfieModal } = useReceiveSelfieModalStore();
   return (
-    <div className=" flex justify-between items-center px-8 pt-2 gap-32 ">
+    <div className=" flex justify-between items-center px-8 pt-4 gap-32 ">
       {/* <Button
         label=" View catalogue"
         rounded
