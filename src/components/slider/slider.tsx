@@ -150,7 +150,7 @@ function Slider() {
               <div
                 key={item.objectID}
                 onClick={() => handleSelectGlasses(item)}
-                className={`relative min-w-[200px] h-[200px] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 
+                className={`relative min-w-[175px] h-[175px] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 
           ${
             selectedGlasses?.objectID === item.objectID
               ? "border-4 border-primaryAvolta scale-105"

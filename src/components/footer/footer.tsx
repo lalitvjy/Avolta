@@ -18,7 +18,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
   };
   const { openReceiveSelfieModal } = useReceiveSelfieModalStore();
   return (
-    <div className=" flex justify-between items-center px-8 pt-2 gap-48 ">
+    <div className=" flex justify-between items-center px-8 pt-2 gap-32 ">
       {/* <Button
         label=" View catalogue"
         rounded
@@ -61,7 +61,7 @@ const Footer = ({ isLoading, isApplyingGlasses }: FooterProps) => {
       disabled={isApplyingGlasses}
       onClick={openReceiveSelfieModal}
       leftIcon={<MdOutlineEmail size={32} />}
-      rightIcon={<IoChevronForwardSharp size={32} />}
+      
       className={`w-full py-6 px-6 text-xl font-bold ${
         isApplyingGlasses ? "opacity-50 cursor-not-allowed" : ""
       }`}

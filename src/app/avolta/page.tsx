@@ -153,11 +153,11 @@ const Avolta = () => {
           </>
 
           <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black/40 to-transparent"></div>
-          <div className="absolute  bottom-12 left-12 flex  ">
+          <div className="absolute  bottom-6 left-6 flex  ">
             <GlassesInfo />
           </div>
           {/* <TabSelector activeTab={activeTab} setActiveTab={setActiveTab} /> */}
-          <div className="absolute bottom-6 right-6 flex gap-6 ">
+          <div className="absolute bottom-6 right-6 flex gap-4 ">
             {/* <Button
               rounded
               onClick={openDetailModal}
@@ -170,7 +170,7 @@ const Avolta = () => {
               label="Email"
               disabled={isApplyingGlasses}
               leftIcon={<MdOutlineMailOutline size={32} />}
-              className="text-grayscale500 font-bold py-4 px-6 text-xl w-50"
+              className="text-grayscale500 font-bold py-3 px-6 text-xl w-50"
             />
             <Button
               rounded
@@ -192,7 +192,7 @@ const Avolta = () => {
                   </>
                 )
               }
-              className="text-grayscale500 font-bold py-4 px-6 text-xl w-50"
+              className="text-grayscale500 font-bold py-3 px-6 text-xl w-50"
             />
           </div>
         </div>
