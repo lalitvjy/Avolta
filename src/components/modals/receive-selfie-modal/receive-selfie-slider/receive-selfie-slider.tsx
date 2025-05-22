@@ -41,7 +41,7 @@ const ReceiveSelfieSlider = () => {
         {recommendations.map((item, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-[65%] h-[600px] flex justify-center relative"
+            className="flex-shrink-0 w-[65%] h-[400px] flex justify-center relative"
           >
             {item.triedOnUrl ? (
               <Image

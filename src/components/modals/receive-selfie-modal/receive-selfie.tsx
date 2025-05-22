@@ -37,7 +37,7 @@ const ReceiveSelfie = () => {
           <DialogPanel className="bg-white w-full h-full flex flex-col  justify-between    rounded-40px shadow-lg overflow-hidden ">
             <div className=" h-[48vh] rounded-b-40px relative flex flex-col items-center justify-center">
               <div className="flex items-center justify-center pt-20">
-                <p className="font-bold text-3xl text-center text-black p-4">
+                <p className="font-bold text-2xl text-center text-black p-4">
                 Receive your next perfect pair via QR code or email
                 </p>
               </div>
