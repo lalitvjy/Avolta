@@ -36,7 +36,7 @@ const ReceiveSelfieSlider = () => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        className="flex overflow-x-auto scroll-smooth scrollbar-hide gap-3 pl-[17.5%] pr-8"
+        className="flex overflow-x-auto scroll-smooth scrollbar-hide gap-2 pl-[17.5%] pr-8"
       >
         {recommendations.map((item, index) => (
           <div
