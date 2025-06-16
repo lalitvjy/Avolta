@@ -6,8 +6,30 @@ import Button from "../components/button/button";
 import TermsAndPrivacy from "../components/modals/terms-and-privacy/terms-and-privacy";
 import { useTermsModalStore } from "../store/useTermsModal";
 
+// Add type declaration for window.amplitude
+declare global {
+  interface Window {
+    amplitude: {
+      track: (eventName: string, properties?: Record<string, any>) => void;
+    };
+  }
+}
+
 export default function Home() {
   const { openTermsModal } = useTermsModalStore();
+
+  const handleGetStarted = () => {
+    // Open terms modal
+    openTermsModal();
+    
+    // Track event using window.amplitude
+    if (typeof window !== 'undefined' && window.amplitude) {
+      window.amplitude.track('get_started', {
+        button_location: 'hero',
+        button_text: 'Get Started'
+      });
+    }
+  };
 
   return (
     <div className="relative w-full h-[100vh] bg-white overflow-hidden">
@@ -24,7 +46,7 @@ export default function Home() {
         </p>
 
         <Button
-          onClick={openTermsModal}
+          onClick={handleGetStarted}
           label="Get started"
           rounded
           variant="secondary"
