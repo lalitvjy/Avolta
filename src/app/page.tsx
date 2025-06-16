@@ -10,7 +10,7 @@ import { useTermsModalStore } from "../store/useTermsModal";
 declare global {
   interface Window {
     amplitude: {
-      track: (eventName: string, properties?: Record<string, any>) => void;
+      track: (eventName: string, properties?: Record<string, unknown>) => void;
     };
   }
 }
