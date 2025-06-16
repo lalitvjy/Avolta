@@ -1,10 +1,10 @@
 // Define types for Amplitude
-interface AmplitudePlugin {
+export interface AmplitudePlugin {
   name: string;
   setup: () => void;
 }
 
-interface AmplitudeOptions {
+export interface AmplitudeOptions {
   fetchRemoteConfig?: boolean;
   serverZone?: 'EU' | 'US';
   autocapture?: boolean;
@@ -22,4 +22,7 @@ declare global {
       plugin: (options: { sampleRate: number }) => AmplitudePlugin;
     };
   }
-} 
+}
+
+// This export is needed to make the file a module
+export {}; 

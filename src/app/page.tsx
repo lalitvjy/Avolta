@@ -6,15 +6,6 @@ import Button from "../components/button/button";
 import TermsAndPrivacy from "../components/modals/terms-and-privacy/terms-and-privacy";
 import { useTermsModalStore } from "../store/useTermsModal";
 
-// Add type declaration for window.amplitude
-declare global {
-  interface Window {
-    amplitude: {
-      track: (eventName: string, properties?: Record<string, unknown>) => void;
-    };
-  }
-}
-
 export default function Home() {
   const { openTermsModal } = useTermsModalStore();
 
