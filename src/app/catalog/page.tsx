@@ -5,7 +5,9 @@ import { fetchGlasses } from "@/helpers/algolia/algolia";
 import { useDetailModalStore } from "@/store/useDetailModal";
 import { useFilterStore } from "@/store/useFilter";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
+import { useUserInfo } from "@/store/useUserInfo";
 import { AlgoliaProduct } from "@/types/algoliaTypes";
+import { logViewCatalogueClose, logViewCatalogueSku } from "@/utils/analytics";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Spinner } from "react-bootstrap";
@@ -20,12 +22,14 @@ const Catalog = () => {
   const { setTryOnGlasses } = useSelectedGlassesStore();
   const { openDetailModal } = useDetailModalStore();
   const [isLoading, setIsLoading] = useState(false);
+  const { email, name } = useUserInfo();
   const [page, setPage] = useState(0);
   const [nbPages, setNbPages] = useState(1);
   const observer = useRef<IntersectionObserver | null>(null);
   const router = useRouter();
 
   const handleNavigateHome = () => {
+    logViewCatalogueClose(email, name);
     router.push("/avolta");
   };
 
@@ -81,6 +85,7 @@ const Catalog = () => {
     [isLoading, page, nbPages]
   );
   const handleSelectGlasses = (glass: AlgoliaProduct) => {
+    logViewCatalogueSku(glass.sku, email, name);
     setTryOnGlasses(glass);
     openDetailModal();
   };
@@ -97,7 +102,7 @@ const Catalog = () => {
       <h1 className="text-grayscale600 font-bold text-[80px]">Catalogue</h1>
       <CatalogHeadder />
 
-      <Filter />
+      <Filter location="catalogue" />
 
       {glasses.length === 0 && !isLoading && filters && (
         <div className="flex flex-col items-center justify-center mt-10 ">
@@ -123,6 +128,7 @@ const Catalog = () => {
                 currency: item.currency,
                 brand: item.brand,
                 objectID: item.objectID,
+                sku: item.sku,
               }}
               index={index}
               totalItems={glasses.length}

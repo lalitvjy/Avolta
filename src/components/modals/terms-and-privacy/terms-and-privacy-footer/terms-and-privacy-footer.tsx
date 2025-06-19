@@ -1,9 +1,9 @@
 "use client";
 import { useTermsModalStore } from "@/store/useTermsModal";
 import { useUserInfo } from "@/store/useUserInfo";
+import { logAgreementAccepted } from "@/utils/analytics";
 import { useRouter } from "next/navigation";
 import Button from "../../../button/button";
-
 const TermsAndPrivacyFooter = () => {
   const router = useRouter();
   const { closeTermsModal } = useTermsModalStore();
@@ -34,6 +34,7 @@ const TermsAndPrivacyFooter = () => {
         className="w-full font-bold text-3xl py-10"
         onClick={() => {
           if (isChecked) {
+            logAgreementAccepted();
             closeTermsModal();
             setTimeout(() => {
               handelNavigateTakeSelfie();

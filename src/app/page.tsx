@@ -1,4 +1,5 @@
 "use client";
+import { logGetStarted } from '@/utils/analytics';
 import Image from "next/image";
 import Banner from "../../public/club_avolta_banner_e2e_black.png";
 import MainImage from "../../public/image 1.png";
@@ -8,7 +9,10 @@ import { useTermsModalStore } from "../store/useTermsModal";
 
 export default function Home() {
   const { openTermsModal } = useTermsModalStore();
-
+  const handleGetStarted = () => {
+    logGetStarted();
+    openTermsModal();
+  };
   return (
     <div className="relative w-full h-[100vh] bg-white overflow-hidden">
       <Image src={MainImage} alt="Main image" fill className="object-cover " />
@@ -24,7 +28,7 @@ export default function Home() {
         </p>
 
         <Button
-          onClick={openTermsModal}
+          onClick={handleGetStarted}
           label="Get started"
           rounded
           variant="secondary"

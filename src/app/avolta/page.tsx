@@ -14,6 +14,11 @@ import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import { useUserInfo } from "@/store/useUserInfo";
+import {
+  logEmailSkuOpen,
+  logWishlistAdd,
+  logWishlistRemove,
+} from "@/utils/analytics";
 import { resetUserFlow } from "@/utils/resetUserFlow";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -39,7 +44,8 @@ const Avolta = () => {
   // const [activeTab, setActiveTab] = useState("Static");
   const { selectedGlasses, setSelectedGlasses } = useSelectedGlassesStore();
   const { uuid } = useRecommendetGlassStore();
-  const { setIsChecked, setName, setEmail } = useUserInfo();
+
+  const { setIsChecked, setName, setEmail, name, email } = useUserInfo();
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
   const isFavorite = favorites.some(
     (item) => item.objectID === selectedGlasses?.objectID
@@ -95,6 +101,13 @@ const Avolta = () => {
 
     generateTryOnImage();
   }, [uuid, selectedGlasses, appliedImage, setSelectedGlasses]);
+
+  const handelOpenEmailModal = () => {
+    if (selectedGlasses) {
+      logEmailSkuOpen(selectedGlasses?.sku, email, name);
+    }
+    openEmailModal();
+  };
   useEffect(() => {
     if (!selfie) {
       router.push("/");
@@ -166,7 +179,7 @@ const Avolta = () => {
             /> */}
             <Button
               rounded
-              onClick={openEmailModal}
+              onClick={handelOpenEmailModal}
               label="Email"
               disabled={isApplyingGlasses}
               leftIcon={<MdOutlineMailOutline size={40} />}
@@ -179,17 +192,18 @@ const Avolta = () => {
               onClick={() => {
                 if (selectedGlasses) {
                   toggleFavorite(selectedGlasses);
+                  if (isFavorite) {
+                    logWishlistRemove("try-on");
+                  } else {
+                    logWishlistAdd("try-on");
+                  }
                 }
               }}
               leftIcon={
                 isFavorite ? (
-                  <>
-                    <FaHeart className="text-red" size={40} />
-                  </>
+                  <FaHeart className="text-red" size={40} />
                 ) : (
-                  <>
-                    <CiHeart className="text-gray400" size={40} />
-                  </>
+                  <CiHeart className="text-gray400" size={40} />
                 )
               }
               className="text-grayscale500 font-bold py-4 px-6 text-4xl w-60"

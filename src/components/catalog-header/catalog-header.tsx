@@ -3,9 +3,11 @@ import { useFilterStore } from "@/store/useFilter";
 // import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { LuSettings2 } from "react-icons/lu";
 
+import { logFilterClick } from "@/utils/analytics";
 import Button from "../button/button";
 const CatalogHeadder = () => {
   const { openFilter } = useFilterStore();
+
   // const { appliedFilters, applyStoredFilter } = useFilterStore();
 
   // const sliderRef = useRef<HTMLDivElement>(null);
@@ -22,6 +24,10 @@ const CatalogHeadder = () => {
   // const handleScroll = () => {
   //   if (!sliderRef.current) return;
   // };
+  const handelOpenFilter = () => {
+    logFilterClick("catalogue");
+    openFilter();
+  };
   return (
     <div className="mt-12 flex gap-4">
       <Button
@@ -29,7 +35,7 @@ const CatalogHeadder = () => {
         rounded
         variant="secondary"
         className="bg-black font-bold py-6 px-8 text-4xl"
-        onClick={openFilter}
+        onClick={handelOpenFilter}
         leftIcon={<LuSettings2 size={48} />}
       />
       {/* <button

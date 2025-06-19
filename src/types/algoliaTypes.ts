@@ -17,4 +17,5 @@ export interface AlgoliaProduct {
   gender?: string;
   currency?: string;
   productUrl?: string;
+  sku: string;
 }

@@ -3,6 +3,7 @@ import { sendEmail } from "@/helpers/send-email/sendEmail";
 import { useEmailModalStore } from "@/store/useEmailModal";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { useUserInfo } from "@/store/useUserInfo";
+import { logEmailSkuClose, logEmailSkuSend } from "@/utils/analytics";
 const EmailModalFooter = () => {
   const { closeEmailModal } = useEmailModalStore();
   const { name, email, setName, setEmail } = useUserInfo();
@@ -20,6 +21,7 @@ const EmailModalFooter = () => {
           triedOnImage: selectedGlasses.triedOnUrl || "",
         },
       ];
+      logEmailSkuSend(selectedGlasses.sku, email, name);
     }
 
     try {
@@ -32,6 +34,9 @@ const EmailModalFooter = () => {
     } catch (error) {
       console.error("Failed to send email:", error);
     } finally {
+      if (selectedGlasses) {
+        logEmailSkuClose(selectedGlasses.sku, email, name);
+      }
       closeEmailModal();
     }
   };
@@ -39,9 +44,7 @@ const EmailModalFooter = () => {
   return (
     <div className="flex justify-center items-center gap-32 text-black">
       <div>
-        <p className="font-bold text-3xl pb-12 text-center">
-        Receive an email
-        </p>
+        <p className="font-bold text-3xl pb-12 text-center">Receive an email</p>
 
         <div className="space-y-12">
           <div>

@@ -5,6 +5,12 @@ import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { useUserInfo } from "@/store/useUserInfo";
 import {
+  logViewCatalogueSkuLess,
+  logViewCatalogueSkuMore,
+  logWishlistAdd,
+  logWishlistRemove,
+} from "@/utils/analytics";
+import {
   Dialog,
   DialogPanel,
   Transition,
@@ -24,6 +30,7 @@ export default function Detail() {
   const { isDetailModalOpen, closeDetailModal } = useDetailModalStore();
   const [showFullDetails, setShowFullDetails] = useState(false);
   const { width, height } = useWindowDimensions();
+  const { email, name } = useUserInfo();
   const { selectedGlasses, tryOnGlasses } = useSelectedGlassesStore();
   const { favorites, toggleFavorite } = useFavoriteGlassesStore();
   const { openUserModal } = useUserInfo();
@@ -36,6 +43,16 @@ export default function Detail() {
   const handelNavigateMainPage = () => {
     router.push("/avolta");
     closeDetailModal();
+  };
+  const handleToggleDetails = () => {
+    if (tryOnGlasses?.sku) {
+      if (!showFullDetails) {
+        logViewCatalogueSkuMore(tryOnGlasses.sku, email, name);
+      } else {
+        logViewCatalogueSkuLess(tryOnGlasses.sku, email, name);
+      }
+    }
+    setShowFullDetails(!showFullDetails);
   };
   return (
     <Transition show={isDetailModalOpen}>
@@ -80,6 +97,11 @@ export default function Detail() {
                   onClick={() => {
                     if (selectedGlasses) {
                       toggleFavorite(selectedGlasses);
+                      if (isFavorite) {
+                        logWishlistRemove("catalogue-pdp");
+                      } else {
+                        logWishlistAdd("catalogue-pdp");
+                      }
                     }
                   }}
                   leftIcon={
@@ -113,7 +135,7 @@ export default function Detail() {
               </p>
 
               <button
-                onClick={() => setShowFullDetails(!showFullDetails)}
+                onClick={handleToggleDetails}
                 className="text-2xl text-primaryAvolta"
               >
                 {showFullDetails ? "See Less" : "See More"}

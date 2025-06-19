@@ -1,28 +1,35 @@
 "use client";
+import Button from "@/components/button/button";
+import BookmarkCard from "@/components/card/bookmark-card";
 import { useBookmarkModalStore } from "@/store/useBookmarkModal";
+import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
+import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
+import { useUserInfo } from "@/store/useUserInfo";
+import { logWishlistClose, logWishlistReceiveEmail } from "@/utils/analytics";
 import {
   Dialog,
   DialogPanel,
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import { RxCross2 } from "react-icons/rx";
-
-import Button from "@/components/button/button";
-import BookmarkCard from "@/components/card/bookmark-card";
-import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
-import { useUserInfo } from "@/store/useUserInfo";
 import { FaHeart } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
 import UserInfo from "../user-info/user-info";
 const BookmarkModal = () => {
   const { isBookmarkModalOpen, closeBookmarkModal } = useBookmarkModalStore();
+  const { selectedGlasses } = useSelectedGlassesStore();
   const { favorites } = useFavoriteGlassesStore();
-  const { openUserModal } = useUserInfo();
+  const { openUserModal, email, name } = useUserInfo();
   const handelOpenUserModal = () => {
     openUserModal();
+    if (selectedGlasses)
+      logWishlistReceiveEmail(selectedGlasses?.sku, email, name);
   };
-
+  const handleClose = () => {
+    logWishlistClose(email, name);
+    closeBookmarkModal();
+  };
   return (
     <Transition show={isBookmarkModalOpen}>
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
@@ -32,7 +39,7 @@ const BookmarkModal = () => {
       >
         <button
           className="absolute right-20 top-10  p-4 rounded-full bg-grayscale600"
-          onClick={closeBookmarkModal}
+          onClick={handleClose}
         >
           <RxCross2 className="text-white" size={48} />
         </button>
@@ -68,6 +75,7 @@ const BookmarkModal = () => {
                       priceDutyFree: item.priceDutyFree,
                       currency: item.currency,
                       objectID: item.objectID,
+                      sku: item.sku,
                     }}
                   />
                 ))}

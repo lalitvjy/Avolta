@@ -1,3 +1,4 @@
+import AmplitudeProvider from "@/components/amplitude-provider/amplitude-provider";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
+        <AmplitudeProvider />
         <div className="relative flex flex-col min-h-screen w-full bg-gray-100">
           {children}
         </div>

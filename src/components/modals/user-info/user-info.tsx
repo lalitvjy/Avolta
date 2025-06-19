@@ -3,6 +3,12 @@ import { sendEmail } from "@/helpers/send-email/sendEmail";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
 import { useUserInfo } from "@/store/useUserInfo";
+import {
+  logUserProfileSave,
+  logUserProfileSkip,
+  logWishlistLater,
+  logWishlistSendEmail,
+} from "@/utils/analytics";
 import { useRouter } from "next/navigation";
 import { Form, Modal } from "react-bootstrap";
 import Button from "../../button/button";
@@ -20,6 +26,10 @@ const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
 
     if (purpose === "wishlist") {
       const { favorites } = useFavoriteGlassesStore.getState();
+      const { selectedGlasses } = useSelectedGlassesStore.getState();
+      if (selectedGlasses) {
+        logWishlistSendEmail(selectedGlasses?.sku, email, name);
+      }
       objects = favorites.map((item) => ({
         brand: item.brand || "Unknown Brand",
         imageUrlBase: item.imageUrlBase ?? "",
@@ -43,6 +53,9 @@ const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
         ];
       }
     }
+    if (purpose === "user-info") {
+      logUserProfileSave(email, name);
+    }
 
     if (purpose !== "user-info") {
       try {
@@ -62,6 +75,12 @@ const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
   };
 
   const handelClose = () => {
+    if (purpose === "user-info") {
+      logUserProfileSkip();
+    }
+    if (purpose === "wishlist") {
+      logWishlistLater(email, name);
+    }
     closeUserModal();
     router.push("/avolta");
   };
@@ -75,12 +94,13 @@ const UserInfo = ({ purpose, buttonlabel }: UserInfoProps) => {
       aria-labelledby="contained-modal-title-vcenter"
     >
       <div className=" bg-white rounded-[64px]  text-black py-14 px-28">
-        
         <p className="text-4xl font-medium text-center leading-[130%] py-4">
-          <b>Share an email to receive details of your <br />favorite sunglasses</b>
+          <b>
+            Share an email to receive details of your <br />
+            favorite sunglasses
+          </b>
           <br />
           <br />
-          
         </p>
         <Form className="text-3xl">
           <Form.Group className="mb-6">

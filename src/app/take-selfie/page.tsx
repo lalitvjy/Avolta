@@ -1,6 +1,7 @@
 "use client";
 import { useTakeSelfieStore } from "@/store/useTakeSelfie";
 import { useUserInfo } from "@/store/useUserInfo";
+import { logCaptureImage, logCaptureImageRetake } from "@/utils/analytics";
 import { resetUserFlow } from "@/utils/resetUserFlow";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -48,6 +49,7 @@ const TakeSelfie = () => {
     );
 
     const imageData = canvasRef.current.toDataURL("image/png");
+    logCaptureImage();
     setSelfie(imageData);
     stopCamera();
   };
@@ -58,6 +60,7 @@ const TakeSelfie = () => {
 
   const handelRetakeSelfie = () => {
     setSelfie("");
+    logCaptureImageRetake();
     startCamera();
   };
   const handelNavigateAIpage = () => {
@@ -145,7 +148,7 @@ const TakeSelfie = () => {
 
       {selfie ? (
         <div className="flex justify-between ">
-          <div className="flex flex-col gap-2" >
+          <div className="flex flex-col gap-2">
             <Button
               label="   Retake a selfie   "
               leftIcon={<LuRefreshCw size={40} />}

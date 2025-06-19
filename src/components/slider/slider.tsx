@@ -2,7 +2,9 @@
 import { useFilterStore } from "@/store/useFilter";
 import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useSelectedGlassesStore } from "@/store/useSelectedGlasses";
+import { useUserInfo } from "@/store/useUserInfo";
 import { AlgoliaProduct } from "@/types/algoliaTypes";
+import { logFilterClick, logTryOn } from "@/utils/analytics";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -14,6 +16,7 @@ import SkeletonGlassesCard from "../skeleton/slider-skeleton";
 function Slider() {
   const ALGOLIA_INDEX_NAME = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
   const { openFilter, filters, sortOrder } = useFilterStore();
+  const { name, email } = useUserInfo();
   const [glasses, setGlasses] = useState<AlgoliaProduct[]>([]);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
@@ -110,6 +113,7 @@ function Slider() {
 
   const handleSelectGlasses = (glasses: AlgoliaProduct) => {
     setSelectedGlasses(glasses);
+    logTryOn(glasses.sku, email, name);
   };
 
   const handleScroll = () => {
@@ -119,11 +123,14 @@ function Slider() {
       setPage((prevPage) => prevPage + 1);
     }
   };
-
+  const handelOpenFilter = () => {
+    logFilterClick("try-on");
+    openFilter();
+  };
   return (
     <div className="relative w-full pt-10 flex  pl-28">
       <button
-        onClick={openFilter}
+        onClick={handelOpenFilter}
         className="flex gap-2 absolute z-90 left-[-52px] top-20  pb-4 pt-4 px-8 rounded-t-[32px] bg-black rotate-90 text-white text-3xl font-bold items-center"
       >
         <LuSettings2 size={40} />
@@ -192,7 +199,7 @@ function Slider() {
       >
         <FaChevronRight className="text-white" />
       </button>
-      <Filter />
+      <Filter location="try-on" />
     </div>
   );
 }

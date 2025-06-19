@@ -3,6 +3,7 @@ import { sendEmail } from "@/helpers/send-email/sendEmail";
 import { useReceiveSelfieModalStore } from "@/store/useReceiveSelfieModal";
 import { useRecommendetGlassStore } from "@/store/useRecommendetGlass";
 import { useUserInfo } from "@/store/useUserInfo";
+import { logGetRecommendationsSend } from "@/utils/analytics";
 import { resetUserFlow } from "@/utils/resetUserFlow";
 import { useRouter } from "next/navigation";
 import { QRCodeCanvas } from "qrcode.react";
@@ -23,6 +24,9 @@ const SelfieModalFooter = () => {
       triedOnImage: item.triedOnUrl || "",
     }));
 
+    const skus = recommendations.map((item) => item.sku).filter(Boolean);
+
+    logGetRecommendationsSend(skus, email, name);
     try {
       await sendEmail({
         name,
@@ -42,7 +46,9 @@ const SelfieModalFooter = () => {
   return (
     <div className="flex items-center justify-center p-10 gap-40 h-full text-black">
       <div>
-        <p className="text-center text-4xl font-bold leading-tight tracking-tight pb-4">Scan the code</p>
+        <p className="text-center text-4xl font-bold leading-tight tracking-tight pb-4">
+          Scan the code
+        </p>
         {uuid ? (
           <QRCodeCanvas value={qrUrl} size={250} />
         ) : (
@@ -51,7 +57,9 @@ const SelfieModalFooter = () => {
       </div>
 
       <div>
-        <p className="text-center text-4xl font-bold leading-tight tracking-tight pb-4">Receive an email</p>
+        <p className="text-center text-4xl font-bold leading-tight tracking-tight pb-4">
+          Receive an email
+        </p>
         <div className="space-y-8">
           <div>
             <input

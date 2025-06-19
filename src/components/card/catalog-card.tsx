@@ -1,6 +1,7 @@
 "use client";
 import { useFavoriteGlassesStore } from "@/store/useFavoriteGlassesStore";
 import { AlgoliaProduct } from "@/types/algoliaTypes";
+import { logWishlistAdd, logWishlistRemove } from "@/utils/analytics";
 import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa6";
@@ -75,15 +76,20 @@ const CatalogCard = ({ data, index }: CardProps) => {
             {currency}
             {priceDutyFree}
           </p>
-          <button onClick={() => toggleFavorite(data)}>
+          <button
+            onClick={() => {
+              toggleFavorite(data);
+              if (isFavorite) {
+                logWishlistRemove("catalogue-plp");
+              } else {
+                logWishlistAdd("catalogue-plp");
+              }
+            }}
+          >
             {isFavorite ? (
-              <>
-                <FaHeart size={30} className="text-red" />
-              </>
+              <FaHeart size={30} className="text-red" />
             ) : (
-              <>
-                <CiHeart className="text-gray400" size={30} />
-              </>
+              <CiHeart className="text-gray400" size={30} />
             )}
           </button>
         </div>

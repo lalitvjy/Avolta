@@ -1,6 +1,7 @@
 "use client";
 import { fetchFacets } from "@/helpers/algolia/algolia";
 import { useFilterStore } from "@/store/useFilter";
+import { logFilterApply, logFilterReset } from "@/utils/analytics";
 import {
   Dialog,
   DialogPanel,
@@ -12,7 +13,10 @@ import "rc-slider/assets/index.css";
 import { useEffect, useState } from "react";
 import Accordion from "../accordion/accordion";
 import Button from "../button/button";
-const Filter = () => {
+interface FilterProps {
+  location: "catalogue" | "try-on";
+}
+const Filter = ({ location }: FilterProps) => {
   const {
     isOpen,
     closeFilter,
@@ -68,10 +72,23 @@ const Filter = () => {
     setFilters(filters);
     setSortOrder(selectedSort);
     addAppliedFilter(filters, selectedSort);
+    logFilterApply(location, `${filters} ${selectedSort}`);
     closeFilter();
   };
 
   const handleApplyReset = () => {
+    const brandFilter =
+      selectedBrands.length > 0
+        ? `(${selectedBrands.map((brand) => `brand:"${brand}"`).join(" OR ")})`
+        : "";
+
+    const priceFilter = `priceDutyFree:${priceRange[0]} TO ${priceRange[1]}`;
+
+    const filterString =
+      [brandFilter, priceFilter].filter(Boolean).join(" AND ") +
+      (selectedSort ? ` ${selectedSort}` : "");
+
+    logFilterReset(location, filterString);
     setSelectedBrands([]);
     setPriceRange([minPrice, maxPrice]);
     setSelectedSort("");
