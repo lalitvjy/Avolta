@@ -1,8 +1,13 @@
 import * as amplitude from "@amplitude/analytics-browser";
 
-const AMPLITUDE_API_KEY = "1bdb07d29daba89c5e9305942ff33376";
+const AMPLITUDE_API_KEY = process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!;
 
 export const initAmplitude = () => {
+  if (!AMPLITUDE_API_KEY) {
+    console.warn("Amplitude API key not set");
+    return;
+  }
+
   amplitude.init(AMPLITUDE_API_KEY, undefined, {
     defaultTracking: true,
   });
